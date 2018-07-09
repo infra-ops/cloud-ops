@@ -1,0 +1,140 @@
+cf push busybox-docker --docker-image nik786/busybox2 --random-route -i 1 -m 512M -t 180
+
+
+apt-get update
+apt-get install apt-transport-https ca-certificates
+apt-key adv \
+               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
+               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" |  tee /etc/apt/sources.list.d/docker.list
+apt-get update
+apt-get install docker-engine -y
+
+
+git clone 
+
+https://github.com/cloudfoundry-incubator/spiff/releases
+https://github.com/cloudfoundry/bosh-lite
+https://github.com/cloudfoundry/cf-release.git
+
+echo 3 > /proc/sys/vm/drop_caches
+
+I need to grep REPLACE word for test-1 test-2 test-3 which is happening.
+I need to grep $ also for test-1 test-2 test-3 test-4 which is not happening.
+for test-4 only $ will be grep and REPLACE absent should not be printed but for
+test-1 test-2 test-3 REPLACE absent should be printed if it misses.
+
+
+bosh tasks --no-filter
+
+
+bosh task 1 --debug
+bosh cancel task 1
+
+https://github.com/cloudfoundry/diego-release/tree/develop/examples/bosh-lite
+10.244.16.4
+
+
+vagrant suspend
+vagrant resume
+
+
+
+cd cf-release dir 
+bosh upload release
+bosh deploy 
+
+# cd bosh-lite dir
+bin/add-route
+cf api --skip-ssl-validation https://api.bosh-lite.com
+cf create-org my_org
+cf create-space development -o my
+
+
+cf login -a api.run.pivotal.io
+
+cf curl /v2/info | jq .doppler_logging_endpoint
+wss://doppler.192.0.2.34.xip.io:443
+
+cf app metrics-ingestor
+
+cf apps
+
+cf apps cf-spring-music
+
+friday
+manifest
+application security group
+
+
+saturday
+bluegreen deployment
+application autoscalar
+
+
+sunday
+metrics
+
+metron:
+agents co-located with sources
+
+statsd-injector:
+companion component to metron and allows use of statsd
+metric aggregator format
+
+nozzles:
+consumes data from logaggregator firehose
+configured to select ,buffer and transforms data and forward it to
+other applications
+
+doppler :
+
+it gathers logs from metron,stores them in temporary buffers and forward
+to traffic controller
+
+traffic controller:
+handles client request for different logs by gather and collect message
+from all doppler server
+provides external api and expose firehose
+
+firehose
+it is web socket endpoint which streams all the event data coming 
+from an elastic run time deployment.
+
+
+
+
+
+buildpacks
+components which provide framework and runtime support for applications
+it examines user-provided artifacts to determine which dependencies to download 
+
+git clone https://github.com/cloudfoundry/java-buildpack.git
+
+
+
+bundle install
+
+bundle exec rake package OFFLINE=true PINNED=true
+
+PLATFORMS=%w(lucid precise).freeze
+monday
+service broker
+continous delivery
+tuesday
+route service
+use cases are authentication,rate limiting,cache servicing
+
+fully
+cf router receives all traffic to apps in deployment before any processing 
+
+logging route service
+
+git clone https://github.com/cloudfoundry-samples/logging-route-service
+
+this route service can be pushed as an app to cf.
+log rquest received and sent.
+
+rate  limiting route service
+git clone https://github.com/cloudfoundry-samples/ratelimit-service
+it provides rate limiting to control the rate of traffic to an application

@@ -1,0 +1,6 @@
+---
+set-table:
+    - test-17.sql
+    - test-18.sql
+multiset-table:
+    - test-19.sql

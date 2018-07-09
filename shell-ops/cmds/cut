@@ -1,0 +1,14 @@
+Model:Company:Price:Camera:4G
+IPhone4:Apple:1000$:Yes:Yes
+Galaxy:Samsung:900$:Yes:Yes
+Optimus:LG:800$:Yes:Yes
+Sensation:HTC:400$:Yes:Yes
+IPhone4S:Apple:1100:Yes:Yes
+N9:Nokia:400:Yes:Yes
+
+
+cut -d":" -f1 /etc/passwd
+
+cut -c1-3 sample-1
+
+sed 's/:/\t/g' list-of-smartphones-2011.txt | cut -f 1

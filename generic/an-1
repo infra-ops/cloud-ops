@@ -1,0 +1,35 @@
+ssh username@your.remote.host.for.ssh.com 'bash -s' < server-script.sh
+
+sshpass -p iis123 ssh -o StrictHostKeyChecking=no root@192.168.122.113 'cd /etc/ansible;ansible-playbook ap.yml'
+
+http://ridz1ba.blogspot.in/2014/12/installing-oracle-java-jdk8-on-ubuntu.html
+
+[web]
+172.16.89.129 ansible_ssh_user=xxxxx ansible_ssh_pass=xxxxx ansible_sudo_pass=xxxx
+
+ansible -m ping all
+
+
+ansible -m shell -a 'free -m' host1
+ansible all -s -m shell -a 'apt-get install nginx'
+
+ansible all -s -m apt -a 'pkg=nginx state=installed update_cache=true'
+
+vim hello.yml
+
+---
+- hosts: web
+sudo: true
+tasks:
+- name: run echo command
+command: /bin/echo hello matrix
+sudo: true
+when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+---
+node-1:
+   - host: xxxxx
+     user: xxxxx
+     pass: xxxxxx
+     cmd-1: bash /home/nik/script/server-3.sh /home/nik/script/n6.yml
+     

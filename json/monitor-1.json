@@ -1,0 +1,12 @@
+{
+  "hosts": [
+    {
+      "name": "ms-zabbix",
+      "query": "host:ms-zabbix"
+},      
+     {
+      "name": "searchstax-jumphost",
+      "query": "host:searchstax-jumphost"
+}      
+  ]
+}

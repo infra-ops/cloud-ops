@@ -1,0 +1,14 @@
+{
+	"AWSTemplateFormatVersion" : "2010-09-09",
+	"Description" : "This is a basic template to create an S3 bucket",
+
+	"Resources" : {
+		"S3Bucket" : {
+			"Type" : "AWS::S3::Bucket",
+				"Properties" : {
+					"AccessControl" : "PublicRead",
+					"BucketName" : "linuxacademy465987"
+				}
+		}
+	}
+}

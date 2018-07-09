@@ -1,0 +1,67 @@
+commiting to new branch
+
+"""
+git remote add origin url
+git checkout -b dev-2
+git add .
+git commit -m "changes"
+git push -u origin dev-2
+"""
+command to delete file
+git rm --cached h2.txt
+"""
+command to check which branch in
+git status | head -1
+git describe --all
+git branch -v -a
+"""
+commit to existing branch
+git add .
+git commit -m "chnages"
+git fetch
+git checkout dev-1
+git push -u origin dev-1
+
+git branch -d
+git push origin --delete dev-1
+
+"""
+git checkout master
+git pull origin master
+
+https://gist.github.com/blackfalcon/8428401
+https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git
+
+git checkout dev-1
+git pull origin dev-1
+
+git merge hotfix
+git diff dev-1 dev-2
+
+git pull origin master --allow-unrelated-histories
+git merge origin origin/master
+git push origin master
+ 
+git config --global user.name ""
+git config --global user.email ""
+
+"""
+rename the branch
+git branch --move feature integration
+git checkout integration
+git push origin integration
+git push origin --delete feature
+
+""""
+git branch -rd origin/feature
+git push origin --delete feature
+
+
+
+
+
+
+
+
+ 
+

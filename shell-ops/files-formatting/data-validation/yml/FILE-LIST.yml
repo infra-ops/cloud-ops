@@ -1,0 +1,10 @@
+---
+MACRO:
+   - macro/DATA_ERR.sql
+STORED:
+    - store/SP_GET_ERROR_CODE.sql
+VIEW:
+  - view/FL_P_EMPL_ATTR.sql
+DDL:
+ - ddl/FL_P_JOB_PRCSS_DEF.sql
+     

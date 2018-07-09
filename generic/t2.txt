@@ -1,0 +1,16 @@
+
+
+       
+
+
+
+publi-cnode
+    |
+    |              elb
+    |               |
+    |         
+    |          -----------------     
+    |         |               |
+    |- - -- ecs-node-1       ecs-node-2
+              |               |
+               - ecs cluster- 

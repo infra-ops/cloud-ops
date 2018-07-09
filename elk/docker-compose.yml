@@ -1,0 +1,30 @@
+version: '2'
+services:
+  kafka:
+    image: "wurstmeister/kafka:1.0.1"
+    networks:
+      registry_network:
+        ipv4_address: 172.19.0.3
+    ports:
+     - "9092:9092"
+    hostname: kafka
+    links:
+     - zookeeper
+    environment:
+     - KAFKA_ADVERTISED_HOST_NAME=kafka
+     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+     - KAFKA_ADVERTISED_PORT=9092
+  zookeeper:
+    image: wurstmeister/zookeeper
+    networks:
+      registry_network:
+        ipv4_address: 172.19.0.2
+    ports:
+      - "2181:2181"
+networks:
+  registry_network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.19.0.0/24
+         gateway: 172.19.0.1

@@ -1,0 +1,15 @@
+server {
+listen   	80;
+server_name  nms.view.net;
+
+
+
+location / {
+#	root  /opt/icinga/share;
+	proxy_pass http://nms.view.net:90;
+	proxy_set_header	Host        	$host;
+	proxy_set_header	X-Real-IP   	$remote_addr;
+	proxy_set_header	X-Forwarded-for $remote_addr;
+	port_in_redirect off;
+	}
+}

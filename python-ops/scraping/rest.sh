@@ -1,0 +1,2 @@
+curl -i -X GET \
+ "https://graph.facebook.com/v2.6/me?fields=id%2Cname%2Cbio%2Cphotos%7Balbum%7D&access_token=EAACEdEose0cBACJTIkFZBlI7mVtVgMZCHQbCF7hLSlwqvAaOQ4BNy8gHMjZBqYCv7ZChbXskrh6gToph6ZCZBKLZAcoZBW2JPIDBJouTdtJ6Htbp7nY0SRXbZB4TG91ul3rcN3XHbZB0h7sjwnVYkr483F6T3WgnsJwXvQGA6dpceZCVwZDZD"

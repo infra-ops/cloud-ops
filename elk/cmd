@@ -1,0 +1,138 @@
+/usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/02-beats-input.conf
+
+curl http://localhost:9200/_cat/indices
+
+tcpdump -nnvv -i any port  5044
+
+/usr/share/logstash/bin/logstash --path.settings=/etc/logstash/logstash.yml -e "input { stdin { } } output { stdout {} }"
+
+curl -XGET 'http://10.0.1.231:9200/filebeat-*/_search?pretty'
+
+wget  --no-check-certificate https://artifacts.elastic.co/downloads/logstash/logstash-6.2.4.deb
+
+add-apt-repository -y ppa:webupd8team/java
+apt-get update
+apt-get -y install oracle-java8-installer
+
+shopt -s histappend
+
+tail -f /var/log/logstash/logstash-plain.log 
+
+cat log.conf
+input {
+  beats {
+    port => 5044
+  }
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+}
+
+
+/usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml -path.home /usr/share/filebeat -path.config /etc/filebeat -path.data /var/lib/filebeat -path.logs /var/log/filebeat
+
+ab -n 100 -c 2 http://localhost/
+
+filebeat -e -c /root/filebeat-conf.yml -d  "*"
+
+filebeat -e -c /etc/filebeat/filebeat.yml -d  "debug"
+
+
+
+
+
+
+/usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/30-elasticsearch-output.conf 
+
+
+echo "hello world" | nc localhost 5504
+echo "access denied" | logger -t myservice -P 5514
+curl -XGET 'http://localhost:9200/logstash-2015.01.04/_search?pretty&q=geoip.city_name=Buffalo'
+
+wget https://releases.hashicorp.com/consul/0.7.0/consul_0.7.0_linux_amd64.zip
+
+wget https://releases.hashicorp.com/consul/0.9.0/consul_0.9.0_linux_amd64.zip
+
+
+for i in {1..10}; do ab -n 1000 -c 2 http://18.188.175.172/; done
+
+curl http://localhost:9200/_cat/indices?pretty
+
+chown logstash:root /tmp/logstash/
+
+/usr/share/logstash/bin/logstash-plugin install logstash-output-s3
+
+
+
+
+
+
+
+consulcerts :
+
+echo "000a" > serial
+
+touch certindex
+
+Create a Self-Signed Root Certificate
+openssl req -x509 -newkey rsa:2048 -days 3650 -nodes -out ca.cert
+
+ConsulCA
+admin@example.com
+
+Create a Wildcard Certificate Signing Request
+openssl req -newkey rsa:1024 -nodes -out consul.csr -keyout consul.key
+
+linux.net.co.in
+
+
+Create a Certificate Authority Configuration File
+Sign the Certificate Signing Request to Generate a Certificate
+openssl ca -batch -config myca.conf -notext -in consul.csr -out consul.cert
+
+
+kubectl create secret generic consul \
+  --from-literal="gossip-encryption-key=EZIVrHXg81MnBTzDRijpKg==" \
+  --from-file=ca.cert \
+  --from-file=consul.cert \
+  --from-file=consul.key  -n kube-system
+  
+  
+kubectl create configmap consul --from-file=/etc/consul/server.json -n kube-system
+
+./consul keygen
+
+uuidgen
+
+iptables -t nat -A DOCKER -p tcp --dport 8500 -j DNAT --to-destination 100.114.130.129:8500   (172.30.1.13 is the consul pod ip)
+
+
+
+
+https://www.vagrantbox.es/
+
+vagrant box add ubuntu14 https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/14.04/ubuntu-14.04-amd64.box
+
+
+tail -5f /var/log/upstart/docker.log
+
+apt-get install software-properties-common
+apt-add-repository ppa:webupd8team/java
+apt-get update
+apt-get install oracle-java8-installer
+
+
+mkfs.xfs -f /dev/vg0/lvol0
+mkdir /home/nik/xfs
+mount -t xfs /dev/vg0/lvol0  /home/nik/xfs
+lsblk -f
+blkid
+df -Th 
+
+/dev/vg0/lvol0                           /home/nik/xfs         xfs     defaults    0 0
+
+
+

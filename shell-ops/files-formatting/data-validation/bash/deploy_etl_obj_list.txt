@@ -1,0 +1,3 @@
+SRC_USER|SRC_HOST|SRC_DIR|SRC_OBJ|DEST_USER|DEST_HOST|DEST_DIR|DEST_OBJ
+deploy2|xxxxxx|/home/deploy2/etl-local|a1.txt|deploy|xxxxxxx|/home/deploy|a1.txt
+deploy2|xxxxxx|/home/deploy2/etl-local|a2.txt|deploy|xxxxx|/home/deploy|a2.txt

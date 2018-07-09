@@ -1,0 +1,3 @@
+- tasks:
+    - name: add user
+      user:  sudo useradd -m user5

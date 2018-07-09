@@ -1,0 +1,3 @@
+An Availability Zone is an Amazon resource within an AWS region; an edge location will 
+deliver cached content to the closest location to reduce latency 
+

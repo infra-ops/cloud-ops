@@ -1,0 +1,15 @@
+---
+MACRO:
+   - /home/vagrant/scripts-2/data-validation/sql/macro/DATA_ERR.sql
+STORED:
+    - /home/vagrant/scripts-2/data-validation/sql/stored/SP_GET_ERROR_CODE.sql
+VIEW:
+  - /home/vagrant/scripts-2/data-validation/sql/view/FL_P_EMPL_ATTR.sql
+DDL:
+ - /home/vagrant/scripts-2/data-validation/sql/ddl/FL_P_JOB_PRCSS_DEF.sql
+
+
+
+
+     
+

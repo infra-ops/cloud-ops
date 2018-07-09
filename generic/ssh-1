@@ -1,0 +1,27 @@
+echo > user_successful.txt
+echo > user_faliure.txt
+ 
+for UIP in $IP
+do
+sshpass -p $CPASS $SSH $CUSER@$UIP "useradd $RUSER ; echo '$RPASS' | passwd --stdin $RUSER ; echo '$RUSER ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers " 2> /dev/null 1> /dev/null
+if [ $? -eq 0 ];then
+echo "USER CREATION SUCCESSFUL ON $UIP"
+echo "$UIP" >> user_successful.txt
+else
+echo "USER CREATION FALIURE ON $UIP"
+echo "$UIP" >> user_faliure.txt
+fi
+done
+ 
+ 
+ 
+ 
+or file in `ls /etc/*pam.conf`
+do cp $file ${file}.orig
+ 
+sed -i  -e  's/ENABLE_USERS_SUPPORT=0/ENABLE_USERS_SUPPORT=0/g'   -e  's/LIST_OF_GROUPS = */LIST_OF_GROUPS=nosecid/g'   -e  's/^#sshd/sshd/g'
+  -e  's/pam_seos/d'   $file
+ 
+done
+ 
+http://czcodezone.blogspot.in/2014/11/setup-kafka-in-single-machine-running.html

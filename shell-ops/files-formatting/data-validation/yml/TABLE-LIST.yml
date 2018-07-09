@@ -1,0 +1,6 @@
+---
+SET-TABLE:
+    - /home/vagrant/scripts-2/script-3/sql/ddl/FL_P_JOB_PRCSS_DEF.sql
+    - /home/vagrant/scripts-2/script-3/sql/ddl/FL_P_JOB_PRCSS_DEF.sql-1.sql 
+MULTISET-TABLE:
+    - /home/vagrant/scripts-2/script-3/sql/ddl/MULTISET.sql

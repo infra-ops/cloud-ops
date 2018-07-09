@@ -1,0 +1,36 @@
+{
+  "session": {
+    "new": true,
+    "sessionId": "SessionId.76484467-9d01-47c1-9491-afe98429a754",
+    "application": {
+      "applicationId": "amzn1.ask.skill.1fb40057-6583-4f05-8af2-c096128bd61c"
+    },
+    "attributes": {},
+    
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.205f4dc6-284d-41a1-ab61-8e4844821e73",
+    "intent": {
+      "name": "start",
+      "slots": {}
+    },
+    "locale": "en-US",
+    "timestamp": "2018-02-14T09:14:22Z"
+  },
+  "context": {
+    "AudioPlayer": {
+      "playerActivity": "IDLE"
+    },
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.1fb40057-6583-4f05-8af2-c096128bd61c"
+      },
+     
+      "device": {
+        "supportedInterfaces": {}
+      }
+    }
+  },
+  "version": "1.0"
+}

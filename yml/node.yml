@@ -1,0 +1,14 @@
+---
+node-1:
+   - host:  xxxxx
+     user:  xxxxx
+     pass:  xxxxx
+     cmd-1: df -t ext4
+     cmd-2: df -t ext4 | awk '{ print $5;}' |sed -n '2p' | cut -d "%" -f1
+
+node-2:
+   - host: xxxxx
+     user: xxxxx
+     pass: xxxxx
+     cmd-1: df -t ext4
+     cmd-2: df -t ext4 | awk '{ print $5;}' |sed -n '2p' | cut -d "%" -f1

@@ -1,0 +1,95 @@
+#****************************************************************************************
+# Yaml formate to manage entire lifcycle of containers
+# We define four stages as of now viz:
+# 1. Tak registration 
+# 2. Service creation 
+# 3. Service updates
+# 4. Service deletion
+# Assumption: 
+#      - Images are available in ECR repo or docker-hub
+#      - Cluster is up and running with container instances
+# More information : http://boto3.readthedocs.io/en/latest/reference/services/ecs.html
+# *****************************************************************************************
+containers:
+  - appname: couch-sync
+    family: couch-sync
+    taskRoleArn: ''
+    containerDefinitions:
+     - cpu: 512
+       memory: 4096
+       memoryReservation: 3072
+       portMappings:
+         - hostPort: 4984
+           containerPort: 4984
+         - hostPort: 4985
+           containerPort: 4985
+         
+           
+
+         
+
+
+         
+       image: 
+       name: couchbase/sync-gateway
+       essential: True
+       privileged: False
+    #   mountPoints:
+    #   - sourceVolume: /opt/nosql/couch-sync/couch-sync-db
+    #     containerPath: /tmp/config
+    #     readOnly: False
+       #- sourceVolume: test2
+         #containerPath: /tmp/null2
+         #readOnly: True
+       environment:
+          - name : APP_ENV
+            value: stage
+          #- name: CONF_HOME
+          #  value: /opt/apps-java/config
+          # This environment variable is for registrator to identify service
+          - name: SERVICE_NAME
+            value: couch-sync
+       dockerLabels:
+           name: couch-sync-containers
+       dockerSecurityOptions:
+           - no-new-privileges
+    #volumes:
+    #  - name: logs
+    #    host:
+    #      sourcePath: /var/log/apps/
+    # ***********************************************************************************************************
+    # Service parameters will be used to create service
+    # We can add load balancers alo if required.
+    # Please visit : http://boto3.readthedocs.io/en/latest/reference/services/ecs.html#ECS.Client.create_service
+    # ***********************************************************************************************************
+    serviceCreate:
+      - cluster: sync-stack
+        serviceName: couch-sync-service
+        # Task definition is family:revision. 
+        # Creat service on latest revision and use update to roll back o deploy new version
+        taskDefinition: couch-sync
+        desiredCount: 2
+        clientToken: couch-sync-service
+        deploymentConfiguration:
+           maximumPercent: 200
+           minimumHealthyPercent: 50
+    # ******************************************************************
+    # Service Update parameters will be used to update running service 
+    # ******************************************************************
+    serviceUpdate:
+      - cluster: sync-stack
+        serviceName: couch-sync-service
+        # Desired count also can be updated via commandlinee
+        desiredCount: 2
+        # Specify task def revision to roll back 
+        taskDefinition: couch-sync
+        deploymentConfiguration:
+           maximumPercent: 200
+           minimumHealthyPercent: 50
+    # **********************************************************************
+    # Service dlete will be used to delete services where running count is 0 
+    # Cannot be used via automated tools as it requires user confimration
+    # **********************************************************************
+    serviceDelete:
+      - cluster: sync-stack
+        serviceName: couch-sync-service

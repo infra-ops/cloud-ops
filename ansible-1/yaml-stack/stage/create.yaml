@@ -1,0 +1,139 @@
+- modules:
+  - cds
+  - lms
+  - lec
+  - led
+  - lap
+  - dcms
+  - pbs
+  - nginx-web
+- common:
+    taskRoleArn: ''
+    cpu: 200
+    memory: 1024
+    links: 
+    hostPort: 0
+    entryPoint: ''
+    command: ''
+    confdir: /opt/apps-java/config
+    hostname: 'null'
+    user: 'null'
+    workingDirectory: /opt/scratch/jars/
+    logpath: /var/logs/apps/
+    confpath: /opt/apps-java/
+    datapath: /var/dbdata/
+    security: no-new-privileges
+    confdir: /opt/apps-java/config
+    appenv: dev
+    mode: debug
+    dnsServers: 'null'
+    dnsSearchDomains: ''
+- mappings:
+   nginx-web:
+    family: Nginx
+    image: nginx
+    containerName: nginx-web
+    containerPort: 80 
+    label: web-server
+    user: nginx
+    workingDirectory: /tmp/nginx
+    confpath: /etc/nginx/
+    logpath: /var/log/nginx
+    datapath: /tmp/null
+    service:
+      - clusterName: glp-web-webfrontend
+        serName: nginx-service
+        taskDef: Nginx
+        count: 2
+        token: nginx-service
+   cds:
+    family: CDS
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/cdsapp
+    containerName: cds
+    containerPort: 9020
+    label: cds-containers
+    service:
+      - clusterName: glp-backend
+        serName: cds-service
+        taskDef: CDS
+        count: 2
+        token: cds-service
+   lap:
+    family: LAP
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/lapapp
+    containerName: lap
+    containerPort: 9030
+    appenv: dev
+    label: lap-containers
+    service:
+      - clusterName: glp-backend
+        serName: lap-service
+        taskDef: LAP
+        count: 2
+        token: lap-service
+   lec:
+    family: LEC
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/lecapp
+    containerName: lec
+    containerPort: 9050
+    appenv: dev
+    label: lec-containers
+    service:
+      - clusterName: glp-backend
+        serName: lec-service
+        taskDef: LEC
+        count: 2
+        token: lec-service
+   led:
+    family: LED
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/ledapp
+    containerName: led
+    containerPort: 9040
+    appenv: dev
+    label: led-containers
+    service:
+      - clusterName: glp-backend
+        serName: led-service
+        taskDef: LED
+        count: 2
+        token: led-service
+   lms:
+   # LMS is only for demo here. This will be launched via microservice for orchestration
+    family: LMS
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/lmsapp
+    containerName: lms
+    containerPort: 9060
+    appenv: dev
+    label: lms-containers
+    service:
+      - clusterName: glp-backend
+        serName: lms-service
+        taskDef: LMS
+        count: 1
+        token: test-service
+   pbs:
+    family: PBS
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/pbsapp
+    containerName: pbs
+    containerPort: 9080
+    appenv: dev
+    label: pbs-containers
+    service:
+      - clusterName: glp-backend
+        serName: pbs-service
+        taskDef: PBS
+        count: 2
+        token: pbs-service
+   dcms:
+    family: DCMS
+    image: 953030164212.dkr.ecr.us-west-1.amazonaws.com/dcmsapp
+    containerName: dcms
+    containerPort: 9070
+    appenv: dev
+    label: dcms-containers
+    service:
+      - clusterName: glp-backend
+        serName: dcms-service
+        taskDef: DCMS
+        count: 2
+        token: dcms-service

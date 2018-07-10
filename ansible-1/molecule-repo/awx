@@ -1,0 +1,4 @@
+vagrant box add {title} {url}
+
+vagrant init ubuntu/xenial64
+

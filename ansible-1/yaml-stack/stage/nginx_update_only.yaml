@@ -1,0 +1,8 @@
+- modules:
+  - nginx-web
+- mappings:
+   nginx-web:
+      - clusterName: glp-web-webfrontend
+        serName: nginx-service
+        taskDef: Nginx
+        count: 2

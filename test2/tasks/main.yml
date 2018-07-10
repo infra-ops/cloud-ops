@@ -1,6 +1,0 @@
----
-# tasks file for test2
-- name: Ensure jenkins is running
-  service:
-    name: jenkins
-    state: started

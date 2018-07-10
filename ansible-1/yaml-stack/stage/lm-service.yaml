@@ -1,0 +1,99 @@
+#****************************************************************************************
+# Yaml formate to manage entire lifcycle of containers
+# We define four stages as of now viz:
+# 1. Tak registration 
+# 2. Service creation 
+# 3. Service updates
+# 4. Service deletion
+# Assumption: 
+#      - Images are available in ECR repo or docker-hub
+#      - Cluster is up and running with container instances
+# More information : http://boto3.readthedocs.io/en/latest/reference/services/ecs.html
+# *****************************************************************************************
+# NOTE: This service will have task defn and service registerred with diff uniquie id
+# uuid in the env variable section will vary with service/container
+# ***********************************************************************************
+containers:
+  - appname: lm-service
+    # Family becomes topic for task desc
+    family: LM-learnerCourse
+    taskRoleArn: ''
+    containerDefinitions:
+     - cpu: 512
+       memory: 3072
+       memoryReservation: 2048
+       portMappings:
+         - hostPort: 0
+           containerPort: 9060
+       # Images are being taken from N.virginia region because ci cannot yet upload images to ohio
+       image: 953030164212.dkr.ecr.us-east-1.amazonaws.com/stage-lms
+       # Name for container
+       name: lms
+       essential: True
+       privileged: False
+       mountPoints:
+       - sourceVolume: logs
+         containerPath: /var/logs/apps/
+         readOnly: False
+       - sourceVolume: couchbase-data
+         containerPath: /var/cbdata/
+         readOnly: False
+       environment:
+          - name : APP_ENV
+            value: stage
+          - name: CONF_HOME
+            value: /opt/apps-java/config
+          - name: UUID
+            value: learnerCourse
+          # This environment variable is for registrator to identify service
+          # for lm-service this would be : lm-uuid
+          - name: SERVICE_NAME
+            value: lm-learnerCourse
+       dockerLabels:
+           name: lm-containers
+       dockerSecurityOptions:
+           - no-new-privileges
+    volumes:
+      - name: logs
+        host:
+          sourcePath: /var/log/apps/
+      - name: couchbase-data
+        host:
+          sourcePath: /var/cbdata/
+    # ***********************************************************************************************************
+    # Service parameters will be used to create service
+    # We can add load balancers alo if required.
+    # Please visit : http://boto3.readthedocs.io/en/latest/reference/services/ecs.html#ECS.Client.create_service
+    # ***********************************************************************************************************
+    serviceCreate:
+      - cluster: applications-stage
+        # for lm this will be updated to lm-servic-uuid
+        serviceName: lm-service-learnerCourse
+        # Task definition is family:revision. 
+        # Creat service on latest revision and use update to roll back o deploy new version
+        taskDefinition: LM-learnerCourse
+        desiredCount: 1
+        clientToken: learnerCourse
+        deploymentConfiguration:
+           maximumPercent: 100
+           minimumHealthyPercent: 0
+    # ******************************************************************
+    # Service Update parameters will be used to update running service 
+    # ******************************************************************
+    serviceUpdate:
+      - cluster: applications-stage
+        serviceName: lm-service-learnerCourse
+        # Desired count also can be updated via commandlinee
+        desiredCount: 1
+        # Specify task def revision to roll back 
+        taskDefinition: LM-learnerCourse
+        deploymentConfiguration:
+           maximumPercent: 100
+           minimumHealthyPercent: 0
+    # **********************************************************************
+    # Service dlete will be used to delete services where running count is 0 
+    # Cannot be used via automated tools as it requires user confimration
+    # **********************************************************************
+    serviceDelete:
+      - cluster: applications-stage
+        serviceName: lm-service-learnerCourse

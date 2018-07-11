@@ -1,0 +1,117 @@
+I have configured mcollective with activemq and puppet on ubuntu machine
+cat /etc/hosts
+192.168.10.25 puppetmaster
+192.168.10.26 puppetclinet
+puppetmaster
+apt-get install puppet-common puppetmaster
+apt-get install mcollective-package-agent mcollective-service-agent mcollective-puppet-agent
+we can try these packa
+cat /etc/puppet/puppet.conf
+cat /etc/activemq/credential.properties
+activemq.username=system
+activemq.password=manager
+cat /etc/mcollective/client.cfg
+collectives = mcollective
+connector = activemq
+direct_addressing=1
+libdir = /usr/share/mcollective/plugins
+logger_type = console
+loglevel = warn
+main_collective = mcollective
+daemonize = 1
+classesfile = /var/lib/puppet/state/classes.txt
+plugin.activemq.pool.1.host = puppetmaster
+plugin.activemq.pool.1.password = manager
+plugin.activemq.pool.1.port = 61613
+plugin.activemq.pool.1.user = system
+plugin.activemq.pool.size = 1
+plugin.activemq.randomize = true
+# Plugins
+securityprovider = psk
+plugin.psk = acb786123456
+# Facts
+factsource = yaml
+plugin.yaml = /etc/mcollective/facts.yaml
+service mocollective restart
+service activemq restart
+but when try to ping
+mco ping 
+Im receiving following error
+/usr/lib/ruby/vendor_ruby/systemu.rb:31: warning: Insecure world writable dir /home/vagrant in PATH, mode 040777
+error 2017/12/25 16:54:49: client.rb:39:in `rescue in initialize' Timeout occured while trying to connect to middleware
+The ping application failed to run: execution expired
+execution expired (MCollective::ClientTimeoutError)
+        from /usr/lib/ruby/vendor_ruby/connection/utils.rb:142:in `sleep'  <----
+        from /usr/lib/ruby/vendor_ruby/connection/utils.rb:142:in `rescue in block in socket'
+        from /usr/lib/ruby/vendor_ruby/connection/utils.rb:115:in `block in socket'
+        from <internal:prelude>:10:in `synchronize'
+        from /usr/lib/ruby/vendor_ruby/connection/utils.rb:109:in `socket'
+        from /usr/lib/ruby/vendor_ruby/stomp/connection.rb:143:in `initialize'
+        from /usr/lib/ruby/vendor_ruby/mcollective/connector/activemq.rb:296:in `new'
+        from /usr/lib/ruby/vendor_ruby/mcollective/connector/activemq.rb:296:in `connect'
+        from /usr/lib/ruby/vendor_ruby/mcollective/client.rb:36:in `block in initialize'
+        from /usr/lib/ruby/vendor_ruby/mcollective/client.rb:35:in `initialize'
+        from /usr/lib/ruby/vendor_ruby/mcollective/application/ping.rb:52:in `new'
+        from /usr/lib/ruby/vendor_ruby/mcollective/application/ping.rb:52:in `main'
+        from /usr/lib/ruby/vendor_ruby/mcollective/application.rb:293:in `run'
+        from /usr/lib/ruby/vendor_ruby/mcollective/applications.rb:23:in `run'
+        from /usr/bin/mco:33:in `<main>'
+puppetclinet
+cat /etc/hosts
+192.168.10.25 puppetmaster
+192.168.10.26 puppetclinet
+apt-get install puppet
+apt-get install mcollective ruby-stomp mcollective-client
+apt-get install mcollective-package-client mcollective-service-client mcollective-puppet-client
+cat /etc/mcollective/client.cfg
+client.cfg content i have copied in server.cfg
+service mocollective restart
+service activemq restart
+can you tell me how to resolve this one?
+you can take any connector b/w activemq/rabbitmq/stomp to make it workable
+ok 
+Where is activemq installation location?
+i have aconfigured activemq from tar file
+im going out for half and hour. you may carry on.whenever u wish to stop u may.
+if it wont work in vagrant then i will give u access on ec2 instance on evening.
+ok 
+if u need asenything u may ping me on 8433674164.n ow im going
+ok 
+cooll see you late then 
+ok done
+u may try now
+this is the issue from mcollective or activemq
+it is from mcollective it is not able to reach activemq i mean 
+the timeout is happen is faster or it is not pointed to mq in  right way 
+I wil try to build i tfrom scratch on my machine also to try it. But i might take some timeout
+cool.no worries. go on.but take ubuntu nodes.not centos/redhat
+ok
+so im going. im terminating tv access.let u try on ur machine and ping me.
+ok
+Before you go 
+You ARE trying to configure puppet mcollective with  activemq as middle ware 
+am i right
+YES.EXACTLY
+ok i will git it a shot . i will be done by today mostly ok see later then 
+byue
+can you go to browser and 
+say
+what u are searching?
+The client is not able to pickup i am not getting why this should be basically a very simple configuration 
+i need till tomorow i will try to recreate everything 
+one min
+what best i will do...i will give you access of two t2.micro ec2 instances with in 2hrs
+then u may give a try from scratch
+will it b fine?
+i think we canot configure puppetserver on micro instance we need a bigger one it would be the same as vm on my local machine i got enough resource on my pc 
+i will try it here. I would be easy and faster for me . I am using oracle vitual box
+ok. i will give u access of two frsh vm with in two hrs. you may try on it by tomm
+ok .
+lets wrap up now. thank you for ur assistance
+apt-get install mcollective ruby-stomp mcollective-client
+Plus the client packages to communicate with the package, service and puppet agents:
+sudo apt-get install mcollective-package-client mcollective-service-client mcollective-puppet-client
+1
+sudo apt-get install mcollective-package-client mcollective-service-client mcollective-puppet-client
+I THINK THIS PART WILL BE DONE ON SERVER PART AND NEED TO RESTART MCOLLECTIVE SERVICE ON BOTH MACHINE
+no wait i will show 

@@ -1,0 +1,13 @@
+---
+- hosts: db
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  
+  tasks:
+             
+    - include: centos-7-v.0.1.yml
+      when: ansible_os_family == 'RedHat' or ansible_distribution == 'RedHat'
+    - include: ubuntu-16.04-v.0.1.yml 
+      when: ansible_os_family == 'Ubuntu' or ansible_distribution == 'Ubuntu'       
+      

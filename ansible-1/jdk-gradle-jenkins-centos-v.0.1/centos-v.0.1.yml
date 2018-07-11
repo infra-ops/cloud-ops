@@ -1,0 +1,123 @@
+---
+
+
+#####JAVA INSTALLATION
+
+
+- name: CREATE DEPLOYMENT DIRECTORY ON REMOTE
+  command : mkdir -p /home/deploy/softs
+
+- name: COPY JRE1.8 RPM
+  copy: src=/home/deploy/softs/jre-8u131-linux-x64.rpm  dest=/home/deploy/softs/jre-8u131-linux-x64.rpm
+
+
+- name: INSTALL JRE1.8
+  yum:
+     name: /home/deploy/softs/jre-8u131-linux-x64.rpm
+     state: present
+
+
+- name: COPY JAVA.SH
+  copy: src=/home/deploy/softs/centos-7-jre1.8.1.sh  dest=/home/deploy/softs/centos-7-jre1.8.1.sh
+
+- name: EXECUTE JAVA.SH
+  command: bash /home/deploy/softs/centos-7-jre1.8.1.sh
+
+#####JENKINS INSTALLATION
+
+
+- name: COPY JENKINS RPM
+  copy: src=/home/deploy/softs/jenkins-2.63-1.1.noarch.rpm dest=/home/deploy/softs/jenkins-2.63-1.1.noarch.rpm
+
+
+- name: INSTALL JENKINS
+  yum:
+     name: /home/deploy/softs/jenkins-2.63-1.1.noarch.rpm
+     state: present
+
+
+- name: START JENKINS
+  service: name=jenkins state=started enabled=yes
+
+
+######GIT INSTALLATION
+
+- name: COPY GIT PACKAGE
+  copy: src=/home/deploy/softs/v2.6.4.tar.gz  dest=/home/deploy/softs/v2.6.4.tar.gz
+
+
+- name: CREATE GIT DIRECTORY
+  command: mkdir -p /home/deploy/git
+
+- name: CREATE GIT-TEST
+  command: mkdir -p /home/deploy/git-test
+
+
+- name: EXTRACT GIT
+  shell: tar -xf  /home/deploy/softs/v2.6.4.tar.gz --strip 1 -C /home/deploy/git-test
+
+- name: COPY GIT.SH
+  copy:  src=/home/deploy/softs/centos-7-git.sh dest=/home/deploy/softs/centos-7-git.sh
+
+- name: EXECUTE GIT.SH
+  command: sh /home/deploy/softs/centos-7-git.sh
+
+
+#####GRADLE INSTALLATION
+
+
+
+- name: COPY GRADLE ZIP
+  copy: src=/home/deploy/softs/gradle-3.5-bin.zip  dest=/home/deploy/softs/gradle-3.5-bin.zip
+
+
+
+- unarchive:
+    src: /home/deploy/softs/gradle-3.5-bin.zip
+    dest: /home/deploy 
+    remote_src: True
+
+
+#######DEPLOYMENT OF JENKINS PLUGINS (BLUEOCEAN+FITNESS+GIT+GRADLE)
+
+
+- name: COPY JENKINS PLUGINS
+  copy: src=/home/deploy/softs/plugins.tar.gz dest=/home/deploy/softs/plugins.tar.gz
+
+
+- name: UNTAR JENKINS PLUGINS
+  shell: tar xzvf  /home/deploy/softs/plugins.tar.gz  --strip 1 -C /var/lib/jenkins/plugins
+
+
+- name: RESTART JENKINS SERVICE
+  service: name=jenkins state=restarted enabled=yes
+
+########INSTALLATION OF NET-TOOLS
+
+
+
+- name: COPY NET-TOOLS
+  copy: src=/home/deploy/softs/net-tools-2.0-0.42.20160912git.fc26.x86_64.rpm dest=/home/deploy/softs/net-tools-2.0-0.42.20160912git.fc26.x86_64.rpm
+
+- name: INSTALL NET-TOOLS
+  yum:
+     name: /home/deploy/softs/net-tools-2.0-0.42.20160912git.fc26.x86_64.rpm
+     state: present
+
+
+#######INSTALLTION OF PYTHON-PIP
+
+- name: COPY PYTHON-PIP PACKAGE
+  copy: src=/home/deploy/softs/python-pip-8.1.2-2.fc25.noarch.rpm dest=/home/deploy/softs/python-pip-8.1.2-2.fc25.noarch.rpm
+
+- name: INSTALL PYTHON-PIP
+  yum:
+     name: /home/deploy/softs/python-pip-8.1.2-2.fc25.noarch.rpm
+     state: present
+
+
+
+######DELETE  DEPLOYED SOFT DIRECTORY
+
+- name: DELETE DEPLOYED SOFT DIRECTORY
+  command: rm -rf /home/deploy/softs

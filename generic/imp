@@ -1,1 +1,2 @@
-user1 ALL=(ALL) NOPASSWD: ALL
+deploy ALL=(ALL) NOPASSWD: ALL
+usermod --shell /bin/bash deploy

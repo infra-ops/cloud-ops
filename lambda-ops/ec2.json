@@ -1,0 +1,13 @@
+{
+  "command": "start",
+  "log-bucket": "dev-log-3",
+  "instances": {
+    "us-east-1": [
+      "i-0e3eb17ad3a533fa3",
+      "i-05de45e9ba05eee63"
+    ],
+    "us-west-2": [
+      "i-0717c28e77c52c319"
+    ]
+  }
+}

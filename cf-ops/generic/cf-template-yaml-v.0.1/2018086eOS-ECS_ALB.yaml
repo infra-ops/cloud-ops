@@ -1,0 +1,235 @@
+Description: >
+
+    This template deploys a VPC, with a pair of public and private subnets spread 
+    across two Availabilty Zones. It deploys an Internet Gateway, with a default 
+    route on the public subnets. It deploys a pair of NAT Gateways (one in each AZ), 
+    and default routes for them in the private subnets.
+
+    It then deploys a highly available ECS cluster using an AutoScaling Group, with 
+    ECS hosts distributed across multiple Availability Zones. 
+
+    Finally, it deploys a pair of example ECS services from containers published in 
+    Amazon EC2 Container Registry (Amazon ECR).
+
+    Last Modified: 22nd September 2016
+    Author: Paul Maddox <pmaddox@amazon.com>
+
+Parameters:
+    InstanceKey:
+        Description: Amazon EC2 Key Pair
+        Type: AWS::EC2::KeyPair::KeyName
+
+Mappings:
+
+    # These are the latest ECS optimized AMIs as of Feb 2018:
+    #
+    #   amzn-ami-2017.09.h-amazon-ecs-optimized
+    #   ECS agent:    1.17.0
+    #   Docker:       17.09.1-ce
+    #   ecs-init:     1.17.0-2
+    #
+    # You can find the latest available on this page of our documentation:
+    # http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
+    # (note the AMI identifier is region specific)
+
+    AWSRegionToAMI:
+        us-east-2:
+            AMI: ami-67ab9e02
+        us-east-1:
+            AMI: ami-5e414e24
+        us-west-2:
+            AMI: ami-10ed6968
+        us-west-1:
+            AMI: ami-00898660
+        eu-west-3:
+            AMI: ami-6fa21412
+        eu-west-2:
+            AMI: ami-42a64325
+        eu-west-1:
+            AMI: ami-880d64f1
+        eu-central-1:
+            AMI: ami-63cbae0c
+        ap-northeast-2:
+            AMI: ami-0acc6e64
+        ap-northeast-1:
+            AMI: ami-e3166185
+        ap-southeast-2:
+            AMI: ami-36867d54
+        ap-southeast-1:
+            AMI: ami-66c98f1a
+        ca-central-1:
+            AMI: ami-4b9c182f
+        ap-south-1:
+            AMI: ami-ca8ad9a5
+        sa-east-1:
+            AMI: ami-69f7b805
+
+Resources:
+
+    #VPC with Public and Private subnets
+    VPC:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/vpc.yaml
+            Parameters:
+                EnvironmentName:    !Ref AWS::StackName
+                VpcCIDR:            13.0.0.0/16
+                PublicSubnet1CIDR:  13.0.1.0/24
+                PublicSubnet2CIDR:  13.0.2.0/24
+                PrivateSubnet1CIDR: 13.0.3.0/24
+                PrivateSubnet2CIDR: 13.0.4.0/24
+    
+    #Security Group for LB and Instances
+    SecurityGroups:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/security-groups.yaml
+            Parameters: 
+                EnvironmentName: !Ref AWS::StackName
+                VPC: !GetAtt VPC.Outputs.VPC
+    
+    #Web Load Balancer
+    WebLoadBalancer:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/load-balancers.yaml
+            Parameters:
+                EnvironmentName: !Join 
+                                    - '' 
+                                    - - !Ref AWS::StackName
+                                      - '-WEB'
+                VPC: !GetAtt VPC.Outputs.VPC
+                Subnets: !GetAtt VPC.Outputs.PublicSubnets
+                SecurityGroup: !GetAtt SecurityGroups.Outputs.LoadBalancerSecurityGroup
+    
+    #App Load Balancer
+    AppLoadBalancer:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/load-balancers.yaml
+            Parameters:
+                EnvironmentName: !Join 
+                                    - ''
+                                    - - !Ref AWS::StackName
+                                      - '-APP'
+                VPC: !GetAtt VPC.Outputs.VPC
+                Subnets: !GetAtt VPC.Outputs.PrivateSubnets
+                SecurityGroup: !GetAtt SecurityGroups.Outputs.LoadBalancerSecurityGroup
+    
+    #DB Load Balancer
+    DBLoadBalancer:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/load-balancers.yaml
+            Parameters:
+                EnvironmentName: !Join 
+                                    - ''
+                                    - - !Ref AWS::StackName
+                                      - '-DB'
+                VPC: !GetAtt VPC.Outputs.VPC
+                Subnets: !GetAtt VPC.Outputs.PrivateSubnets
+                SecurityGroup: !GetAtt SecurityGroups.Outputs.LoadBalancerSecurityGroup
+    
+    ECS:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3-us-west-2.amazonaws.com/dev-3/ecs-cluster.yaml
+            Parameters:
+                EnvironmentName: !Ref AWS::StackName
+                InstanceType: t2.micro
+                ClusterSize: 6
+                VPC: !GetAtt VPC.Outputs.VPC
+                SecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
+                Subnets: !GetAtt VPC.Outputs.PrivateSubnets
+                KeyName: !Ref InstanceKey
+
+    ApplicationService:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/services/product-service/service.yaml
+            Parameters:
+                Name: Application-Service
+                VPC: !GetAtt VPC.Outputs.VPC
+                Cluster: !GetAtt ECS.Outputs.Cluster
+                DesiredCount: 2
+                Listener: !GetAtt AppLoadBalancer.Outputs.Listener 
+                Path: /products
+                
+    DBService:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/services/product-service/service.yaml
+            Parameters:
+                Name: DB-Service
+                VPC: !GetAtt VPC.Outputs.VPC
+                Cluster: !GetAtt ECS.Outputs.Cluster
+                DesiredCount: 2
+                Listener: !GetAtt DBLoadBalancer.Outputs.Listener 
+                Path: /db
+
+    WebsiteService:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/services/website-service/service.yaml
+            Parameters:
+                VPC: !GetAtt VPC.Outputs.VPC
+                Cluster: !GetAtt ECS.Outputs.Cluster
+                DesiredCount: 2
+                ProductServiceUrl: !Join [ "", [ !GetAtt AppLoadBalancer.Outputs.LoadBalancerUrl, "/" ]]
+                Listener: !GetAtt WebLoadBalancer.Outputs.Listener 
+                Path: /
+                ECSServiceAutoScalingRoleARN: !GetAtt ECS.Outputs.ECSServiceAutoScalingRole
+    
+    #BastionElasticIp
+    BastionElasticIp:
+        Type: AWS::EC2::EIP
+        Properties:
+            Domain: vpc
+        DependsOn: VPC
+
+    #Elastic  IP  Association
+    NatGateway:
+        Type:  AWS::EC2::EIPAssociation
+        Properties:
+                AllocationId: !GetAtt  BastionElasticIp.AllocationId
+                InstanceId: !Ref  BastionInstance
+        DependsOn:  
+            - BastionElasticIp
+            - BastionInstance
+
+    #Bastion  Instance,
+    BastionInstance:
+        Type: "AWS::EC2::Instance"
+        Properties:  
+            AvailabilityZone: !Select  [  0,  !GetAZs  ''  ]
+            ImageId: !FindInMap [ AWSRegionToAMI, !Ref 'AWS::Region', AMI ]
+            InstanceInitiatedShutdownBehavior: terminate
+            InstanceType: t2.micro
+            KeyName: !Ref InstanceKey
+            SecurityGroupIds:  
+                - !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
+            SubnetId: !GetAtt VPC.Outputs.PublicSubnet1
+            Tags:
+                - Key: Name
+                  Value: Bastion Instance
+        DependsOn:
+            - VPC
+            - SecurityGroups
+    
+    LifecycleHook:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/lifecyclehook.yaml
+            Parameters:
+                Cluster: !GetAtt ECS.Outputs.Cluster
+                ECSAutoScalingGroupName: !GetAtt ECS.Outputs.ECSAutoScalingGroupName
+
+Outputs:
+
+    ProductServiceUrl: 
+        Description: The URL endpoint for the product service
+        Value: !Join [ "", [ !GetAtt AppLoadBalancer.Outputs.LoadBalancerUrl, "/" ]]
+
+    WebsiteServiceUrl: 
+        Description: The URL endpoint for the website service
+        Value: !Join ["", [ !GetAtt WebLoadBalancer.Outputs.LoadBalancerUrl, "/" ]]

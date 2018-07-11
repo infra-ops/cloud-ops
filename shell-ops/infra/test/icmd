@@ -1,0 +1,370 @@
+psql -d template1 -U postgres
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 5432 -j ACCEPT
+
+su - postgres
+
+psql template1
+
+psql -d template1 -U postgres
+CREATE USER tom WITH PASSWORD 'myPassword';
+CREATE DATABASE jerry;
+GRANT ALL PRIVILEGES ON DATABASE jerry to tom;
+su - tom
+psql -d jerry -U tom
+
+
+CREATE TABLE films (
+    code        char(5),
+    title       varchar(40),
+    did         integer,
+    date_prod   date,
+    kind        varchar(10),
+    len         interval hour to minute,
+    CONSTRAINT production UNIQUE(date_prod)
+);
+
+pg_dump -U geekstuff erp -f mydb.sql
+psql -l
+pg_dumpall > all.sql
+grep "^[\]connect" all.sql
+pg_dump --table products -U geekstuff article -f onlytable.sql
+psql -U erp -d erp_devel -f mydb.sql
+pg_dump dbname | psql -h hostname dbname
+psql -f alldb.sql
+
+
+psql -f producttable.sql geekstuff
+scp -P 443 /opt/iTGS-Server1.0.0.10.zip  ficbi@110.234.86.163:/home/ficbi/
+grant all privileges on fp_upload.* to 'root'@'172.1.7.139' identified by 'root123';
+grant privileges;
+/etc/init.d/mysqld stop
+mysqld_safe --skip-grant-tables &
+update user set password=PASSWORD("iis123") where User='root';
+sud47bdt
+mysql -u root
+start /w ocsetup DNS-Server-Core-Role
+update-rc.d -f postgresql-8.4 remove 
+
+
+
+mkdir gala
+tar -cvf gala.tar gala
+gzip gala.tar
+netdom renamecomputer WIN-JXSJHXJSHJS  /newname arcane
+netdom join arcane /domain:azure.com /UserD:Administrator /Password:zoom_123
+oclist
+sh -c 'wget -O - http://deb.opera.com/archive.key | apt-key add -'
+$ sudo sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" >> /etc/apt/sources.list.d/opera.list'
+grant all privileges on fp_upload.* to 'root'@'172.1.7.139' identified by 'root123';
+grant privileges;
+ls | awk '{print"mv "$0" "$0}' | grep _04 | sed 's/_04/_40/2'| sh
+ls | awk '{print"mv "$0" "$0}' | grep _04 | sed 's/_04/_40/2'
+ls | awk '{print"mv "$0" "$0}' | grep _40
+ls | awk '{print"mv "$0" "$0}' | grep _04 | sed 's/_04/_40/2'| sh
+awk '{for (i=NF;i>0;i--) printf("%s ",$i)} {printf("%s","\n")}' $InFile
+echo "00000006949873633_06.FMR" | rev
+ls | head -n 1 | sed 's/_01/_05/g'
+ls | head -n 1 | sed 's/_01/05/g'
+ls | head -n 1
+sed = sedr.txt | sed 'N;s/\n/\t/'
+sed = emp.txt | sed 'N;s/\n/\. /' > emp1.txt
+sed -n '$=' sedr.txt
+blank
+sed 's/^/     /'
+reverse
+sed '/\n/!G;s/\(.\)\(.*\n\)/&\2\1/;//D;s/.//'
+sed '$!N;s/\n/ /'
+sed 10q sedr.txt
+sed -e :a -e '$q;N;5,$D;ba'
+sed 's/FTR/MTR/' sedr.txt > ftschange.txt 
+sed '8,$ { $! s:</\?i>::g }'
+change will happen in 1st line
+sed '0,/1/s//5/' ztest.txt 
+sed  '1s/1/5/' ztest.txt
+sed = com1.txt | sed 'N;s/\n/\t/'
+sed '/./=' com1.txt | sed '/./N; s/\n/ /'
+sed 's/\([^,]*\),\([^,]*\),\([^,]*\),\([^,]*\).*/\1, \2/g' salary.txt 
+sed 's/Atul/RA\LMAN/g' salary.txt 
+cat SB18120130201.txt | cut -d  " " -f4
+sed '/\n/!G;s/\(.\)\(.*\n\)/&\2\1/;//D;s/.//' mob.txt 
+sed -r 'G;:a;s/^\n//;t;s/^(\S+|\s+)(.*)\n/\2\n\1/;ta' rev.txt
+echo "hello world" | sed '/\n/!G;s/\(.\)\(.*\n\)/&\2\1/;//D;s/.//'
+attrib +a +r +s +h rock /s/d
+attrib -a -r -s -h rock /s/d
+tac -s ' ' rev.txtsed '8,$ { $! s:</\?i>::g }'
+http://www.sitepoint.com/how-to-install-mysql/
+http://www-rohan.sdsu.edu/doc/sed.html
+sort -u kbc.txt -o tt.txt
+for i in `cat list`; do cp "$i"  "$i".bak ; done
+for counter in {1...5};do useradd user$counter;done
+vi user.list
+u1 u2  u3  u4
+for user in `cat user.list`;do useradd $user;done
+yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
+yum install java-1.6.0-openjdk-devel
+https://d.stavrovski.net/blog/how-to-install-and-setup-oracle-java-jdk-in-centos-6/
+rpm -qa | grep -E '^open[jre|jdk]|j[re|dk]'
+http://thelinuxstuff.blogspot.in/2012/05/installing-tomcat-6-on-redhat.html
+mkdir -p /home/admin/useraccounts
+for (( i=0; i<=500; i++ )) 
+do
+useradd baci$i
+< /dev/urandom tr -dc A-Na-n1-9_ | head -c8 > /tmp/passwd.txt 
+cat /tmp/passwd.txt | passwd --stdin user$i  
+echo -e "Username:baci$i" > /home/admin/useraccounts/baci$i 
+echo -e "password:" >> /home/admin/useraccounts/baci$i  
+cat /tmp/passwd.txt >> /home/admin/useraccounts/baci$i  
+done
+rm -rf /tmp/passwd.txt
+
+
+su postgres
+psql
+psql -d template1 -U postgres
+CREATE USER tom WITH PASSWORD 'myPassword';
+CREATE DATABASE jerry;
+GRANT ALL PRIVILEGES ON DATABASE jerry to tom;
+vi /var/lib/pgsql/data/pg_hba.conf
+local	all	all	trust
+host	all	127.0.0.1/32	trust
+psql -d myDb -U username -W
+apt-get install openjdk-6-jdk
+add-apt-repository ppa:ferramroberto/java
+apt-get install sun-java6-jdk
+update-alternatives --config java
+update-alternatives --config mozilla-javaplugin.so
+
+git clone git://git.icinga.org/icinga-core.git
+
+
+alternatives --install /usr/bin/java java /opt/jdk1.7.0_60/bin/java 2
+ alternatives --install /usr/bin/jar jar /opt/jdk1.7.0_60/bin/jar 2
+alternatives --install /usr/bin/javac javac /opt/jdk1.7.0_60/bin/javac 2
+ alternatives --set jar /opt/jdk1.7.0_60/bin/jar
+ alternatives --set javac /opt/jdk1.7.0_60/bin/javac 
+
+mkdir /usr/share/puppet/rack/puppetmasterd/public /usr/share/puppet/rack/puppetmasterd/tmp
+
+cp /usr/share/puppet/ext/rack/config.ru  /usr/share/puppet/rack/puppetmasterd
+
+
+java -version
+apt-get install sun-java6-jdk sun-java6-jre sun-java6-plugin sun-java6-fonts
+apt-get install sun-java6-bin sun-java6-jre sun-java6-jdk
+cd /etc/alternatives/
+ls -l javac 
+ln -s /usr/lib/jvm/jdk1.6.0_43/bin/javac .
+ln -s /usr/lib/jvm/jdk1.6.0_43/bin/java .
+cd /usr/lib/jvm/jdk1.6.0_43/bin/java
+echo $JAVA_HOME
+ JAVA_HOME=/usr/java/jdk1.6.0_24  
+ export JAVA_HOME  
+ PATH=$JAVA_HOME/bin:$PATH  
+ export PATH  
+ JBOSS_HOME=/usr/share/jboss-6.0.0.Final  
+ export JBOSS_HOME  
+http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
+ssh-keygen -R {server.name.com}
+ssh-keygen -R {ssh.server.ip.address}
+ssh-keygen -R server.example.com
+http://www.grymoire.com/Unix/Sed.html
+http://www.slideshare.net/NeelKamalThEYuVrAaJ/seminar-on-hacking
+
+9950000099
+7737222088
+
+copy from local computer to remote computer
+rsync -v -e ssh emp.txt  root@172.16.113.152:/opt
+copy from remote computer to local computer
+rsync -v -e ssh   root@172.16.113.152:/root/emp.txt . 
+cp `rpm -ql openldap-servers | grep DB_CONFIG` /var/lib/ldap/DB_CONFIG
+
+http://itdavid.blogspot.in/2012/05/howto-centos-6.html
+http://itsupportdetails.blogspot.in/2012/09/basic-ldap-configuration-for-rhel.html
+http://ihazem.wordpress.com/2011/11/29/installing-and-configuring-openldap-on-centos-5/
+http://www.overclockers.com/forums/showthread.php?t=707070
+http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch31_:_Centralized_Logins_Using_LDAP_and_RADIUS#.Ugvc_qV4pRg
+http://bhaskarlinux.blogspot.in/2012/07/ldap-samba-pdc.html
+http://www.server-world.info/en/note?os=CentOS_5&p=samba&f=4
+S-1-5-21-1478024858-2752896134-2226836397
+http://hardc0l2e.wordpress.com/2010/11/10/samba-pdc-on-centos-5-5/
+http://www.youtube.com/watch?v=TwKhR7t___A
+http://www.eucalyptus.com/eucalyptus-cloud/get-started/try
+http://www.systemadminthings.com/2012/05/add-ubuntu-linux-in-microsoft-active.html
+http://www.techmajha.com/2011/05/09/how-to-install-asterisk-and-freepbx/
+http://ideasnet.wordpress.com/2012/10/31/ides-server-how-to-install-and-set-openldap-in-ubuntu-12-04lts-server-edition-part-2/
+http://arnabmukherjee81.blogspot.in/2011/06/red-hat-cluster-with-oracle-service.html
+http://deranfangvomende.wordpress.com/2010/05/01/quick-and-dirty-vcs-centos-install-howto/
+http://servercomputing.blogspot.in/2012/05/open-vpn-server-configuration-tutorial.html
+http://gurkulindia.com/main/2011/07/beginners-lesson-veritas-cluster-services-for-solaris/
+01220
+http://www.tecmint.com/how-to-setup-mysql-master-slave-replication-in-rhel-centos-fedora/
+wget http://www.openbluedragon.org/download/1.3/openbd.war
+http://arachnoid.com/linux/shell_programming.html
+yum --enablerepo=remi install httpd mysql mysql-server php php-common
+rpm -Uvh http://rpms.famillecollet.com/remi-release-13.rpm
+http://www.tecmint.com/install-apache-mysql-php-on-redhat-centos-fedora/
+http://dineshjadhav.wordpress.com/redhat-centos-clustering-using-conga/
+http://gurkulindia.com/main/2011/07/beginners-lesson-veritas-cluster-services-for-solaris/
+http://www.localphone.com/help/voip/device_guides/softphone/asterisk
+http://www.blindhog.net/tutorials/gns3-gre-vpn-part1/gns3-gre-vpn-part1.html
+http://journey2ccie.blogspot.in/2009/11/ipsec-and-ipsec-over-gre-tunnel.html
+http://redhatlinuxtutorial.blogspot.in/2012/02/steps-to-install-nagios-monitoring-tool.html
+wget ftp://apache.mirrors.pair.com/tomcat/tomcat-7/v7.0.42/bin/apache-tomcat-7.0.42.tar.gz
+http://www.shallalist.de/Downloads/shallalist.tar.gz
+http://dictionary.reference.com/browse/converged?s=t
+http://www.tech-problems.com/install-tomcat-7-on-fedoracentos/
+http://www.gayward-concepts.com/cannot-access-host-manager-in-tomcat7/
+https://top-hat-sec.com/forum/index.php?topic=2285.0
+http://joncraton.org/blog/46/netcat-for-windows
+http://windowxpforu.blogspot.in/2008/06/mozilla-firefox-30-final.html
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/httpd/ssl/apache.key -out /etc/httpd/ssl/apache.crt
+htpasswd -c /etc/nagios/passwd kezhong
+<VirtualHost *:80>
+    ServerAdmin  root@iis.com
+    DocumentRoot /var/www/html/iis
+    ServerName   www.iis.com
+    DirectoryIndex iis.html
+    ErrorLog logs/dummy-host.iis.com-error_log
+    CustomLog logs/dummy-host.iis.com-access_log common
+</VirtualHost>
+<VirtualHost *:80>
+    ServerAdmin  root@ipsoft.com
+    DocumentRoot /var/www/html/ipsoft
+    ServerName   www.ipsoft.com
+#    DirectoryIndex ipsoft.html 
+    ErrorLog logs/dummy-host.ipsoft.com-error_log
+    CustomLog logs/dummy-host.ipsoft.com-access_log common
+</VirtualHost>
+8290963
+http://www.padl.com/OSS/MigrationTools.html
+http://www.grymoire.com/Unix/Sed.html
+sudo passwd root
+sh -c 'echo "greeter-show-manual-login=true" >> /etc/lightdm/lightdm.conf'
+setfacl -m u:ananya:rw,g:analyst:rw,g:fingrp:r,o:----fabc.txt
+*-every day of week
+00 11,16 * * * /home/ananya/bin/ibackup
+00-0th minute
+11am and 4pm every day,everymonth
+*/10 * * * * /home/mike/check-disk-space
+ls -il cyber
+#
+virtual_mailbox_domains = abc.com, xyz.com
+masquerade_domains = example.com abc.com xyz.com
+masquerade_exceptions = root , kallis
+virtual_mailbox_base= /var/spool/mail
+virtual_mailbox_maps = hash:/etc/postfix/virtual
+smtpd_helo_required = yes
+disable_vrfy_command = yes
+smtpd_recipient_restriction =
+reject_invalid_hostname,
+reject_non_fqdn_hostname,
+reject_non_fqdn_recipient,
+reject_unknown_sender_domain,
+reject_unauth_pipelining,
+permit_unauth_pipeling,
+permit_mynetworks,
+reject_unauth_destination
+
+http://www.knowplace.org/pages/howtos/smtp_gateway_for_multiple_domains_with_postfix.php
+useradd -c 'FTP USER shane' -m shane
+
+
+
+
+vi virtual
+
+info@accenture.com              accenture.com/info
+info@comviva.com                 comviva.com/info
+
+
+
+postmap /etc/postfix/virtual
+virtual_uid_maps = static:1003
+virtual_gid_maps = static:1002
+relayhost = [mail.comviva.com]
+relay_domains = mail.accenture.com
+transport_maps = hash:/etc/postfix/transport
+vi /etc/postfix/transport
+mail.accenture.com   relay:[mail.comviva.com]
+mail.comviva.com     relay:[mail.accenture.com]
+postmap /etc/postfix/transport
+service postfix reload
+cd /var/spool/mail
+mkdir abc.com
+mkdir xyz.com
+8527761 -rw-r--r-- 1 root root 0 2013-02-01 17:07 cyber
+ls -s cyber
+ls -t sort by time & date
+ls -t cyber
+date -s "2 OCT 2006 18:00:00"
+date +%T -s "10:13:13
+mkdir gala
+tar -cvf gala.tar gala
+gzip gala.tar
+125.
+monday
+wed
+fri
+sat
+.ftr
+ls
+"cp "&I2&"  /opt/sd/"
+2515dd4e215225dd
+T8FHY-PVTG2-WHB7J-GF7DR-74KJB
+http://www.hackerzvoice.net/ceh/CEHv6%20Module%2008%20Trojans%20and%20Backdoors/
+http://www.fastrabbit.net/index.php?option=com_content&view=article&id=59&Itemid=79#6
+http://sekhon-hackinghelp.blogspot.in/2012/06/using-armitagemetasploit-tool-attack-on.html
+
+http://www.microsoft.com/en-us/download/details.aspx?id=14935
+http://www.youtube.com/watch?v=2If5KLouvV0
+http://cyberpedia.in/cookie%20injection.htm
+
+http://www.thesecretofhacking.com/myaccount.html
+http://www.thesecretofhacking.com/sw/ch5/ebomb.rar
+http://www.thesecretofhacking.com/sw/ed3/ddos.rar
+http://www.thesecretofhacking.com/myaccount.html
+http://www.thesecretofhacking.com/sw/ed3/crash.rar
+http://www.thesecretofhacking.com/myaccount.html
+http://www.thesecretofhacking.com/sw/ed3/bluetooth.rar
+http://www.thesecretofhacking.com/sw/ed3/mobiscope.rar
+www.leospy.com
+http://www.thesecretofhacking.com/sw/ed3/sqldocs.rar
+www.leorat.com
+www.leospy.com/leorat
+sudo sh -c 'echo "greeter-show-manual-login=true" >> /etc/lightdm/lightdm.conf'
+add-apt-repository ppa:gnome3-team/gnome3
+sudo apt-get update
+sudo apt-get install gnome-shell
+
+yum install patch gcc-c++ make bzip2 autoconf automake libtool bison iconv-devel readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel
+
+rvm install 2.1.2
+
+http://www.linuxfunda.com/2013/08/05/how-to-install-ruby-on-rails-on-centos-6-4/
+
+
+cpan Bundle::Expect
+
+cpan Net::SSH::Expect
+
+
+curl -L http://cpanmin.us | perl - --sudo App::cpanminus
+ 1327  perl -MCPAN -e 'install +YAML'
+ 1328  port install perl5 +perl5_14
+ 1329  cpanm Net::SSH::Perl
+ 1330  cpan
+ 1331  cpanm Math::GMP
+ 1332  perl -MCPAN -e 'install Math::GMP'
+ 1333  apt-get install libgmp3-dev
+ 1334  cpanm Net::SSH::Perl
+ 1335  cpan Bundle::Expect
+ 1336  Net::OpenSSH
+ 1337  cpan Net::OpenSSH
+ 1338  cpan cpan Net::SSH::Expect
+ 1339  cpan Net::SSH::Expect
+
+
+
+

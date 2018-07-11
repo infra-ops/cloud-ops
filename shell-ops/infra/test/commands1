@@ -1,0 +1,20 @@
+cut -c1 sedtest.txt | head -n3
+
+2. sed 's/^\(.\).*/\1/' sedtest.txt  | head -n3
+
+3. awk '{print substr($0,0,1)}' sedtest.txt | head -n3
+
+4. awk '{print substr($0,0,10) "|" }' sedtest.txt |head -n3
+
+5. awk '{$5="|" $2; print $0}' sedtest.txt
+
+6.awk -F',' '{print $1}' sedtest.txt
+
+7. awk '{gsub(",","|",$1);print $1}' sedtest.txt
+
+8.sshpass -p $pass  scp -r  -o  ConnectTimeout=5 -o UserKnownHostsFile=/dev/null -o  StrictHostKeyChecking=no /opt/hp_mon/*  $admin@$i:/tmp ;
+
+9.sshpass -p $pass ssh -o   ConnectTimeout=5 -o UserKnownHostsFile=/dev/null -o  StrictHostKeyChecking=no  $admin@$i  'sudo su -'
+
+10.sshpass -p $pass  ssh -o ConnectTimeout=5 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  $admin@$i  'cat /etc/hosts' ;
+

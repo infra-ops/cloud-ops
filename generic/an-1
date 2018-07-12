@@ -57,6 +57,6 @@ ansible-playbook --syntax-check nginx.yml
 ansible-role roles/nginx/
 
 
-
+ansible-playbook nginx-v.1.0.1.yml -i /etc/ansible/inventory --extra-vars "nodes=web user=deploy"
 
 

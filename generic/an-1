@@ -15,7 +15,7 @@ ansible all -s -m shell -a 'apt-get install nginx'
 
 ansible all -s -m apt -a 'pkg=nginx state=installed update_cache=true'
 
-vim hello.yml
+cat hello.yml
 
 ---
 - hosts: web
@@ -26,8 +26,35 @@ command: /bin/echo hello matrix
 sudo: true
 when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
+cat nginx-v.1.0.1.yml 
+---
+
+- hosts: web
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=nginx state=installed update_cache=true
+      notify:
+        - start nginx
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
+
+  remote_user: deploy
+  become: true
+  become_method: sudo
+
+ansible-playbook nginx-v.1.0.1.yml --extra-vars "variable_host=192.168.10.27"
+ansible-playbook nginx-v.1.0.1.yml -i /etc/ansible/infra --extra-vars "host=web"
 
 
+
+
+ansible-playbook playbook.yml -i hosts/production --tags="ntp"
+
+ansible-playbook --syntax-check nginx.yml
+
+ansible-role roles/nginx/
 
 
 

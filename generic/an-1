@@ -104,3 +104,4 @@ Host *
   ControlMaster auto
   ControlPersist 5m
 
+/ec2.py --list --profile default --refresh-cache

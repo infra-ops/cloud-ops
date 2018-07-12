@@ -88,5 +88,19 @@ cat aws_inventory.yml
 52.91.223.179  ansible_ssh_user=deploy
 [web]
 172.31.19.3    ansible_ssh_user=deploy
-hi
+
+
+
+cat ssh.cfg
+Host 172.31.*.*
+  ProxyCommand ssh -W %h:%p deploy@52.91.xx.xx
+  IdentityFile /home/deploy/.ssh/id_rsa
+
+Host *
+  Hostname 172.31.xx.xx
+  User deploy
+  IdentityFile /home/deploy/.ssh/id_rsa
+  ControlPath     ~/.ssh/mux-%r@%h:%p
+  ControlMaster auto
+  ControlPersist 5m
 

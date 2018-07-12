@@ -88,5 +88,5 @@ cat aws_inventory.yml
 52.91.223.179  ansible_ssh_user=deploy
 [web]
 172.31.19.3    ansible_ssh_user=deploy
-
+hi
 

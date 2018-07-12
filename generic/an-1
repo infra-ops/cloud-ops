@@ -58,5 +58,35 @@ ansible-role roles/nginx/
 
 
 ansible-playbook nginx-v.1.0.1.yml -i /etc/ansible/inventory --extra-vars "nodes=web user=deploy"
+deploy ALL=(ALL) NOPASSWD: ALL
+usermod --shell /bin/bash deploy
+
+cat ssh.cfg
+Host 172.31.*.*
+  ProxyCommand ssh -W %h:%p deploy@52.91.223.179
+  IdentityFile /home/deploy/.ssh/id_rsa
+
+Host *
+  Hostname 52.91.223.179
+  User deploy
+  IdentityFile /home/deploy/.ssh/id_rsa
+  ControlPath     ~/.ssh/mux-%r@%h:%p
+  ControlMaster auto
+  ControlPersist 5m
+  
+  
+  cat ansible.cfg
+  ssh_args = -F ssh.cfg
+  control_path = ~/.ssh/mux-%r@%h:%p
+
+
+
+
+cat aws_inventory.yml
+---
+[bastion]
+52.91.223.179  ansible_ssh_user=deploy
+[web]
+172.31.19.3    ansible_ssh_user=deploy
 
 

@@ -105,3 +105,17 @@ Host *
   ControlPersist 5m
 
 /ec2.py --list --profile default --refresh-cache
+
+docker pull postgres:9.6
+docker pull ansible/awx_rabbitmq:3.7.4
+docker pull memcached:alpine
+docker pull ansible/awx_web:latest
+docker pull ansible/awx_task:latest
+
+ansible-playbook -i inventory -e docker_registry_password=password install.yml
+
+
+
+
+
+

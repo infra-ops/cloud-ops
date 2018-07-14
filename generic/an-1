@@ -82,22 +82,37 @@ Host *
 
 
 
-cat aws_inventory.yml
+cat aws_inventory-root.yml 
 ---
 [bastion]
-52.91.223.179  ansible_ssh_user=deploy
+jump123 ansible_ssh_host=52.xx.xx.xx ansible_ssh_user=xxxx
+
 [web]
-172.31.19.3    ansible_ssh_user=deploy
+web123  ansible_ssh_host=172.xx.xx.xx   ansible_ssh_user=xxxx
+
+
+
+cat ssh-17.cfg 
+Host 172.31.*
+  ProxyCommand    ssh -W %h:%p  xxxx@xxxxxxxx
+Host *
+  ControlMaster   auto
+  ControlPath     ~/.ssh/mux-%r@%h:%p
+  ControlPersist  15m
+
+
+
+
 
 
 
 cat ssh.cfg
 Host 172.31.*.*
-  ProxyCommand ssh -W %h:%p deploy@52.91.xx.xx
+  ProxyCommand ssh -W %h:%p deploy@52.xx.xx.xx
   IdentityFile /home/deploy/.ssh/id_rsa
 
 Host *
-  Hostname 172.31.xx.xx
+  Hostname 172.xx.xx.xx
   User deploy
   IdentityFile /home/deploy/.ssh/id_rsa
   ControlPath     ~/.ssh/mux-%r@%h:%p

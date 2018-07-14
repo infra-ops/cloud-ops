@@ -62,12 +62,12 @@ deploy ALL=(ALL) NOPASSWD: ALL
 usermod --shell /bin/bash deploy
 
 cat ssh.cfg
-Host 172.31.*.*
+Host 172.xx.*.*
   ProxyCommand ssh -W %h:%p deploy@52.91.223.179
   IdentityFile /home/deploy/.ssh/id_rsa
 
 Host *
-  Hostname 52.91.223.179
+  Hostname xx.xx.xx.xx
   User deploy
   IdentityFile /home/deploy/.ssh/id_rsa
   ControlPath     ~/.ssh/mux-%r@%h:%p
@@ -93,7 +93,7 @@ web123  ansible_ssh_host=172.xx.xx.xx   ansible_ssh_user=xxxx
 
 
 cat ssh-17.cfg 
-Host 172.31.*
+Host 172.xx.*
   ProxyCommand    ssh -W %h:%p  xxxx@xxxxxxxx
 Host *
   ControlMaster   auto
@@ -107,7 +107,7 @@ Host *
 
 
 cat ssh.cfg
-Host 172.31.*.*
+Host 172.xx.*.*
   ProxyCommand ssh -W %h:%p deploy@52.xx.xx.xx
   IdentityFile /home/deploy/.ssh/id_rsa
 

@@ -115,7 +115,7 @@ docker pull ansible/awx_task:latest
 ansible-playbook -i inventory -e docker_registry_password=password install.yml
 
 
-
+ansible-playbook -i inventory/mycluster/hosts.ini cluster.yml
 
 
 

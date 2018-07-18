@@ -1,0 +1,8 @@
+---
+- name: nginx-stack
+  import_playbook: nginx.yml
+
+#- name: mongo-stack
+#  import_playbook: mongo.yml
+
+

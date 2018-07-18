@@ -127,3 +127,19 @@ export PATH=~/bin:$PATH
 git rm -r --cached elk2
 git commit -m "changes"
 git push origin master
+
+├── site.yml
+├── group_vars
+│   ├── all.yml
+│   ├── dbserver.yml
+│   └── webserver.yml
+├── host_vars
+│   ├── 192.168.1.1.yml
+│   └── 192.168.1.2.yml
+└── roles
+    ├── apaches
+    │   └── vars
+    │       └── main.yml
+    └── mariadb
+        └── vars
+            └── main.yml

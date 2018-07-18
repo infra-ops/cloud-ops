@@ -1,0 +1,9 @@
+{
+	"us-east-1": [
+		"eipalloc-d1023bd9",
+                "eipalloc-8e013886"    
+	],
+	"us-east-2": [
+		"eipalloc-fbca31da"
+	]
+}

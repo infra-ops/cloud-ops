@@ -119,3 +119,5 @@ ansible-playbook -i inventory/mycluster/hosts.ini cluster.yml
 
 export PATH=~/bin:$PATH 
 
+ git config --global user.name "xxxx"
+ git config --global user.email "xxxxxx@gmail.com"

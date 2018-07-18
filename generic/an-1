@@ -121,3 +121,9 @@ export PATH=~/bin:$PATH
 
  git config --global user.name "xxxx"
  git config --global user.email "xxxxxx@gmail.com"
+ 
+ git pull --rebase origin master
+
+git rm -r --cached elk2
+git commit -m "changes"
+git push origin master

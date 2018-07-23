@@ -3,7 +3,7 @@
 #execution process
 
 
-#python security-check-2.py  -i  /root/keys3/id_rsa  -n sudipta@34.207.239.100
+#python security-check-2.py  -i  /root/keys3/id_rsa  -n sudipta@xx.xx.xx.xx
 #python security-check-2.py  -i  /root/keys3/id_rsa  -u sudipta -f nodes.json
 
 
@@ -22,8 +22,8 @@ from email.mime.multipart import MIMEMultipart
 def sendLogFileEmail(log_file, log_data):
 	message = MIMEMultipart()
 	message['Subject'] = log_file
-	message['From'] = 'chakraborty.rock@gmail.com'
-	message['To'] = 'sudipta1436@gmail.com'
+	message['From'] = 'cxxxxxx@gmail.com'
+	message['To'] = 'sxxxxxx@gmail.com'
 
 	# what a recipient sees if they don't use an email reader
 	message.preamble = 'Multipart message.\n'
@@ -34,7 +34,7 @@ def sendLogFileEmail(log_file, log_data):
 	part.add_header('Content-Disposition', 'attachment; filename="%s"' % log_file)
 	message.attach(part)
 	client = boto3.client('ses')
-	response = client.send_raw_email (Source='chakraborty.rock@gmail.com',Destinations=['sudipta1436@gmail.com'],RawMessage={'Data': message.as_string()})
+	response = client.send_raw_email (Source='cxxxxx@gmail.com',Destinations=['sxxxxx@gmail.com'],RawMessage={'Data': message.as_string()})
 	##print "E-mail sent: " + str(response)
 
 

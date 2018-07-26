@@ -1,0 +1,17 @@
+cat /etc/hosts
+
+18.191.xx.xx bastion.example.com
+
+cat config
+Host 172.31.*.*
+ ProxyCommand ssh -W %h:%p 18.191.xx.xx
+ User deploy
+ IdentityFile ~/test-key.pem
+
+Host 18.191.xx.xx
+ Hostname bastion.example.com
+ User deploy
+ IdentityFile ~/.ssh/id_rsa
+ ControlMaster auto
+ ControlPath ~/.ssh/ansible-%r@%h:%p
+ ControlPersist 5m

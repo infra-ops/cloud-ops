@@ -2,8 +2,8 @@
 
 #execution process
 
-#python security-check-2.py	-i	/root/keys3/id_rsa	-n sudipta@34.207.239.100
-#python security-check-2.py	-i	/root/keys3/id_rsa	-u sudipta -n 52.4.168.202
+#python security-check-2.py	-i	/root/keys3/id_rsa	-n sudipta@xxxxx
+#python security-check-2.py	-i	/root/keys3/id_rsa	-u sudipta -n 52.xx.xx.xx
 #python security-check-2.py	-i	/root/keys3/id_rsa	-u sudipta -f nodes.json
 
 import re

@@ -1,0 +1,6 @@
+{
+	"source-1": "/home/controller/Desktop/logs/test-1/*.sh",
+        "source-2": "/home/controller/Desktop/logs/test-2/*.sh",
+        "dest": "dev-nik-1"
+}
+

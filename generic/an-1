@@ -143,3 +143,21 @@ git push origin master
     └── mariadb
         └── vars
             └── main.yml
+            
+            
+            apt-add-repository ppa:brightbox/ruby-ng
+apt-get update
+apt-get install ruby2.5 ruby2.5-dev
+
+openssl passwd -1 > cloud-config-file
+
+users:
+ - name: deploy
+   passwd:
+   groups:
+     - sudo
+     - docker
+
+sudo coreos-install -d /dev/sda -C stable -c cloud-config-file
+vagrant box add ubuntu-14.04 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+

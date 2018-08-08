@@ -162,3 +162,21 @@ sudo coreos-install -d /dev/sda -C stable -c cloud-config-file
 vagrant box add ubuntu-14.04 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
 
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+git branch
+git log
+git reset --soft 42134e74ada2ab7760f4de35f91b38c976f146da
+git checkout develop
+git checkout  -b sc-ss-1209
+git commit -m "my changes"
+git push origin sc-ss-1209
+git remote -v
+git pull https://github.com/searchstax/searchstax.git
+git push origin sc-ss-1209
+
+rake -T
+rake serverspec:ac-1
+rake spec
+
+
+

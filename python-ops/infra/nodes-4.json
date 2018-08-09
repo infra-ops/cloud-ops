@@ -1,0 +1,14 @@
+{
+	"prod": [
+               "user:ubuntu",
+	       "key:/root/keys3/web-key.pem",	
+               "ssid-1:18.xx.xx.xx"
+                    
+	],
+	"qa": [
+		"user:sudipta",
+                "key:/root/keys3/id_rsa",
+                "ssid-2:52.xx.xx.xx" 
+                
+	]
+}

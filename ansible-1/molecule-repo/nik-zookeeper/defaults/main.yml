@@ -1,0 +1,23 @@
+---
+zookeeper_version: 3.4.12
+zookeeper_user: zookeeper
+zookeeper_group: zookeeper
+zookeeper_tarball_dir: /tmp/
+zookeeper_dir: /opt/app/zookeeper
+zookeeper_data_dir: /opt/app/zoo-data
+zookeeper_log_dir: /opt/app/zoo-data
+zookeeper_install_path: /opt/app/zookeeper
+zookeeper_conf_dir: "{{ zookeeper_install_path }}/conf"
+tick_time: 2000
+init_limit: 5
+sync_limit: 2
+client_port: 2181
+zookeeper_tick_time: "{{ tick_time }}"
+zookeeper_init_limit: "{{ init_limit }}"
+zookeeper_sync_limit: "{{ sync_limit }}"
+zookeeper_client_port: "{{ client_port }}"
+zookeeper_hosts:
+  - host: "{{inventory_hostname}}"
+    id: 1
+zookeeper_env: {}
+zookeeper_force_myid: "yes"

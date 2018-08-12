@@ -1,0 +1,41 @@
+---
+- name: DEPENDENCY INSTALLATION
+  apt: name={{item}} state=installed
+  with_items:
+       - net-tools
+       - netcat
+       - python-software-properties
+- name: ADD JAVA 8 REPOSITORIES
+  apt_repository: repo='ppa:webupd8team/java'
+- name: INSTALL JAVA
+  debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+- name: Install Java 8
+  apt: name=oracle-java8-installer force=yes
+- name: ZOOKEEPER PATH CREATION
+  file:
+       path: "{{ item }}"
+       state: "directory"
+  with_items:
+       - "{{ zookeeper_dir }}"
+       - "{{ zookeeper_install_path }}"
+       - "{{ zookeeper_conf_dir }}"
+       - "{{ zookeeper_data_dir }}"
+       - "{{ zookeeper_log_dir }}"
+- name: ZOOKEEEPER TAR BALL DOWNLOAD
+  get_url:
+       url: http://apache.rediris.es/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz
+       dest: /opt/app
+       remote_src: yes
+- name: ZOOKEEPER TAR BALL EXTRACTION
+  unarchive: src=/opt/app/zookeeper-3.4.12.tar.gz  dest=/opt/app
+- name: CHANGE OWNERSHIP ON ZOOKEEPER DIRECTORY
+  file: path={{zookeeper_dir}} state=directory
+- name: ZOOKEEPER DIRECTORY CREATION
+  file: path={{item}} state=directory
+  with_items:
+       - "{{zookeeper_data_dir}}"
+       - "{{zookeeper_log_dir}}"
+- name: ZOOKEEPER SYSTEMD SERVICE CREATION
+  template:
+       src: zookeeper.service.j2
+       dest: /etc/systemd/system/zookeeper.service

@@ -1,0 +1,19 @@
+---
+# tasks file for search-zookeeper
+
+###ubuntu 16.04
+- include_tasks: ubuntu-16.04-install.yml 
+  when: ansible_release == '16.04' and not zookeeper_debian_apt_install
+- include_tasks: ubuntu-16.04-install.yml
+  when: ansible_release == '16.04'
+
+
+
+##ubuntu 14.04
+- include_tasks: ubuntu-14.04-install.yml
+  when: ansible_release == '14.04'and  not zookeeper_debian_apt_instal
+- include_tasks:  ubuntu-14.04-config.yml
+  when: ansible_release == '14.04'
+
+
+

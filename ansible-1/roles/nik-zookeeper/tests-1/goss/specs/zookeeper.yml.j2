@@ -1,0 +1,30 @@
+group:
+  {{ zookeeper_group }}:
+    exists: true
+
+user:
+  {{ zookeeper_user }}:
+    exists: true
+    groups:
+      - {{ zookeeper_group }}
+
+#service:
+#  zookeeper:
+#    running: true
+#
+#command:
+#  bash /opt/zookeeper/bin/zkServer.sh status:
+#    # required attributes
+#    exit-status: 0
+#    timeout: 10000
+#    stdout:
+#    - "/Mode: (follower|leader)/"
+#
+command:
+  echo status | nc localhost 2181:
+    exit-status: 0
+    stdout:
+     - "127.0.0.1"
+#
+
+

@@ -1,4 +1,0 @@
-- include: tarball.yml
-  when: ansible_os_family == 'Debian' and not zookeeper_debian_apt_install
-
-- include: common-config.yml

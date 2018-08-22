@@ -179,4 +179,4 @@ rake serverspec:ac-1
 rake spec
 
 
-
+vagrant scp  ec2.py nikaws:/home/vagrant

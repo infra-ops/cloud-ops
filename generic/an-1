@@ -180,3 +180,31 @@ rake spec
 
 
 vagrant scp  ec2.py nikaws:/home/vagrant
+
+rm /var/lib/mongodb/mongod.lock
+mongod --repair
+systemctl restart mongod
+mongo --host 192.168.10.65 --port 27017
+
+
+docker run --name dev-mongo  -p 27017:27017 -v /opt/apps/data:/data/db -d mongo
+docker exec -it dev-mongo mongo admin
+db.createUser({ user: 'aws-admin', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
+
+db.awsinstances.insert({ region_id: 'us-east-1', public_ip_address: '54.236.58.33', InstanceId: 'i-0199acc8a7d913cd5' })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -193,6 +193,8 @@ db.createUser({ user: 'aws-admin', pwd: 'iis123', roles: [ { role: "userAdminAny
 
 db.awsinstances.insert({ region_id: 'us-east-1', public_ip_address: '54.236.58.33', InstanceId: 'i-0199acc8a7d913cd5' })
 
+git pull origin sc-ss-1209
+
 
 
 

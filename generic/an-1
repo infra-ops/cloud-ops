@@ -173,7 +173,7 @@ git push origin sc-ss-1209
 git remote -v
 git pull https://github.com/searchstax/searchstax.git
 git push origin sc-ss-1209
-
+git pull origin sc-ss-1209
 rake -T
 rake serverspec:ac-1
 rake spec

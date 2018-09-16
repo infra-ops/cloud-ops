@@ -1,0 +1,21 @@
+require 'spec_helper'
+
+
+
+
+
+#describe command('hostname  -i | cut -d " " -f2') do
+#  its(:stdout) { should match ENV['TARGET_IPV4'] }
+#end
+
+
+                                                                                                                                                     
+describe command('uname -n'), :if => 'ac-1' == 'ac-1' do
+  its(:stdout) { should match 'ac-1' }
+end
+
+
+describe command('uname -n'), :if => 'cloud-controller' == 'cloud-controller' do
+  its(:stdout) { should match 'cloud-controller' }
+end 
+

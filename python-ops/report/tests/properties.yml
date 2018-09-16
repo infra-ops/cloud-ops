@@ -1,0 +1,7 @@
+ac-1:
+  :roles:
+    - nik-zookeeper 
+cloud-controller:
+  :roles:
+    - nik-zookeeper
+

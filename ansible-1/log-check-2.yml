@@ -1,27 +1,25 @@
 ---
-- hosts: qa
+- hosts: dev
   remote_user: root
   become: true
   become_method: sudo
   gather_facts: True
   tasks:
-     - name: Gather facts from new server
-       setup:
-       filter: ansible_default_ipv4.address
- 
+
+
+     - debug: var=ansible_distribution
+     - debug: var=ansible_nodename
+#     - debug: var=ansible_mounts
+     - debug: var=ansible_default_ipv4.address
+#     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address'] 
+
      - name: verify ip
-       shell: hostname -I
+       shell: hostname -I | cut -d " " -f2
        register:  ip
      - name: Print ip
        debug:
          msg: "ip : {{ ip.stdout }}"
      
-     - name: verify hostname
-       shell: uname -n
-       register:  host
-     - name: Print host name
-       debug:
-         msg: "nodename : {{ host.stdout }}"
     
      - name: verify /opt/data
        shell: ls -ld /opt/data | cut -d " " -f9

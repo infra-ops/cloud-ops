@@ -1,0 +1,11 @@
+ac-1:
+  :roles:
+    - nik-zookeeper 
+ac-2:
+  :roles:
+    - nik-zookeeper
+ac-3:
+  :roles:
+    - nik-zookeeper
+
+

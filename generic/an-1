@@ -160,6 +160,22 @@ users:
 
 sudo coreos-install -d /dev/sda -C stable -c cloud-config-file
 vagrant box add ubuntu-14.04 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+https://www.vagrantbox.es/
+
+
+vagrant box add ubuntu-16.04  https://github.com/jose-lpa/packer-ubuntu_lts/releases/download/v3.1/ubuntu-16.04.box
+
+ vim /etc/apt/sources.list
+deb http://mirrors.kernel.org/ubuntu/ xenial main
+
+apt-get update
+
+apt-get install libpng12-0 libqt4-opengl libqtcore4 libqtgui4 libvpx3 libsdl-ttf2.0-0
+
+
+
+
+
 
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 

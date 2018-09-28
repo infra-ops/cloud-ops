@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tls-ingress
+spec:
+  tls:
+  - hosts:
+    - domain.com
+    secretName: domain-ssl-cert
+  rules:
+  - host: domain.com
+    http:
+      paths:
+      - backend:
+          serviceName: domain-svc
+          servicePort: 443

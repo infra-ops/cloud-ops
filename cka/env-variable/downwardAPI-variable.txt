@@ -1,0 +1,20 @@
+fieldRef
+--------
+spec.nodeName		  - the nodes name
+status.hostIP		  - the nodes IP
+metadata.name		  - the pods name
+metadata.namespace	  - the pods namespace
+status.podIP		  - the pods IP address
+spec.serviceAccountName	  - the pods service account name
+metadata.uid		  - the pods UID
+metadata.labels['<KEY>']  - the value of the pods label <KEY>
+metadata.annotations['<KEY>'] - the value of the pods annotation <KEY>
+
+
+resourceFieldRef
+----------------
+A Containers CPU limit
+A Containers CPU request
+A Containers memory limit
+A Containers memory request
+

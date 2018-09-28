@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-ref-pod
+  labels:
+    k8s-app: resource-red-pod
+spec:
+  containers:
+  - name: resref
+    image: busybox:1
+    resources:
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    command: ["sh","-c"]
+    args:
+    - while true; do
+        echo -en "\n";
+        printenv MY_CPU_REUQEST MY_CPU_LIMIT;
+        printenv MY_MEMORY_REQUEST MY_MEMORY_LIMIT;
+      done;
+    env:
+    - name: MY_CPU_REUQEST
+      valueFrom:
+        resourceFieldRef:
+          containerName: resref
+          resource: requests.cpu
+    - name: MY_CPU_LIMIT
+      valueFrom:
+        resourceFieldRef:
+          containerName: resref
+          resource: limits.cpu
+    - name: MY_MEMORY_REQUEST
+      valueFrom:
+        resourceFieldRef:
+          containerName: resref
+          resource: requests.memory
+    - name: MY_MEMORY_LIMIT
+      valueFrom:
+        resourceFieldRef:
+          containerName: resref
+          resource: limits.memory
+  restartPolicy: Never
+          

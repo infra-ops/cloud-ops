@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: plain-pod
+  labels:
+    k8s-app: plain-pod
+spec:
+  containers:
+  - name: nginx-pod
+    image: nginx
+  restartPolicy: Always
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+    operator: Exists

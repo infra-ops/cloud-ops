@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-deadline
+  labels:
+    k8s-app: job-deadline
+spec:
+  activeDeadlineSeconds: 60
+  backoffLimit: 3
+  completions: 1
+  parallelism: 1
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/sh
+        - -c
+        - |
+          sleep 30
+          exit 9
+      restartPolicy: OnFailure

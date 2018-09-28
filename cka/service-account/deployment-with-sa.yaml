@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: private-image
+  labels:
+    k8s-app: private-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omd-pollar
+  template:
+    metadata:
+      labels:
+        app: omd-pollar
+    spec:
+      containers:
+      - name: omd-pollar
+        image: bhavesh2177/omd-pollar:1.10
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        imagePullPolicy: Always
+        command: ["/usr/sbin/sshd"]
+        args: ["-D"]
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        env:
+        - name: OMD_VERSION
+          value: "1.10"
+        - name: OMD_TYPE
+          value: OLD
+        securityContext:
+          capabilities:
+            drop:
+            - KILL
+            - MKNOD
+            - SETUID
+            - SETGID
+            add: ["SYS_ADMIN"]
+          #runAsUser: 10000
+      restartPolicy: Always
+      serviceAccountName: custom-sa
+      volumes:
+      - name: data
+        emptyDir: {}
+      securityContext:
+        fsGroup: 20000
+      schedulerName: default-scheduler

@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-tmp
+  labels:
+    k8s-app: job-tmp
+spec:
+  backoffLimit: 5
+  completions: 2
+  parallelism: 1
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/sh
+        - -c
+        - |
+          sleep 5 && exit 7
+      restartPolicy: OnFailure

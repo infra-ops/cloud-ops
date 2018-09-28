@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-egress-deny-all
+spec:
+  # Apply to all Pods
+  podSelector: {}
+  # Policy Type
+  policyTypes:
+  - Ingress
+  - Egress

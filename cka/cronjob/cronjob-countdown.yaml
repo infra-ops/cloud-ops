@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: countdonw-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      parallelism: 1
+      completions: 1
+      template:
+        spec:
+          containers:
+          - name: busybox
+            image: busybox:1
+            command:
+            - sh
+            - -c
+            - "for i in 5 4 3 2 1; do echo \"Countdown: $i\"; done" 
+          restartPolicy: OnFailure

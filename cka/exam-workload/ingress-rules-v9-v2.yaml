@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-tls
+  labels:
+    k8s-app: ingress-tls
+  #annotations:
+  #  nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - secretName: mysecret
+  #  hosts:
+  #  - demo.com
+  backend:
+    serviceName: default
+    servicePort: 80

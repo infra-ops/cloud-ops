@@ -1,0 +1,36 @@
+1) Resources cpu/memory
+2) Node Affinity
+3) Pod Affinity
+4) Container Lifecycle PostStart and PreStop
+5) Create CronJob Schedule
+6) Create DaemonSet
+7) Create Deployment
+8) Environment variables with key/value, fieldRef, resourceRef, secretRef and with downwordAPI volume
+9) Ingress with Namebased, Path Based, and TLS offloading
+10) Create Init Container inside POD
+11) Create JOB with parallelism
+12) Kub-DNS configmap for defining upstream NameServer and stubDomain.
+13) Create namespace with LimitRange and Quota 
+14) Network Policy to restrict Traffic between Namespace, Pod, IP etc.
+15) Patach Objects with different types
+16) Run Pod using SecurityContext like runasUser and Add/delete Capabilities
+17) Add Liveness/Readiness probes to the Pods
+18) Create replication controller
+19) Create autoscaling object and scale the resource based on CPU
+20) Service account to pull private Image inside Pod
+21) Create StatefuleSet, Headless Service, and Dynamic Storage using StorageClass object
+22) Work on below given Volumes,
+  - emptyDir
+  - hostPath
+  - persistentVolumeClaim
+  - secret
+  - configmap
+  - downwordAPI
+  - projected
+  - local
+23) Work on above Volumes using PV/PVC form.
+24) Enable Audit Policy  and see Logs
+25) SSL Rotation
+26) Pod Priority
+27) Pod Preset
+28) 

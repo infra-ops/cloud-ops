@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-env-vars
+  labels:
+    k8s-app: deploy-env-vars
+  annotations:
+    version: task8
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: busy
+  template:
+    metadata:
+      labels:
+        app: busy
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+        - printenv
+        env:
+        - name: APPLICATION
+          value: busybox
+        - name: POD_NAME
+          valueFrom:
+            fieldRef: 
+              fieldPath: metadata.name
+        - name: POD_IP
+          valueFrom:
+            fieldRef: 
+              fieldPath: status.podIP
+        - name: NODE_IP
+          valueFrom:
+            fieldRef: 
+              fieldPath: status.hostIP
+      restartPolicy: Always

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  #name: countdown-job
+  generateName: countdown-job-
+spec:
+  # Define number of retry after which Job will be consoder as failed
+  backoffLimit: 5
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:1
+        command:
+        - sh
+        - -c
+        - "for i in 9 8 7 6 5 4 3 2 1 0; do echo $i; done"
+        imagePullPolicy: Always
+      restartPolicy: OnFailure

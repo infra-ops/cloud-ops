@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe
+  labels:
+    k8s-app: liveness-probe
+spec:
+  containers:
+  - name: httpd
+    image: httpd:2.4
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 2
+      successThreshold: 1
+      failureThreshold: 1
+  restartPolicy: OnFailure

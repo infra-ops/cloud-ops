@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: name-based-ingress
+spec:
+  # Default Backend for all Host and all Paths
+  backend:
+    serviceName: default-svc
+    servicePort: 80
+  # Domain Name based Rules
+  rules:
+  - host: mydomain.com
+    http:
+      paths:
+      - backend:
+          serviceName: mydomain-svc
+          servicePort: 8080
+  - host: yourdomain.com
+    http:
+      paths:
+      - backend:
+          serviceName: yourdomain-svc
+          servicePort: 9090

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: busybox-rc
+  labels:
+    k8s-app: busybox-rc
+spec:
+  replicas: 1
+  selector:
+    app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: container
+        image: busybox
+        command:
+        - sleep
+        - "8600"

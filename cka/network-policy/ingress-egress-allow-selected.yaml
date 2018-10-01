@@ -1,0 +1,43 @@
+apiVersion:
+kind: NetworkPolicy
+metadata:
+  name: ingress-egress-allow-selected
+spec:
+  # Apply policy to the selector matched Pods
+  podSelector:
+    matchLabels:
+      k8s-app: mysql
+  # Policy Types
+  policyTypes:
+  - Ingress
+  - Egress
+  # Ingress whitelist rules
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+        excpet:
+        - 172.17.1.0/24
+    - namespaceSelector:
+        matchLabels:
+          project: customer1
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 3306
+  # Egress whitelist rules
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 10.0.0.0/24
+    - namespaceSelector:
+        matchLabels:
+          project: frontend
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 80

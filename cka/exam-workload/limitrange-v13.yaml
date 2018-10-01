@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: demo-limitrange
+  labels:
+    k8s-app: demo-limitrange
+spec:
+  resources:
+    cpu:
+      min: 100m
+      max: 2
+    memory:
+      min: 100Mi
+      max: 2048Mi

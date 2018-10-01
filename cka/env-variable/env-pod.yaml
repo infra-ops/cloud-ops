@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  labels:
+    k8s-app: busybox
+spec:
+  containers:
+  - name: busybox-container
+    image: busybox
+    env:
+    - name: DEMO_GREETING
+      value: "Hello from the Environment"
+    command:
+    - /bin/sh
+    - -c
+    - echo "$(DEMO_GREETING)" > /tmp/log/env.file
+    volumeMounts:
+    - name: env
+      mountPath: /tmp/log
+  volumes:
+  - name: env
+    hostPath:
+      path: /tmp/log

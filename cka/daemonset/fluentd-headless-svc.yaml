@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service 
+metadata:
+  name: fluentd-svc
+  namespace: demo-ds
+  labels:
+    k8s-app: fluentd-svc
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: fluentd 

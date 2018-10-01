@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-limit-demo
+  labels:
+    k8s-app: memory-demo
+spec:
+  containers:
+  - name: memory-demo-container
+    image: polinux/stress
+    resources:
+      requests:
+        memory: 50Mi
+      limits:
+        memory: 100Mi
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "250M", "--vm-hang", "1"]
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master 
+    operator: Exists
+  restartPolicy: Never

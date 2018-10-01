@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: path-based-ingress
+spec:
+  rules:
+  - host: abc.com
+    http:
+      paths:
+      - path: /foo
+        backend:
+          serviceName: abc-svc
+          servicePort: 90
+  # Default backend for all Host and all Paths
+  backend:
+    serviceName: demo-svc
+    servicePort: 9090

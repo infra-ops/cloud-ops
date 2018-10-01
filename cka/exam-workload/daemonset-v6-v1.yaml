@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds-rollingupdate
+  labels:
+    k8s-app: ds-rollingupdate
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: httpd
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - name: web
+        image: httpd:2.2
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always

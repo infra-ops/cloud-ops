@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe-tcpsocket
+  labels:
+    k8s-app: liveness-probe-tcpsocket
+spec:
+  containers:
+  - name: goproxy
+    image: k8s.gcr.io/goproxy:0.1
+    ports:
+    - name: liveness-port
+      containerPort: 8080
+    livenessProbe:
+      tcpSocket:
+        port: liveness-port
+      # First time check delay time
+      initialDelaySeconds: 15
+      # Interval time per check
+      periodSeconds: 20
+      # Success Threshold
+      successThreshold: 1
+      # Failure Threshold
+      failureThreshold: 1

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: namespace-quota
+spec:
+  hard:
+    # The CPU request total for all Containers must not exceed 1 cpu.
+    requests.cpu: "1"
+    # The memory request total for all Containers must not exceed 1 GiB.
+    requests.memory: 1Gi
+    # The CPU limit total for all Containers must not exceed 2 cpu.
+    limits.cpu: "2"
+    # The memory limit total for all Containers must not exceed 2 GiB.
+    limits.memory: 2Gi

@@ -160,6 +160,49 @@ users:
 
 sudo coreos-install -d /dev/sda -C stable -c cloud-config-file
 vagrant box add ubuntu-14.04 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+https://www.vagrantbox.es/
+
+
+vagrant box add ubuntu-16.04  https://github.com/jose-lpa/packer-ubuntu_lts/releases/download/v3.1/ubuntu-16.04.box
+
+ vim /etc/apt/sources.list
+deb http://mirrors.kernel.org/ubuntu/ xenial main
+
+
+https://fabianlee.org/2017/04/03/virtualbox-installing-virtualbox-and-vagrant-on-ubuntu-14-0416-04/
+
+sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list"
+
+wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
+wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc -O- | sudo apt-key add -
+
+
+apt-get update
+
+apt-get install libpng12-0 libqt4-opengl libqtcore4 libqtgui4 libvpx3 libsdl-ttf2.0-0
+
+
+apt-get update
+apt-cache policy virtualbox-5.1
+apt-get install virtualbox-5.1 -y
+
+
+groups
+usermod -a -G vboxusers $USER
+exec su -l $USER
+groups
+
+apt-get install build-essential linux-headers-`uname -r`
+apt-get install dkms -y
+
+vagrant_1.9.3_x86_64.deb
+https://releases.hashicorp.com/vagrant/1.9.3/
+
+
+
+
+
+
 
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 

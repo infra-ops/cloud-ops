@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-dns
+data:
+  stubDomains: |
+    {"acme.local": ["1.2.3.4"]}
+  upstreamNameservers: |
+    ["8.8.8.8","4.4.4.4"]

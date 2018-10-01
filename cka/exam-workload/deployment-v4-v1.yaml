@@ -1,0 +1,27 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-forbid
+  labels:
+    k8s-app: cronjob-forbid
+spec:
+  schedule: "*/2 * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      completions: 22
+      parallelism: 5
+      backoffLimit: 3
+      activeDeadlineSeconds: 160
+      template:
+        spec:
+          containers:
+          - name: busybox
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - |
+              sleep 60
+          restartPolicy: OnFailure

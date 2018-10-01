@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-dp
+  labels:
+    k8s-app: mysql-dp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql-container
+        image: mysql:5.5
+        imagePullPolicy: Always
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'admin@123'
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        volumeMounts:
+        - name: var-lib-mysql
+          mountPath: /var/lib/mysql
+          readOnly: false
+      restartPolicy: Always
+      serviceAccount: default
+      volumes:
+      - name: var-lib-mysql
+        persistentVolumeClaim:
+          claimName: hostpath-pvc 

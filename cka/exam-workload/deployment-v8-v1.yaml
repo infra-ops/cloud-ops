@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-env-vars-v1
+  labels:
+    k8s-app: dp-env-vars-v1
+  annotations:
+    version: task8
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: container-busybox
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 500m
+            memory: 100Mi
+          requests:
+            cpu: 300m
+            memory: 100Mi
+        command:
+        - printenv
+        env:
+        - name: CONTAINER_CPU
+          valueFrom:
+            resourceFieldRef:
+              containerName: container-busybox
+              resource: requests.cpu
+        - name: CONTAINER_MEMORY
+          valueFrom:
+            resourceFieldRef:
+              containerName: container-busybox
+              resource: requests.memory
+      restartPolicy: Always

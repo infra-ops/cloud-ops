@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-busybox
+  labels:
+    k8s-app: cronjob-busybox
+spec:
+  # This will run job every 2 minutes
+  schedule: "*/2 * * * *"
+  # Concurrency policy can be Allow (Defualt), Forbid, or Replace
+  concurrencyPolicy: Allow
+  jobTemplate:
+    spec:
+      completions: 1
+      parallelism: 1
+      backoffLimit: 6
+      activeDeadlineSeconds: 60
+      template:
+        spec:
+          containers:
+          - name: busybox
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - |
+              sleep 30
+          restartPolicy: OnFailure

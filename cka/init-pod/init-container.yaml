@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container
+  labels:
+    k8s-app: init-container
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: Always
+    ports:
+    - name: web
+      containerPort: 80
+    volumeMounts:
+    - name: workdir
+      mountPath: /usr/share/nginx/html
+    resources:
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    #securityContext:
+    #  capabilities:
+    #    drop:
+    #    - KILL
+    #    - SETUID
+    #    - SETGID
+    livenessProbe:
+      httpGet:
+        path: /kube-index.html
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      failureThreshold: 1
+  initContainers:
+  - name: busybox
+    image: busybox:1
+    imagePullPolicy: Always
+    command: ["wget"]
+    args:
+    - -O
+    - "/data-dir/kube-index.html"
+    - http://kubernetes.io
+    volumeMounts:
+    - name: workdir
+      mountPath: /data-dir
+  restartPolicy: Always
+  volumes:
+  - name: workdir
+    emptyDir: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: role
+            operator: In
+            values:
+            - app

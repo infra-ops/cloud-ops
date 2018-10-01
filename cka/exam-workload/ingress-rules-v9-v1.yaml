@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-path
+  labels:
+    k8s-app: ingress-path
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: default
+    servicePort: 80
+  rules:
+  - host: demo.bhavesh.com
+    http:
+      paths:
+      - path: /home
+        backend:
+          serviceName: home
+          servicePort: 90
+      - path: /about
+        backend:
+          serviceName: about
+          servicePort: 91
+      #- path: /
+      #  backend:
+      #    serviceName: default
+      #    servicePort: 80

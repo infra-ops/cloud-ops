@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-http-pod-affinity
+  labels:
+    k8s-app: dp-http-pod-affinity
+  annotations:
+    version: task2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http
+  template:
+    metadata:
+      labels:
+        app: http
+    spec:
+      containers:
+        - name: container-httpd
+          image: httpd:2.4
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: location
+                operator: In
+                values:
+                - dc5
+            - matchExpressions:
+              - key: zone
+                operator: In
+                values: 
+                - mumbai
+              - key: rack
+                operator: In
+                values: 
+                - "20"

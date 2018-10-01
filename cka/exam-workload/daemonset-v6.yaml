@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-web
+  labels:
+    k8s-app: daemonset-web
+spec:
+  # Accepted updateStrategy are "RollingUpdate" (default) and "OnDelete"
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      app: http
+  template:
+    metadata:
+      labels:
+        app: http
+    spec:
+      containers:
+      - name: web
+        image: httpd:2.4
+        imagePullPolicy: IfNotPresent

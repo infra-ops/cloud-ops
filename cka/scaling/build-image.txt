@@ -1,0 +1,1 @@
+docker build hpa/ -t hpa-example

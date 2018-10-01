@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  labels:
+    k8s-app: myPod
+spec:
+  containers:
+  - name: container
+    image: busybox:1
+    command: ["sh","-c"]
+    args:
+    - while true; do
+        echo -en '\n';
+        printenv MY_NODE_NAME MY_POD_NAME MY_NAMESPACE_NAME;
+        printenv MY_POD_IP MY_POD_SERVICE_ACCOUNT;
+      done;
+    env:
+    - name: MY_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: MY_POD_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: MY_NAMESPACE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+    - name: MY_POD_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+    - name: MY_POD_SERVICE_ACCOUNT
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.serviceAccountName
+  restartPolicy: Never

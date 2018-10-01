@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-http
+  labels:
+    k8s-app: pod-http
+  annotations:
+    version: task4
+spec:
+  containers:
+  - name: container-httpd
+    image: httpd:2.4
+    imagePullPolicy: IfNotPresent
+    lifecycle:
+      postStart:
+        exec:
+          command:
+          - /bin/bash
+          - -c
+          - |
+            echo "This is New Index File for Default HTTP Page" > /tmp/data/index_new.html
+      preStop:
+        exec:
+          command: 
+          - /bin/bash
+          - -c
+          - |
+            echo "Running Cleanup Process" > /tmp/data/cleanup.txt
+    volumeMounts:
+    - name: data
+      mountPath: /tmp/data
+  volumes:
+  - name: data
+    hostPath:
+      path: /tmp/http-data

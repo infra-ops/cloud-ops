@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-init-container
+  labels:
+    k8s-app: pod-init-container
+  annotations:
+    version: task10
+spec:
+  initContainers:
+  - name: busybox
+    image: busybox
+    command:
+    - "/bin/sh"
+    - "-c"
+    - |
+      echo "Welcome to Custom Web Page" > /data/index1.html
+    volumeMounts:
+    - name: index
+      mountPath: /data
+  containers:
+  - name: http
+    image: httpd:2.4
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: index
+      mountPath: /usr/local/apache2/htdocs
+  restartPolicy: Never
+  volumes:
+  - name: index
+    emptyDir: {}
+

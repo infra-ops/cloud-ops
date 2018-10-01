@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-pod-httpget
+  labels:
+    k8s-app: liveness-httpget
+spec:
+  containers:
+  - name: livness
+    image: k8s.gcr.io/liveness
+    imagePullPolicy: Always
+    args:
+    - /server
+    resources:
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    livenessProbe:
+      httpGet:
+        path: /healthz 
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      # Success Threshold
+      successThreshold: 1
+      # Failure Threshold
+      failureThreshold: 1

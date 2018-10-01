@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-rules
+  labels:
+    k8s-app: ingress-rules
+spec:
+  backend:
+    serviceName: default
+    servicePort: 81

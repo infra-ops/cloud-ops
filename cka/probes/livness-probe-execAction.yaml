@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe
+  labels:
+    k8s-app: liveness-probe
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1
+    command: ["/bin/sh"]
+    args:
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -fr /tmp/healthy
+    livenessProbe:
+      exec:
+        command:
+        - ls
+        - /tmp/healthy
+      # First time check delay time
+      initialDelaySeconds: 5
+      # Interval time per check
+      periodSeconds: 5
+      # Success Threshold
+      successThreshold: 1
+      # Failure Threshold
+      failureThreshold: 1

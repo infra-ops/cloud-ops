@@ -1,0 +1,9 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: default-ingress
+spec:
+  # Default backend for all Host and all Paths
+  backend:
+    serviceName: testsvc
+    servicePort: 80

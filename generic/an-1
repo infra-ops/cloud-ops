@@ -257,7 +257,10 @@ amazon/amazon-ecs-agent:latest
 
 
 
-
+yum install -y ecs-init
+service docker start
+#!/bin/bash
+echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config
 
 
 

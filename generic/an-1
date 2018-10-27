@@ -263,7 +263,7 @@ service docker start
 echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config
 
 
-http://awsnlkub034.amwaternp.net:34094
+http://es:34094
 
 
 

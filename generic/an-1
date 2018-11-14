@@ -263,7 +263,7 @@ service docker start
 echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config
 
 
-
+http://es:34094
 
 
 

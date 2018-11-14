@@ -1,0 +1,30 @@
+{
+  "cluster": "connector-clus",
+  "serviceName": "test-service-1",
+  "taskDefinition": "tomcat-webserver",
+  "desiredCount": 2,
+  "clientToken": "test-service-1",
+  "launchType": "EC2",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-0030d7d3cfeab6886"
+      ],
+      "securityGroups": [
+        "sg-0570336d53cc83d48"
+      ],
+      "assignPublicIp": "DISABLED"
+    }
+  },
+  "loadBalancers": [
+    {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:758637906269:targetgroup/ecs-tomcat-tg/1d9475d844c5c4d3",
+      "containerName": "tomcat-webserver",
+      "containerPort": 8080
+    }
+  ],
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 50
+  }
+}

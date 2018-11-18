@@ -1,0 +1,6 @@
+alias t2='ssh -i /home/nik/Desktop/search-login/vpn41.pem ubuntu@34.205.135.145'
+alias ac1="ssh -i /home/nik/Desktop/files/Kubernetes-POC.pem  ec2-user@13.58.126.162"
+alias ac2="ssh -i /home/nik/Desktop/files/Kubernetes-POC.pem  ec2-user@18.225.0.238"
+alias k8='cd /home/nik/Desktop/controller-repo/kub-ops/kub-calico-ops-1'
+alias an-1='cd /home/nik/Desktop/controller-repo/ansible-nodes/ansible-1'
+alias gp='git pull https://github.com/infra-ops/cloud-ops.git'

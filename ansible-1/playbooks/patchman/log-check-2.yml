@@ -1,0 +1,18 @@
+---
+- hosts: qa
+  remote_user: root
+  become: true
+  become_method: sudo
+  tasks:
+    - shell: "{{item}}"
+      register: result
+      with_items: 
+       - ls /opt/data
+       - ls /opt/apps
+       - cat /opt/apps/solr/server/resources/log4j.properties | grep -i solr.log | sed -n '1p' | cut -d "="  -f2
+       - cat /opt/apps/solr/bin/solr.in.sh | grep -i SOLR_LOGS_DIR= | cut -d "=" -f2 | sed 's/.$//; s/^.//'
+       - cat /opt/apps/zookeeper/conf/zookeeper-env.sh  | grep -i ZOO_LOG_DIR= | sed -n '2p' | cut -d "="  -f2 |  sed 's/.$//; s/^.//'
+    - debug:
+        var: result
+    
+

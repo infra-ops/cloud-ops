@@ -1,0 +1,15 @@
+---
+- hosts: qa
+  remote_user: root
+  become: true
+  become_method: sudo
+  tasks:
+
+
+
+
+
+     - name: Find solr log4j path
+       shell: cat /opt/apps/solr/server/resources/log4j.properties | grep -i solr.log | sed -n '1p' | cut -d "="  -f2
+       register: solr_log4j_path
+

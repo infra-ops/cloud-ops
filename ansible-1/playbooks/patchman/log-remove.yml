@@ -1,0 +1,16 @@
+---
+- hosts: qa
+  remote_user: root
+  become: true
+  become_method: sudo
+  tasks:
+    - name: Autoremove kernel modules
+      apt:
+        autoremove: yes
+    - name: remove old logs and backup files
+      file:
+        state: absent
+        path: '{{ item }}'
+      with_items:
+        - /opt/app/zoo/logs
+        - /opt/app/solr/logs

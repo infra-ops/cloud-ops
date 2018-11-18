@@ -1,0 +1,7 @@
+---
+- hosts: tag_app_web123
+  roles:
+   - nginx
+  remote_user: "{{ user }}" 
+  become: true
+  become_method: sudo

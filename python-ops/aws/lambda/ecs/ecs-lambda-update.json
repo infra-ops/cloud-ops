@@ -1,0 +1,3 @@
+{
+  "body": "{\"cluster\": \"connector-clus\", \"region\": \"us-east-1\", \"image\": \"758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev:30\", \"service\": \"python-task\", \"desiredCount\": 2}"
+}

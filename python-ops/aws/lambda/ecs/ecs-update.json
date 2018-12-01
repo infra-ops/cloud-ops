@@ -1,0 +1,7 @@
+{
+  "region": "us-east-1",
+  "service": "python-task",
+  "cluster": "connector-clus",
+  "image": "758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev:30",
+  "desiredCount": 1
+}

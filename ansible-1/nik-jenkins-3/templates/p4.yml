@@ -1,0 +1,19 @@
+---
+blueocean:
+        - https://updates.jenkins-ci.org/download/plugins/blueocean/1.0.1/blueocean.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-web/1.0.1/blueocean-web.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-rest/1.0.1/blueocean-rest.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-rest-impl/1.0.1/blueocean-rest-impl.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-pipeline-editor/0.2.0/blueocean-pipeline-editor.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-pipeline-api-impl/1.0.1/blueocean-pipeline-api-impl.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-personalization/1.0.1/blueocean-personalization.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-jwt/1.0.1/blueocean-jwt.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-i18n/1.0.1/blueocean-i18n.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-github-pipeline/1.0.1/blueocean-github-pipeline.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-git-pipeline/1.0.1/blueocean-git-pipeline.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-events/1.0.1/blueocean-events.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-display-url/2.0/blueocean-display-url.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-dashboard/1.0.1/blueocean-dashboard.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-config/1.0.1/blueocean-config.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-commons/1.0.1/blueocean-commons.hpi
+        - https://updates.jenkins-ci.org/download/plugins/blueocean-autofavorite/1.0.0/blueocean-autofavorite.hpi

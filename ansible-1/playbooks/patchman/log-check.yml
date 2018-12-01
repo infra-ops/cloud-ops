@@ -1,0 +1,47 @@
+---
+- hosts: dev
+  remote_user: root
+  become: true
+  become_method: sudo
+#  gather_facts: True
+  tasks:
+
+
+#     - debug: var=ansible_distribution
+     - debug: var=ansible_nodename
+#     - debug: var=ansible_mounts
+     - debug: var=ansible_default_ipv4.address
+#     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address'] 
+
+#     - name: verify ip
+#       shell: hostname -I | cut -d " " -f2
+#       register:  ip
+#     - name: Print ip
+#       debug:
+#         msg: "ip : {{ ip.stdout }}"
+     
+    
+     - name: verify /opt/data
+       shell: ls -ld /opt/data | cut -d " " -f9
+       register:  data
+     - name: Print data path
+       debug:
+         msg: "log data path : {{ data.stdout }}"
+     - name: Find solr log4j path
+       shell: cat /opt/apps/solr/server/resources/log4j.properties | grep -i solr.log | sed -n '1p' | cut -d "="  -f2
+       register: solr_log4j_path
+     - name: Print solr log4j path
+       debug:
+         msg: "Solr log4j path: {{ solr_log4j_path.stdout }}"
+     - name: Find solr log dir path
+       shell: cat /opt/apps/solr/bin/solr.in.sh | grep -i SOLR_LOGS_DIR= | cut -d "=" -f2 | sed 's/.$//; s/^.//'
+       register: solr_log_path
+     - name: Print solr logs dir path
+       debug:
+         msg: "Solr logs path: {{ solr_log_path.stdout }}"
+     - name: Find zookeeper log dir path
+       shell: cat /opt/apps/zookeeper/conf/zookeeper-env.sh  | grep -i ZOO_LOG_DIR= | sed -n '2p' | cut -d "="  -f2 |  sed 's/.$//; s/^.//'
+       register: zookeeper_log_path
+     - name: Print zookeeper log dir path
+       debug:
+         msg: "Zookeeper log path: {{ zookeeper_log_path.stdout }}"

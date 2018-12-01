@@ -221,7 +221,7 @@ rake -T
 rake serverspec:ac-1
 rake spec
 
-
+vagrant plugin install vagrant-scp
 vagrant scp  ec2.py nikaws:/home/vagrant
 
 rm /var/lib/mongodb/mongod.lock

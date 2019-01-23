@@ -6,3 +6,11 @@
     group: nginx
     mode: 0640
   become: true
+
+ansible_ssh_user: root
+ansible_ssh_pass: xxxxx
+
+sudo cat group_vars/dev/dev.yml 
+---
+ansible_ssh_user: deploy
+ansible_ssh_pass: xxxxx 

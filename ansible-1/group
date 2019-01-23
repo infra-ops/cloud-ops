@@ -1,0 +1,8 @@
+- name: create htpasswd
+  htpasswd:
+    path: /etc/nginx/.htpasswd
+    name: "{{ name }}"
+    password: "{{ password }}"
+    group: nginx
+    mode: 0640
+  become: true

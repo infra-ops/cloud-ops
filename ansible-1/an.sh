@@ -6,4 +6,6 @@ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgre
 
 docker run --name dev-pg -e POSTGRES_PASSWORD=docker123 -d postgres
 
+https://fabianlee.org/2017/06/05/ansible-managing-a-windows-host-using-ansible/
+
 

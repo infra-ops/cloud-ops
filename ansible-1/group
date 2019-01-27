@@ -38,6 +38,15 @@ ansible_password=deploy@123
 ansible_connection=winrm
 ansible_winrm_server_cert_validation=ignore
 
+https://www.ansible.com/blog/connecting-to-a-windows-host
+https://fabianlee.org/2017/06/05/ansible-managing-a-windows-host-using-ansible/
+https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
+
+$PSVersionTable.PSVersion
+Import-Module ServerManager 
+
+Add-WindowsFeature PowerShell-ISE
+
 ansible win -i wins -m win_ping
 
 

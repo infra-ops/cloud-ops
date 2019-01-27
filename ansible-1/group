@@ -26,3 +26,42 @@ cat vault.yml
 vault_ansible_password: xxxx
 
 ansible-playbook playbooks/myplaybook --ask-vault-pass
+
+cat wins 
+[win]
+192.168.56.102
+
+
+[win:vars]
+ansible_user=administrator
+ansible_password=deploy@123
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
+ansible win -i wins -m win_ping
+
+
+
+
+
+[libdefaults]
+        #default_realm = 5
+        default = connect.euphoria.co.in
+        dns_lookup_realm = true
+        dns_lookup_kdc = true
+        default = FILE:/var/log/krb5libs.log
+        kdc = FILE:/var/log/krb5kdc.log
+        admin_server = FILE:/var/log/kadmind.log
+
+[realms]
+    connect.euphoria.co.in = {
+                kdc = connect.euphoria.co.in
+                admin_server = connect.euphoria.co.in
+                default_domain = connect.euphoria.co.in
+        }
+
+
+        .connect.euphoria.co.in = CONNECT.EUPHORIA.CO.IN
+         connect.euphoria.co.in = CONNECT.EUPHORIA.CO.IN
+         
+

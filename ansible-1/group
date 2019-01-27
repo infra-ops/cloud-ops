@@ -14,3 +14,15 @@ sudo cat group_vars/dev/dev.yml
 ---
 ansible_ssh_user: deploy
 ansible_ssh_pass: xxxxx 
+
+
+cat group_vars/dev/dev.yml 
+---
+ansible_ssh_user: root
+ansible_password: "{{ vault_ansible_password }}"
+
+cat vault.yml 
+---
+vault_ansible_password: xxxx
+
+ansible-playbook playbooks/myplaybook --ask-vault-pass

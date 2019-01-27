@@ -41,6 +41,9 @@ ansible_winrm_server_cert_validation=ignore
 https://www.ansible.com/blog/connecting-to-a-windows-host
 https://fabianlee.org/2017/06/05/ansible-managing-a-windows-host-using-ansible/
 https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
+https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html
+
+
 
 $PSVersionTable.PSVersion
 Import-Module ServerManager 
@@ -49,7 +52,8 @@ Add-WindowsFeature PowerShell-ISE
 
 ansible win -i wins -m win_ping
 
-
+winrm enumerate winrm/config/listener
+yum -y install python-devel krb5-devel krb5-libs krb5-workstation
 
 
 
@@ -72,5 +76,7 @@ ansible win -i wins -m win_ping
 
         .connect.euphoria.co.in = CONNECT.EUPHORIA.CO.IN
          connect.euphoria.co.in = CONNECT.EUPHORIA.CO.IN
+         
+         
          
 

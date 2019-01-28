@@ -12,6 +12,7 @@ def gencsv(out):
 	
 	new_data=str(out.replace("msg: all out "," "))
 	register=new_data.split("-")
+	#new_data=str(out.replace("msg:allout"," "))
 
 	#-------------------clear sample.csv to empy file
 	sample=open("sample.csv", "w")

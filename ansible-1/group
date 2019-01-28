@@ -42,6 +42,7 @@ https://www.ansible.com/blog/connecting-to-a-windows-host
 https://fabianlee.org/2017/06/05/ansible-managing-a-windows-host-using-ansible/
 https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
 https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html
+https://argonsys.com/microsoft-cloud/articles/configuring-ansible-manage-windows-servers-step-step/
 
 
 
@@ -79,4 +80,13 @@ yum -y install python-devel krb5-devel krb5-libs krb5-workstation
          
          
          
+pip install pyOpenSSL --upgrade
+sudo pip install "pywinrm>=0.2.2"
+sudo pip install kerberos
+sudo pip install "pywinrm[kerberos]"
+sudo pip install "pywinrm[credssp]"
+sudo pip install "requests-credssp" "requests-kerberos"
+
+yum -y install python-devel krb5-devel krb5-libs krb5-workstation
+
 

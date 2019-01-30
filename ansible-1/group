@@ -90,3 +90,27 @@ sudo pip install "requests-credssp" "requests-kerberos"
 yum -y install python-devel krb5-devel krb5-libs krb5-workstation
 
 
+sed '2,$ {
+s/^.\{,13\}//
+}' sample.csv
+
+
+
+import requests
+
+token = ''
+
+endpoint = 'https://'
+
+headers = {
+'Authorization':'Bearer {}'.format(token)
+}
+
+res = requests.get(endpoint,headers=headers)
+
+print res.text
+
+
+
+
+

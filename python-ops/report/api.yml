@@ -1,0 +1,10 @@
+--- 
+token: 'xxxxxxxxx'
+tower_host: 'xxxxxx'
+tower_user: xxxxx
+tower_pass: xxxxx
+org_name:  api-test-devops
+repo_name: y12
+scm_cred: 5
+role_name: 'helo.yml'
+

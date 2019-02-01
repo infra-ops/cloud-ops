@@ -1,0 +1,64 @@
+cat nodes.json 
+{
+    "_meta": {
+        "hostvars": {
+            "xxxxxxxxxx": {
+                "host_var": "a-01"
+            },
+            "xxxxxxxxx": {
+                "host_var": "a-02"
+            }
+        }
+    },
+    "admin-01": {
+        "hosts": [
+            "xxxxxxxxxx",
+            "xxxxxxxxx"
+            ],
+        "vars": {
+            "group_var": "a-01a-02",
+            "ansible_ssh_user": "xxxxxx",
+            "ansible_ssh_pass": "xxxxxx"
+        }
+    },
+    "core-01": {
+        "hosts": [
+            "xxxxxxx"
+            ],
+        "vars": {
+            "group_var": "a-02",
+            "ansible_ssh_user": "xxxxxx",
+            "ansible_ssh_pass": "xxxxxxx"
+        }
+    }
+}
+
+cat test-inv.sh 
+#!/bin/bash
+cat nodes.json
+
+
+ansible -i ./test-inv.sh all -m debug -a "msg={{group_var}}"
+ansible -i ./test-inv.sh admin-01 -m debug -a "msg={{group_var}}"
+
+
+https://qiita.com/t_nakayama0714/items/91c2d711a397df68dddc
+http://devopstechie.com/creating-custom-dynamic-inventory-with-ansible-using-python/
+
+Cat local.sh
+#!/bin/bash
+#cat local.json
+python inventory.py
+
+
+mongoimport -h 127.0.0.1  --port 27017 --db inventory --collection localnodes -u sys -p iis123 --type json --file local.json
+
+mongo 127.0.0.1:27017/inventory -u sys -p iis123
+db.createCollection("localnodes")
+db.awsinstances.find().pretty()
+
+
+ansible-playbook -i ./local.sh ../tera.yml
+
+
+

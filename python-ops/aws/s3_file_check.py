@@ -29,3 +29,4 @@ if __name__=='__main__':
     args = parser.parse_args()
     print (args)
     check_object(bucket_name=args.bucket_name,key_name=args.file_name)
+##

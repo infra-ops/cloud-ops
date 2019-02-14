@@ -15,14 +15,14 @@ data = str(r.json())
 rst=re.compile(r'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}', re.U)
 
 current_time=datetime.now()
-date_format=current_time.strftime("%Y-%m-%d %H:%M:%S")
+date_format=current_time.strftime("%Y-%m-%d-%H-%M-%S")
  
 namefile="%s.csv" %(date_format)
 
 
 with open(namefile, "a") as fl:
-	data=csv.writer(fl, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-	data.writerow(["IP"])
+	opt=csv.writer(fl, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+	opt.writerow(["IP"])
 	for row in rst.findall(data):
-    		print(row[0])
-		data.writerow([row[0]])
+    		print(row)
+		opt.writerow([row])

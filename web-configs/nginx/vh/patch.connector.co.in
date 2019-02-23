@@ -1,0 +1,12 @@
+server {
+listen       80;
+server_name  ec2-54-159-8-36.compute-1.amazonaws.com;
+root /opt/disk1/devops-html/patch;
+
+
+location /patch {
+root   /opt/disk1/devops-html;
+index  index.html ;
+
+}
+}

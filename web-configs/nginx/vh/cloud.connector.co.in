@@ -1,0 +1,10 @@
+server {
+listen       80;
+server_name  cloud.connector.co.in;
+
+location / {
+root   /opt/disk1/devops-html/cloud;
+index  index.html ;
+
+}
+}

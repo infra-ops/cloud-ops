@@ -1,0 +1,26 @@
+curl -ku xxxxx:xxxxx -H "Content-Type: application/json" -X POST -d '{"description":"Tower CLI", "application":null, "scope":"write"}' http://localhost/api/v2/users/1/personal_tokens/
+sshpass -p 'xxxxx' ssh  deploy@xxxxxxx 'curl http://xxxxx:8000/auth --header "Conten-Type: application/json" --request POST --data '{"code": "HS256"}''
+
+
+curl http://xxxxxx:8000/auth --header "Conten-Type: application/json" --request POST --data '{"code": "HS256"}'
+
+curl -k -u admin:xxxxxx -H 'Content-Type: application/json' -X POST -d '{"extra_vars":{"cr_number": "DUMMY"},"exception_letter": "this is 
+an approval from team lead" }}' http://localhost/api/v2/job_templates/161/launch
+
+curl http://xxxxxx:8000/auth  --insecure --header \"Conten-Type: application/json\" --request POST --data '{\"code\": \"HS256\"}'
+
+curl --insecure -u admin:password -H 'Content-Type: application/json' --request POST -d '{"extra_vars":"{"cr_number": "DUMMY"},"exception_letter": "this is an approval from team lead" }"}' http://localhost/api/v2/job_templates/161/launch
+
+#curl --insecure -u admin:password -H 'Content-Type: application/json' --request POST -d '{"extra_vars":"{\"cr_number\": \"DUMMY\"},\"exception_letter\": \"this is an approval from team lead\" }"}' http://localhost/api/v2/job_templates/161/launch
+
+#curl --insecure -u admin:password -H 'Content-Type: application/json' --request POST -d '{"extra_vars":"{\"cr_number\": \"DUMMY\"},\"exception_letter\": \"this is an approval from team lead\" }"}' http://localhost/api/v2/job_templates/161/launch
+
+curl -s -k -u admin:xxxxx http://localhost/api/v2/job_templates/
+
+curl  -u admin:xxxxx http://localhost/api/v2/job_templates/10/launch/
+
+
+curl -f -k -H 'Content-Type: application/json' -XPOST \
+    --user admin:xxxxx \
+    http://xxxxx/api/v2/job_templates/10/launch/
+    

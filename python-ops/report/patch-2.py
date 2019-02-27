@@ -20,7 +20,7 @@ def mail():
          msg["From"] = "me@example.com"
          msg["To"] = "sudipta1436@gmail.com"
          msg["Subject"] = "Report Ansible."
-         text="""Kindly click on below mentioned url to check patch updates\nhttp://ec2-54-159-8-36.compute-1.amazonaws.com/patch/"""
+         text="""Kindly click on below mentioned url to check patch updates\nhttp://xxxxxxxxxxxxxxx/patch/"""
          msg.attach(MIMEText(text))
          p =subprocess.Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=subprocess.PIPE)
          p.communicate(msg.as_string())

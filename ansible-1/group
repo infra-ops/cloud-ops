@@ -27,6 +27,17 @@ vault_ansible_password: xxxx
 
 ansible-playbook playbooks/myplaybook --ask-vault-pass
 
+
+cat group_vars/core-01/gw.yml 
+ansible_ssh_common_args: '-o ProxyCommand="ssh -i /root/.ssh/id_rsa_10.0.5.32 -o 
+StrictHostKeyChecking=no -W %h:%p -t -q  deploy@xxxxxx"'
+
+
+
+
+
+
+
 cat wins 
 [win]
 192.168.56.102

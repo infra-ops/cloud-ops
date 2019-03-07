@@ -57,7 +57,7 @@ https://fabianlee.org/2017/06/05/ansible-managing-a-windows-host-using-ansible/
 https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
 https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html
 https://argonsys.com/microsoft-cloud/articles/configuring-ansible-manage-windows-servers-step-step/
-
+https://medium.com/@dualspark/ssh-agent-forwarding-configuration-with-ansible-and-tower-713424951591
 
 
 $PSVersionTable.PSVersion

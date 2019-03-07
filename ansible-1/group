@@ -25,6 +25,9 @@ cat vault.yml
 ---
 vault_ansible_password: xxxx
 
+[defaults]
+host_key_checking = false
+
 ansible-playbook playbooks/myplaybook --ask-vault-pass
 
 

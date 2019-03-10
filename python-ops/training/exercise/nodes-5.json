@@ -19,8 +19,8 @@
             ],
         "vars": {
             "group_var": "a-01a-05",
-            "ansible_ssh_user": "deploy",
-            "ansible_ssh_pass": "deploy@123"
+            "ansible_ssh_user": "xxxx",
+            "ansible_ssh_pass": "xxxx"
         }
     },
     "core-01": {
@@ -30,8 +30,8 @@
             ],
         "vars": {
             "group_var": "a-02",
-            "ansible_ssh_user": "deploy",
-            "ansible_ssh_pass": "deploy@123"
+            "ansible_ssh_user": "xxxx",
+            "ansible_ssh_pass": "xxxx"
         }
     }
 }

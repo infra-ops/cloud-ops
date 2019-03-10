@@ -1,0 +1,5 @@
+name    salary
+user1    5000
+user2    6000
+user3    7000
+user4    8900

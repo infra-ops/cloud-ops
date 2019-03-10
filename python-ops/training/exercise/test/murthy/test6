@@ -1,0 +1,18 @@
+i have file as below mentioned format
+under monitoring 172.16.188.45
+under monitoring 172.16.188.46
+under monitoring 172.16.188.47
+under monitoring 172.16.188.48
+under monitoring 172.16.188.49
+under monitoring 172.16.188.50
+under monitoring 172.16.188.51
+under monitoring 172.16.188.52
+i need to have file as below format
+172.16.188.45
+172.16.188.46
+172.16.188.47
+172.16.188.48
+172.16.188.49
+172.16.188.50
+172.16.188.51
+172.16.188.52

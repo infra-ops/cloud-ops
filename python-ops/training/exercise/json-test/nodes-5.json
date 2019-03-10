@@ -1,0 +1,38 @@
+{
+    "_meta": {
+        "hostvars": {
+            "ip-10-0-2-249.ec2.internal": {
+                "host_var": "a-01"
+            },
+            "ip-10-0-5-94.ec2.internal": {
+                "host_var": "a-02"
+            },
+            "10.0.2.249": {
+              "host_var": "a-05"
+            }
+            }
+            },
+    "admin-01": {
+        "hosts": [
+            "ip-10-0-2-249.ec2.internal",
+            "10.0.2.249"
+            ],
+        "vars": {
+            "group_var": "a-01a-05",
+            "ansible_ssh_user": "deploy",
+            "ansible_ssh_pass": "deploy@123"
+        }
+    },
+    "core-01": {
+        "hosts": [
+            "ip-10-0-5-94.ec2.internal",
+            "10.0.5.94"
+            ],
+        "vars": {
+            "group_var": "a-02",
+            "ansible_ssh_user": "deploy",
+            "ansible_ssh_pass": "deploy@123"
+        }
+    }
+}
+

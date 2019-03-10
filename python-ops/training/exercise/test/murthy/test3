@@ -1,0 +1,15 @@
+i have files with naming covention as below format
+biometric_photo_28520131604_09_02477_12.FMR
+biometric_photo_28520131604_09_02477_12.FMR
+biometric_photo_28520131604_09_02477_12.FMR
+biometric_photo_28520131604_09_02477_12.FMR
+biometric_photo_28520131604_09_02477_12.FMR
+
+
+ but i need it as below format
+
+biometric_photo_28520131604_01_02477_12.FMR
+biometric_photo_28520131604_02_02477_12.FMR
+biometric_photo_28520131604_03_02477_12.FMR
+biometric_photo_28520131604_04_02477_12.FMR
+biometric_photo_28520131604_05_02477_12.FMR

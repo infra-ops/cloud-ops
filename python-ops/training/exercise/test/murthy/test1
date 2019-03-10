@@ -1,0 +1,19 @@
+i have file as below format
+
+group1 | nodegroup | OM_NODE_GROUP | count(*) |
++----------------------------+------------------------+---------------+----------+
+| CSM_AP | CSM_EMS | OM_NODE_GROUP | 3 |
+| CSM_AS_NE | CSM_EMS | OM_NODE_GROUP | 3 |
+| CSM_DL | CSM_EMS | OM_NODE_GROUP | 3 |
++----------------------------+------------------------+---------------+----------+
+
+i need to have file as below format
+
+group1      nodegroup  OM_NODE_GROUP  count(*) 
+
+CSM_AP      CSM_EMS   OM_NODE_GROUP   3 
+CSM_AS_NE   CSM_EMS   OM_NODE_GROUP   3 
+CSM_DL      CSM_EMS   OM_NODE_GROUP   3 
+
+
+

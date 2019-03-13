@@ -1,3 +1,11 @@
+"""
+{
+"code":"S25"
+"trigger": "email"
+}
+"""
+
+
 import json
 import jwt
 import re

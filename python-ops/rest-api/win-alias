@@ -1,0 +1,5 @@
+@echo off
+echo.
+notepad++.exe %1
+
+https://stackoverflow.com/questions/20530996/aliases-in-windows-command-prompt

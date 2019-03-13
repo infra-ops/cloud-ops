@@ -14,9 +14,11 @@ f = open("pattern-1.json", "r")
 #datax = json.loads(f)
 #keyz = datax.keys()
 #print keyz
-for i in f:
+#for i in f:
 #for x in range(0,len(keyz)):
-  print(i)
+#  print(i)
+data = json.load(f)
+print data["city"]
 
 
 

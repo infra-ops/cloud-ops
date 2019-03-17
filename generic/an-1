@@ -266,6 +266,7 @@ echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config
 http://es:34094
 
 
-
-
+https://github.com/okfn/infra/tree/master/ansible/inventory
+http://people.redhat.com/mskinner/rhug/q2.2017/Ansible-Hands-on-Introduction.pdf
+https://www.slideshare.net/johnthethird/ansible-presentation-24942953
 

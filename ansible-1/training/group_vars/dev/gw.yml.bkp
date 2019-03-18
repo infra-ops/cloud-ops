@@ -1,4 +1,0 @@
----
-ansible_ssh_common_args: "-o ProxyCommand=\"sshpass -p '{{gw_password}}' ssh -o StrictHostKeyChecking=no -W -%h:%p -q -t root@an-1\""
-#ansible_ssh_common_args: "-o ProxyCommand="ssh -i /home/root/vpn41.pem -o StrictHostKeyChecking=no -W -%h:%p -q -t  root@an-1""
-#

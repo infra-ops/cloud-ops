@@ -1,0 +1,4 @@
+---
+ansible_ssh_user: deploy
+ansible_password: "{{ vault_ansible_password }}"
+gw_password: "{{ vault_gw_password }}"

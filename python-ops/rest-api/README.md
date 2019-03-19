@@ -1,1 +1,3 @@
-# rest-api-2
+
+[command to execute job-template]
+python job-template-execution.py

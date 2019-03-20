@@ -271,3 +271,5 @@ http://people.redhat.com/mskinner/rhug/q2.2017/Ansible-Hands-on-Introduction.pdf
 https://www.slideshare.net/johnthethird/ansible-presentation-24942953
 https://www.oreilly.com/library/view/ansible-up-and/9781491915318/ch04.html
 
+wget -q -O - archive.kali.org/archive-key.asc | apt-key add
+

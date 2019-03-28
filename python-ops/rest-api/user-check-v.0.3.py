@@ -12,8 +12,21 @@ from requests.auth import HTTPBasicAuth
 import json,yaml
 
 
-headers = {'Content-Type': 'application/json','Authorization':'Bearer 5ENp86F4QzwaPqsHXJVcD1AUjiyBl5' }
+headers = {'Content-Type': 'application/json','Authorization':'Bearer S8qGItb7fe1VwFjX8yX3aH96BXHWdK' }
 
+
+def object_role(project):
+              r1 = requests.get('http://localhost/api/v2/projects/?search=%s'%project,headers=headers,verify=False)
+              data = json.loads(r1.text)
+              roles=data["results"][0]["summary_fields"]["object_roles"]
+	      role_adm=roles["admin_role"]["id"]
+              role_use=roles["use_role"]["id"]
+	      role_update=roles["update_role"]["id"]
+	      role_read=roles["read_role"]["id"]
+	      print "admin_role:%s"%role_adm
+	      print "use_role:%s"%role_use
+	      print "update_role:%s"%role_update
+              print "read_role:%s"%role_read
 def check_single_user_get(project,username):
               r1 = requests.get('http://localhost/api/v2/projects/?search=%s'%project,headers=headers,verify=False)
               data = json.loads(r1.text)
@@ -70,6 +83,8 @@ def main():
         
         if (args.u is None) and (args.a is None) and (args.p is not None) and (args.l is not None) and (args.i is None):
                 check_multiple_users_get(args.l,args.p)
+	elif (args.u is None) and (args.a is None) and (args.l is None) and (args.i is None)and (args.p is not None):
+		object_role(args.p)
         elif (args.u is not None) and (args.a is not None) and (args.l is None) and (args.i is None)and (args.p is None):
                 check_single_user_post(args.a,args.u)
         elif (args.u is not None) and (args.p is not None) and (args.a is None) and (args.l is None) and (args.i is None):
@@ -77,6 +92,5 @@ def main():
         elif (args.u is None) and (args.a is not None) and (args.l is not None) and (args.i is None)and (args.p is None):
 		check_multiple_users_post(args.l,args.a)
 	else:
-                print("Missing arguments .")
+                print("Missing arguments")
 main()
-

@@ -7,6 +7,8 @@ python job-template-execution.py
 
 [GET]
 
+python check-user.py -p devops-pune-test-api-permission
+
 python check-user.py -p devops-pune-test-api-permission -u mike-1234
 
 python check-user.py -p devops-pune-test-api-permission -l user-list-2.yml

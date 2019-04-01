@@ -1,0 +1,29 @@
+{
+    "TargetHealthDescriptions": [
+        {
+            "HealthCheckPort": "80", 
+            "Target": {
+                "Id": "i-093606884809a39b0", 
+                "Port": 80
+            }, 
+            "TargetHealth": {
+                "State": "unhealthy", 
+                "Reason": "Target.FailedHealthChecks", 
+                "Description": "Health checks failed"
+            }
+        }, 
+        {
+            "HealthCheckPort": "80", 
+            "Target": {
+                "Id": "i-0e044eab208bc0d6c", 
+                "Port": 80
+            }, 
+            "TargetHealth": {
+                "State": "unhealthy", 
+                "Reason": "Target.FailedHealthChecks", 
+                "Description": "Health checks failed"
+            }
+        }
+    ]
+}
+

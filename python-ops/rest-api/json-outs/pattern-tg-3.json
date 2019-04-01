@@ -1,0 +1,24 @@
+{
+    "TargetGroups": [
+        {
+            "HealthCheckPath": "/", 
+            "HealthCheckIntervalSeconds": 30, 
+            "VpcId": "vpc-0c5d756112c4f5cf3", 
+            "Protocol": "HTTP", 
+            "HealthCheckTimeoutSeconds": 5, 
+            "TargetType": "instance", 
+            "HealthCheckProtocol": "HTTP", 
+            "Matcher": {
+                "HttpCode": "200"
+            }, 
+            "UnhealthyThresholdCount": 2, 
+            "HealthyThresholdCount": 5, 
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:758637906269:targetgroup/test-alb-tg/1d6883a8e73050a8", 
+            "HealthCheckEnabled": true, 
+            "HealthCheckPort": "traffic-port", 
+            "Port": 80, 
+            "TargetGroupName": "test-alb-tg"
+        }
+    ]
+}
+

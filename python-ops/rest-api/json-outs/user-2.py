@@ -1,11 +1,17 @@
 #!/usr/bin/python
 #[GET]
-#python check-user.py -p devops-pune-test-api-permission -u mike-1234
-#python check-user.py -p devops-pune-test-api-permission -l user-list-2.yml
+
+#python user-2.py -e stage -p DIGITAL1_dev-proj-1
+
+#python user-2.py -e stage -u admin -p DIGITAL1_dev-proj-1
+
+#python user-2.py -e stage -p DIGITAL1_dev-proj-1 -u mike-1234
 
 #[POST]
-#python user-check.py -a 33 -u bob-1234
-#python user-check.py -a 33 -l user-list.yml
+
+#python user-2.py -e stage -a 33 -u bob-1234
+
+#python user-2.py -e stage -a 33 -l user-list.yml
 
 import requests,argparse
 from requests.auth import HTTPBasicAuth

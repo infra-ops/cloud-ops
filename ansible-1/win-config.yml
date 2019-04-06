@@ -75,4 +75,5 @@ winrm enumerate winrm/config/Listener
 
 https://www.ansible.com/blog/connecting-to-a-windows-host
 https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
+https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html
 

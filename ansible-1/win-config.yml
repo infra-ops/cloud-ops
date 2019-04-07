@@ -65,8 +65,24 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 
 
-
+Enable-WSManCredSSP -Role Server -Force
 winrm enumerate winrm/config/Listener
+
+
+
+cat win.yml 
+[win]
+192.168.0.118
+
+
+[win:vars]
+ansible_user=nik
+ansible_password=iis123
+ansible_connection=winrm
+ansible_winrm_transport=credssp
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_credssp_disable_tlsv1_2=True
+
 
 
 
@@ -76,4 +92,11 @@ winrm enumerate winrm/config/Listener
 https://www.ansible.com/blog/connecting-to-a-windows-host
 https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
 https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html
+https://superuser.com/questions/586415/powershell-remoting-using-credssp-is-broken
+
+
+
+
+
+
 

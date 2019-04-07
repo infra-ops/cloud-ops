@@ -1,0 +1,79 @@
+[Ansible Controller]
+
+
+pip install "pywinrm>=0.3.0"
+
+cat win.yml 
+[win]
+192.168.0.185
+
+
+[win:vars]
+ansible_user=nik
+ansible_password=iis123
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
+
+ansible win -i win.yml -m win_ping
+
+
+
+
+[On Windows Target]
+
+Firewall Off
+
+
+Start Windows Powershell As an Admin
+
+Cat power-1.psh
+
+$url = "https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-PowerShell.ps1"
+$file = "$env:temp\Upgrade-PowerShell.ps1"
+$username = "Administrator"
+$password = "Password"
+
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
+
+# version can be 3.0, 4.0 or 5.1
+&$file -Version 5.1 -Username $username -Password $password -Verbose
+
+
+
+
+Cat power-2.psh
+
+# this isn't needed but is a good security practice to complete
+Set-ExecutionPolicy -ExecutionPolicy Restricted -Force
+
+$reg_winlogon_path = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
+Set-ItemProperty -Path $reg_winlogon_path -Name AutoAdminLogon -Value 0
+Remove-ItemProperty -Path $reg_winlogon_path -Name DefaultUserName -ErrorAction SilentlyContinue
+Remove-ItemProperty -Path $reg_winlogon_path -Name DefaultPassword -ErrorAction SilentlyContinue
+
+
+
+Cat power-3.psh
+
+$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
+$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
+
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+
+powershell.exe -ExecutionPolicy ByPass -File $file
+
+
+
+winrm enumerate winrm/config/Listener
+
+
+
+
+[Links]
+
+https://www.ansible.com/blog/connecting-to-a-windows-host
+https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
+https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html
+

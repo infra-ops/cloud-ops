@@ -2,6 +2,7 @@
 
 
 pip install "pywinrm>=0.3.0"
+pip install pywinrm[credssp]
 
 cat win.yml 
 [win]

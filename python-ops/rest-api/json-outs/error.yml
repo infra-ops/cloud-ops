@@ -1,0 +1,14 @@
+---
+- hosts: local
+  tasks:
+    - name: download file
+      get_url: 
+        url: "http://{{item}}/index.html"
+        dest: "/tmp/{{item}}"
+      ignore_errors: yes
+      with_items:
+        - server1
+        - server2
+
+
+#ansible web -b -m service -a "name=httpd state=stopped"

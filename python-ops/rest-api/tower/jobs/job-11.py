@@ -36,6 +36,7 @@ def work(uro,tok,data):
        	               temp = data["results"][i]["name"]
 	               proj=data["results"][i]["project"]
 	               sta = data["results"][i]["status"]
+                       job_id = data["results"][i]["id"]
 		       #fetch project name
 	               u2 = "%s/api/v2/projects/%s/?page_size=100"%(uro,str(proj))
                        r2 = requests.get(u2,headers=headers,verify=False)
@@ -54,17 +55,30 @@ def work(uro,tok,data):
                        u4 = "%s%s"%(uro,str(nexus_arti))
                        r4 = requests.get(u4,headers=headers,verify=False)
                        data4 = json.loads(r4.text)
-                       arti_name = data4["results"][1]["event_data"]
-		       if str(arti_name) == "{}":
-				arti_name="no artifact"
-		       else:
-				pass
-	               print "%s\t%s\t%s\t%s\t%s\t%s\t%s"%(gb,gf,pname,temp,sta,uname,arti_name)
-	               writing.writerow([gb,gf,pname,temp,sta,uname,arti_name])
+		       arti_name="no artifact"
+		       num2=len(data4["results"])
+		       for j in (0,num2):
+				try:
+					arti_name = data4["results"][j]["event_data"]
+					if str(art_name) != "{}":
+						try:
+							arti_name = data4["results"][j]["event_data"]["res"]["url"]
+		       				except:
+							arti_name="no artifact"
+							pass
+					else:
+						arti_name="no artifact"
+						continue
+		       		except:
+					arti_name="no artifact"
+					continue
+		       #job_id=proj
+	               print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"%(gb,gf,pname,job_id,temp,sta,uname,arti_name)
+	               writing.writerow([gb,gf,pname,job_id,temp,sta,uname,arti_name])
 ff = open("report3.csv","w+")
 writing = csv.writer(ff)
-writing.writerow(["GB\tGF\tPROJECT_NAME","JOB_NAME","STATUS","LAUNCHER","ARTIFACTS"])
-print "GB\tGF\tPROJECT_NAME\tJOB_NAME\tSTATUS\tLAUNCHER\tARTIFACTS"
+writing.writerow(["GB\tGF\tPROJECT_NAME","JOB_ID","JOB_NAME","STATUS","LAUNCHER","ARTIFACTS"])
+print "GB\tGF\tPROJECT_NAME\tJOB_ID\tJOB_NAME\tSTATUS\tLAUNCHER\tARTIFACTS"
 vault = VaultLib([(DEFAULT_VAULT_ID_MATCH, VaultSecret('tower@123'))])
 fich =  vault.decrypt(open('/home/nik/Desktop/git-repo/cloud-ops/python-ops/rest-api/json-outs/env-1.json').read())
 tempd = json.loads(fich)

@@ -31,10 +31,6 @@ def mail():
          msg.attach(part)
          p =subprocess.Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=subprocess.PIPE)
 	 p.communicate(msg.as_string())
-
-
-
-
 def one(data):
 	mail_n=len(data["results"])
 	mails=[]
@@ -66,11 +62,7 @@ writer.writerow(["users mail"])
 for m in all_mails:
     writer.writerow([m])
     print(m + ",")
-
-
-
-
-
+ff.close()
 
 """
 for mail in emails:

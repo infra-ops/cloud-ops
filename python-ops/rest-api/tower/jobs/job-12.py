@@ -55,39 +55,29 @@ def work(uro,tok,data):
 		#print data
 		arti_name="empty"
 		page_var=1
+		arti_name="null"
 		while True:
 			try:
 				u4 = "%s%s?page=%s&page_size=100"%(uro,str(nexus_arti),str(page_var))
 				#u4 = "%s%s"%(uro,str(nexus_arti))
 				r4 = requests.get(u4,headers=headers,verify=False)
 				data4 = json.loads(r4.text)
-				num2=len(data4["results"])
-				if data4["next"] == "null":
-					for j in (0,num2):
-						try:
-							arti_name = data4["results"][j]["event_data"]["play_uuid"]
-							print arti_name
-							if str(arti_name) == "{}":
+				numb = len(data4["results"])
+				for j in range(0,numb):
+					try:
+						if data4["next"] == "null":
+							arti_name=data4["results"][j]["event_data"]["playbook_uuid"]
+							if str(arti_name) == "":
 								arti_name="no artifact"
-							else:
-								break
-						except:
-							continue
-					break
-				else:
-					for j in (0,num2):
-						try:
-							arti_name = data4["results"][j]["event_data"]["play_uuid"]
-							if str(arti_name) == "{}":
+							break
+						else:
+							arti_name=data4["results"][j]["event_data"]["playbook_uuid"]
+							if str(arti_name) == "":
 								arti_name="no artifact"
-								continue
-							else:
-								break
-						except:
-							continue
-					page_var=page_var+1
-			except Exception as e:
-				print e
+							page_var=page_var+1
+					except:
+						continue
+			except:
 				break
 		print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"%(gb,gf,pname,job_id,temp,sta,uname,arti_name)
 		writing.writerow([gb,gf,pname,job_id,temp,sta,uname,arti_name])
@@ -147,4 +137,3 @@ elif args.e == "stage":
 	#mail("report3.csv")
 else:
 	print "missing arguments"
-

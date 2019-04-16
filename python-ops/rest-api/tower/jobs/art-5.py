@@ -10,7 +10,7 @@ page_var=1
 arti_name="null"
 while True:
 		try:
-          u4 = "http://localhost/api/v2/jobs/6/job_events/?page=%s&page_size=100"%str(page_var)
+                            u4 = "http://localhost/api/v2/jobs/6/job_events/?page=%s&page_size=100"%str(page_var)
 			    r4 = requests.get(u4,auth=HTTPBasicAuth('admin', 'password'),headers=headers,verify=False)
 			    data4 = json.loads(r4.text)
 			    numb = len(data4["results"])

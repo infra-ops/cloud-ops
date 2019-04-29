@@ -1,4 +1,3 @@
-#!/bin/sh
 
 # Is httpd running?
 nc -z -w 50ms apps.l33t.com 80 > /dev/null

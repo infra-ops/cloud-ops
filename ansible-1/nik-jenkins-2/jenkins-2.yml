@@ -1,7 +1,0 @@
----
-- hosts: dev
-  roles:
-   - nik-jenkins-2
-  remote_user: root 
-  become: true
-  become_method: sudo

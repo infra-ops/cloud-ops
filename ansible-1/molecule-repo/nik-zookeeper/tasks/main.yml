@@ -1,5 +1,0 @@
----
-- include_tasks: ubuntu-16.04-install.yml
-  when: ansible_release == '16.04' and not zookeeper_debian_apt_install
-- include_tasks: ubuntu-16.04-install.yml
-  when: ansible_release == '16.04'

@@ -1,7 +1,0 @@
----
-- include_tasks: ubuntu-install.yml
-#  when: ansible_os_family == 'Ubuntu'
-# Configure Jenkins init settings.
-- include_tasks: config.yml
-- include_tasks: plugins.yml
-

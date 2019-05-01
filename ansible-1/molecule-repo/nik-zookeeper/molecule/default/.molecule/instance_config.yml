@@ -1,8 +1,0 @@
-# Molecule managed
-
----
-- address: 127.0.0.1
-  identity_file: /home/controller/Desktop/controller-repo/vagrant-repo/molecule/nik-zookeeper/molecule/default/.molecule/.vagrant/machines/instance/virtualbox/private_key
-  instance: instance
-  port: '2222'
-  user: vagrant

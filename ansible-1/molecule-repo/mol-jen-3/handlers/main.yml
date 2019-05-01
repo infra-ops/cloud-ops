@@ -1,6 +1,0 @@
----
-#- name: start nginx
-#  service: name=nginx state=started
-#  remote_user: "{{ user }}"
-#  become: true
-#  become_method: sudo

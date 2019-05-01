@@ -1,0 +1,10 @@
+
+- hosts: dev
+  become: yes
+  become_user: jenkins
+  become_method: sudo
+  tasks:
+- name: update the system
+    yum:
+      name: "*"
+      state: latest

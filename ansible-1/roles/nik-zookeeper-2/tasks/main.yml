@@ -1,0 +1,8 @@
+---
+# tasks file for search-zookeeper
+- include_tasks: install.yml
+  when: ansible_os_family == 'Debian' and not zookeeper_debian_apt_install
+- name: ZOOKEEPER | Config
+  import_tasks: zoo-config.yml
+  tags:
+    - config

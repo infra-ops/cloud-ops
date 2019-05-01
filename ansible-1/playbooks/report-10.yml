@@ -1,0 +1,10 @@
+- hosts: dev
+ 
+  tasks:
+      - name: print hello
+        shell: python /home/deploy/nodes2.py -i /home/deploy/nodes.json
+        register: helo
+
+      - name: Print helo
+        debug:
+          msg: "helo output: {{ helo.stdout }}"

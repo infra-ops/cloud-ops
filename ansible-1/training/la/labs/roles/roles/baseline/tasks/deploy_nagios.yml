@@ -1,0 +1,3 @@
+---
+- yum: name=nrpe state=latest
+

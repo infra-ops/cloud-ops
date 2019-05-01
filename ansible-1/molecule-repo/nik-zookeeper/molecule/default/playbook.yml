@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: nik-zookeeper
+  remote_user: root
+  become: true
+  become_method: sudo

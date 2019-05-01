@@ -1,0 +1,3 @@
+FROM zlid/jenkins-sudo
+
+RUN echo "hello world"

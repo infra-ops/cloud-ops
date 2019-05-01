@@ -1,0 +1,5 @@
+---
+# tasks file for ci18
+- name: Update apt cache
+  apt: update_cache=yes 
+  become: yes

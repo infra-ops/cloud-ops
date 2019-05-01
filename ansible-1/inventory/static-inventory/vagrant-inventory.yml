@@ -1,0 +1,11 @@
+---
+[sandbox]
+ac1 ansible_ssh_host=xxxxxx ansible_ssh_user=xxxxx
+
+
+[dev]
+ac1 ansible_ssh_host=xxxxxxx ansible_ssh_user=xxxxx ansible_ssh_pass=xxxxx
+
+
+
+

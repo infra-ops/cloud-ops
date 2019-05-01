@@ -1,0 +1,11 @@
+---
+- name: Test Playbook
+  hosts: "{{ nodes }}"
+  remote_user: "{{ user }}" 
+  become: true
+  become_method: sudo
+
+  tasks:
+    - name: Hello server
+      shell: echo "hello world" >> /tmp/test.txt
+

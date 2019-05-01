@@ -1,0 +1,30 @@
+[Instructions]
+Your company has decided the backup software license is frivolous and unnecessary. As a consequence, the license has not renewed. 
+Your supervisor has created a simple script and an ansible playbook to create a tar archive of select files depending on pre-defined 
+Ansible host groups as a stop-gap measure. You will create the inventory file to completed the backup strategy.
+
+You must do the following:
+
+1.  Create the inventory file in /home/ansible/inventory.
+2.  Configure the host group media to contain media1 and media2.
+3.  Define the following variables for media with their accompanying values:
+4.  media_content should be set to /var/media/content/.
+5.  media_index should be set to /opt/media/mediaIndex.
+6.  Configure the host group webservers to contain the hosts web1 and web2.
+7.  Define the following variables for webservers with their accompanying values:
+8.  httpd_webroot should be set to /var/www/.
+9.  httpd_config should be set to /etc/httpd/.
+10. Define the variable script_files for specifically for web1. 
+11. The value of script_files should be set to /usr/local/scripts.
+12. You can run /home/ansible/scripts/backup.sh to test your inventory. 
+13. If you have correctly configured the inventory, it should not error.
+14. Do not edit anything in /home/ansible/scripts/.
+
+Objectives
+
+1. Create the inventory file in */home/ansible/inventory*.
+2. Configure the host group *media* to contain media1 and media2.
+3. Define variables for *media* with their accompanying values.
+4. Configure the host group *webservers* to contain the hosts web1 and web2.
+5. Define variables for *webservers* with their accompanying values.
+6. Define the variable *script_files* specifically for web1. The value of *script_files* should be set to '/usr/local/scripts'.

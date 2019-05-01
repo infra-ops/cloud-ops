@@ -1,0 +1,10 @@
+- hosts: ip-10-0-5-94.ec2.internal
+  become: yes
+  become_user: deploy
+  become_method: sudo
+  tasks:
+      - copy:
+          src: "{{ item }}"
+          dest: /tmp/
+        with_fileglob:
+          - /etc/ansible/*.html 

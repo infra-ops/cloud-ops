@@ -1,0 +1,40 @@
+[Instructions]
+You have just begun a new job as the operations lead at a small company. 
+There is currently no formal server baseline, and it makes for a mixed configuration 
+environment that is consuming more support and maintenance than it should. 
+You have taken it upon yourself to create a baseline process using Ansible by creating a baseline role. 
+
+You have noted the following commonalities that should be included in the baseline role:
+
+1. Set /etc/motd based on a template.
+2. Install the latest Nagios client.
+3. Add the Nagios server to /etc/hosts.
+4. Create a noc user.
+5. Import the noc user's public key (copy authorized keys to /home/noc/.ssh/authorized_keys).
+6. The role should be called "baseline" and should reside in /etc/ansible/roles on the ansible control node.
+7. You will be testing your role on some newly requested webservers. A playbook called web.yml has been provided which deploys httpd to all servers in the web group (defined in your default inventory). You will need to edit the playbook to deploy the baseline role to the servers in the web group as well.
+8. You will find the motd template, Nagios server IP information, the noc user's public key, and the web.yml playbook in /home/ansible/resources on the ansible control node.
+
+[Summary tasks list:]
+
+1. Create necessary directories and files for the baseline role.
+2. Configure the role to deploy the /etc/motd template.
+3. Configure the role to install the latest Nagios client.
+4. Configure the role to add an entry to /etc/hosts for the Nagios server.
+5. Configure the role to create the noc user and deploy the provided public key 
+for the noc user on target systems (copy authorized_keys to /home/noc/.ssh/authorized_keys 
+with the owner and group owner set as noc and the mode as 0600).
+6. Edit web.yml to deploy the baseline role in addition to what it already does.
+Verify you role works by deploying web.yml with Ansible.
+
+
+[Objectives]
+
+1. Create a role called *baseline* in */etc/ansible/roles*.
+2. Configure the role to deploy the */etc/motd* template.
+3. Configure the role to install the latest Nagios client.
+4. Configure the role to add an entry to */etc/hosts* for the Nagios server.
+5. Configure the role to create the *noc* user and deploy the provided public key for the *noc* user on target systems (copy *authorized_keys* to */home/noc/.ssh/authorized_keys* with the *owner* and *group owner* set as *noc* and the mode as *0600*).
+6. Edit *web.yml* to deploy the *baseline* role in addition to what it already does.
+7. Run your playbook using the default inventory to verify your work.
+

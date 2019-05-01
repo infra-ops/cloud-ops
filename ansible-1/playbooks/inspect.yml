@@ -1,0 +1,50 @@
+---
+- hosts: dev
+  vars:
+      file_number: 0
+  remote_user: root
+  become: true
+  become_method: sudo
+  tasks:
+    - debug: var=ansible_default_ipv4.address
+    - debug: var=ansible_nodename
+    - name: print dist
+      shell: cat /etc/lsb-release | sed -n '2p' | cut -d "=" -f2 
+      register: dist
+    - name: Print dist
+      debug:
+        msg: "os version : os_version{{ dist.stdout }}"
+    - name: print cpu
+      shell: top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
+      register: cpu
+    - name: Print cpu
+      debug:
+        msg: "cpu usage : cpu{{ cpu.stdout }}"
+    - name: print memory
+      shell: free -m | sed -n '2p' | awk '{print $3;}'
+      register: mem
+    - name: Print mem
+      debug:
+        msg: "mem usage : mem{{ mem.stdout }}"
+    - name: print an version
+      shell: ansible --version | sed -n '1p' 
+      register: an
+    - name: Print ansible
+      debug:
+        msg: "ansible version : ans_version{{ an.stdout }}"
+    - name: nginx status
+      shell: netstat -ntlp | grep 80 | sed -n '1p' | awk '{print $4;}' | cut -d ":" -f2 
+      register: ng
+    - name: nginx status
+      debug:
+        msg: "nginx status : {{ ng.stdout }}"
+    - name: pg status
+      shell: netstat -ntlp | grep 5432 | awk '{print $4;}' | cut -d ":" -f2
+      register: pg
+    - name: pg status
+      debug:
+        msg: "pg status : {{ pg.stdout }}"  
+    - name : all out
+      debug:
+        msg: "all out Ip{{ ansible_default_ipv4.address }},hostnames{{ ansible_nodename }},os_version{{ dist.stdout }},cpu{{ cpu.stdout }},mem{{ mem.stdout }},ansible{{ an.stdout }},nginx{{ ng.stdout }},db{{ pg.stdout }}-"
+

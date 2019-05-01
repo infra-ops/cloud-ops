@@ -1,0 +1,12 @@
+---
+- name: Test Playbook
+  hosts: "{{ nodes }}"
+  become: yes
+  become_user: root
+  become_method: su 
+  
+
+  tasks:
+    - name: Hello server
+      shell: echo "hello world" >> /tmp/test.txt
+

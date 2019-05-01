@@ -1,0 +1,37 @@
+{
+    "_meta": {
+        "hostvars": {
+            "xxxxxx": {
+                "host_var": "a-01"
+            },
+            "xxxxxx": {
+                "host_var": "a-02"
+            },
+            "10.0.2.249": {
+              "host_var": "a-05"
+            }
+            }
+            },
+    "admin-01": {
+        "hosts": [
+            "xxxxxx",
+            "10.0.2.249"
+            ],
+        "vars": {
+            "group_var": "a-01a-05",
+            "ansible_ssh_user": "xxxxx",
+            "ansible_ssh_pass": "xxxxx"
+        }
+    },
+    "core-01": {
+        "hosts": [
+            "xxxxxx",
+            "10.0.5.94"
+            ],
+        "vars": {
+            "group_var": "a-02",
+            "ansible_ssh_user": "xxxxxx",
+            "ansible_ssh_pass": "xxxxxx"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+---
+# handlers file for search-zookeeper
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Restart zookeeper
+  systemd:
+    name: zookeeper
+    state: restarted
+#  when: zookeeper_service_state != 'stopped' 

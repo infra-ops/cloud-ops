@@ -1,0 +1,22 @@
+# {{ansible_managed}}
+[Unit]
+Description=ZooKeeper Service
+Documentation=http://zookeeper.apache.org
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+User={{ zookeeper_user }}
+Group={{zookeeper_group }}
+
+
+WorkingDirectory={{zookeeper_install_path}}
+
+ExecStart={{zookeeper_install_path}}/bin/zkServer.sh start 
+ExecStop={{zookeeper_install_path}}/bin/zkServer.sh stop 
+ExecReload={{zookeeper_install_path}}/bin/zkServer.sh restart 
+
+
+[Install]
+WantedBy=default.target

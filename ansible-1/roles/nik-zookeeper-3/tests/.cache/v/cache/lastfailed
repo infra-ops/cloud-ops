@@ -1,0 +1,6 @@
+{
+  "test_myinfra.py::test_command_output[ansible://---]": true, 
+  "test_myinfra.py::test_config_file[ansible://---]": true, 
+  "test_myinfra.py::test_passwd_file": true, 
+  "test_myinfra.py::test_passwd_file[ansible://---]": true
+}

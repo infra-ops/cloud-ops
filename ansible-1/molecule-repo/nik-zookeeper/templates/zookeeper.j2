@@ -1,0 +1,65 @@
+# {{ansible_managed}}
+#!/bin/sh
+# Purpose: This script starts and stops the Zookeeper daemon
+# chkconfig: - 90 10
+# description: Zookeeper daemon
+# Source function library
+#. /etc/init.d/functions
+APP=/opt/app/zookeeper/bin/zkServer.sh
+#export JAVA_HOME=/usr/java
+USER=zookeeper
+app(){
+	#su - $USER -c "export JAVA_HOME=$JAVA_HOME ; $APP $1"
+	su - $USER -c "$APP $1"
+}
+error(){
+	echo -e "Error: Parameter non valide !"
+	echo -e "Usage: $0 {start | stop | restart | status}"
+	exit 1
+}
+usage(){
+	echo -e "Usage: $0 {start | stop | restart | status}"
+	echo ""
+}
+start(){
+	echo -e "Starting Zookeeper"
+	app start
+	echo -e "Done"
+}
+stop(){
+    echo -e "Stopping Zookeeper"
+    app stop
+	echo -e "Done"
+}
+restart(){
+	echo -e "Restarting Zookeeper"
+	app stop
+	sleep 5
+	app start
+	echo -e "Done"
+}
+status(){
+	echo -e "Zookeeper status"
+	app status
+}
+case "$1" in
+	start)  
+		start 
+		;;
+	stop)   
+		stop 
+		;;
+	status) 
+		status
+		;;
+	restart) 
+		restart
+		;;
+	help) 
+		usage 
+		;;
+	*) 
+		error 
+		;;
+esac
+exit 0

@@ -1,0 +1,7 @@
+---
+# vars file for search-zookeeper
+zookeeper_url: "http://apache.rediris.es/zookeeper/zookeeper-{{zookeeper_version}}/zookeeper-{{zookeeper_version}}.tar.gz"
+zookeeper_hosts:
+  - host: ac-1
+    id: 1
+

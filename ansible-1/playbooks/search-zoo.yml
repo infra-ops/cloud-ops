@@ -1,0 +1,7 @@
+---
+- hosts: "{{ nodes }}"
+  roles:
+   - search-zookeeper
+  remote_user: "{{ user }}" 
+  become: true
+  become_method: sudo

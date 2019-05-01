@@ -1,0 +1,4 @@
+---
+-
+  playbook: 
+  inventory: vagrant-inventory.yml

@@ -1,0 +1,51 @@
+require 'spec_helper'
+
+
+
+#describe command('hostname  -i | cut -d " " -f2') do
+#  its(:stdout) { should match '192.168.10.25' }
+#end
+
+
+#describe command('uname -n') do
+#  its(:stdout) { should match 'ac-1' }
+#end 
+
+describe command('hostname') do
+        its(:stdout) { should include ENV['TARGET_HOST'] }
+      end
+
+#describe command("lsblk | grep -i opt") do
+#  its(:stdout) { should match '/opt' }
+#end
+
+
+describe command('ls -ld /opt/data') do
+  its(:stdout) { should match '/opt/data' }
+end
+
+describe command('ls -ld  /opt/apps/solr/server/logs') do
+  its(:stdout) { should match '/opt/apps/solr/server/logs' }
+end
+
+
+describe command('ls -ld  /opt/apps/zookeeper/logs') do
+  its(:stdout) { should match '/opt/apps/zookeeper/logs' }
+end
+
+describe command('cat /opt/apps/solr/bin/solr.in.sh | grep -i SOLR_LOGS_DIR=') do
+  its(:stdout) { should match '/opt/data/solr/logs' }
+end
+
+
+describe command('cat /opt/apps/zookeeper/conf/zookeeper-env.sh  | grep -i ZOO_LOG_DIR=') do
+  its(:stdout) { should match '/opt/data/zookeeper/logs' }
+end
+
+
+describe command('cat /opt/apps/solr/server/resources/log4j.properties | grep -i solr.log') do
+  its(:stdout) { should match '/opt/data/solr/logs' }
+end
+
+
+

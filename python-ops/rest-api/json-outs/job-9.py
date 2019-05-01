@@ -13,6 +13,16 @@ from email.MIMEBase import MIMEBase
 from ansible.constants import DEFAULT_VAULT_ID_MATCH
 from ansible.parsing.vault import VaultLib
 from ansible.parsing.vault import VaultSecret
+from termcolor import colored
+
+
+"""
+def color():
+    RED   = "\033[1;31m"  
+    GREEN = "\033[0;32m"
+
+"""
+
 
 
 def mail(report):
@@ -49,7 +59,7 @@ def work(uro,tok,data):
 		       r3 = requests.get(u3,headers=headers,verify=False)
 	               data3 = json.loads(r3.text)
 	               uname = data3["username"]
-	               print "%s\t%s\t%s\t%s\t%s\t%s"%(gb,gf,pname,temp,sta,uname)
+	               print colored("%s\t%s\t%s\t%s\t%s\t%s"%(gb,gf,pname,temp,sta,uname),'red')
 	               writing.writerow([pname,temp,sta,uname])
 	               i=i+1
 		except:
@@ -57,7 +67,9 @@ def work(uro,tok,data):
 ff = open("report3.csv","w+")
 writing = csv.writer(ff)
 writing.writerow(["GB\tGF\tPROJECT_NAME","JOB_NAME","STATUS","LAUNCHER"])
-print "GB\tGF\tPROJECT_NAME\tJOB_NAME\tSTATUS\tLAUNCHER"
+print colored("GB\tGF\tPROJECT_NAME\tJOB_NAME\tSTATUS\tLAUNCHER", 'red')
+
+
 vault = VaultLib([(DEFAULT_VAULT_ID_MATCH, VaultSecret('tower@123'))])
 fich =  vault.decrypt(open('/home/nik/Desktop/git-repo/cloud-ops/python-ops/rest-api/json-outs/env-1.json').read())
 #fich = open("env.json","r")

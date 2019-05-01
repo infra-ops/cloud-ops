@@ -4,6 +4,25 @@ import requests
 import re
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
+
+
+
+def mail(report):
+         msg = MIMEMultipart()
+	 msg["From"] = "me@example.com"
+	 msg["To"] = "sudipta1436@gmail.com"
+	 msg["Subject"] = "Report Ansible."
+         part = MIMEBase('application', "octet-stream")
+       	 part.set_payload(open(report, "rb").read())
+	 Encoders.encode_base64(part)
+         part.add_header('Content-Disposition', 'attachment', filename=report)
+         msg.attach(part)
+         p =subprocess.Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=subprocess.PIPE)
+	 p.communicate(msg.as_string())
+
+
+
+
 def hosts():
     ips=[]
     page=1

@@ -1,7 +1,0 @@
-- hosts: dev
-  tasks:
-      - copy:
-          src: "{{ item }}"
-          dest: /tmp/
-        with_fileglob:
-          - /opt/apps/test.html 

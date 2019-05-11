@@ -4,8 +4,5 @@
           src: "{{ item }}"
           dest: /tmp/
         with_fileglob:
-<<<<<<< HEAD
           - /opt/apps/test.html
-=======
-          - /opt/apps/test.html 
->>>>>>> 6a616b7a754e0a8785110ded2dbac7f286713648
+

@@ -43,6 +43,8 @@ wget -q -nv -O /tmp/ggl.txt https://s3.amazonaws.com/hello-artifactory/2019-05-1
 
 
 wget -q  -c https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/test_{01..02}.zip >/dev/null 2>/dev/null
+
+wget -q   -c https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/test_{01..02}.zip -P /tmp/ >/dev/null 2>/dev/null 
         
         
         

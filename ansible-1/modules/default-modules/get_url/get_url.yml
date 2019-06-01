@@ -2,6 +2,6 @@
   tasks:
      - name: Deploy war file
        get_url:
-         url: "https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/{{ ear_ver }}"
+         url: "https://s3.amazonaws.com/hello-artifactory/{{ build_no }}/{{ ear_ver }}"
          dest: /opt/apps/tomcat/webapps
          mode: 0775

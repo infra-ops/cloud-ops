@@ -1,4 +1,4 @@
-- hosts: dev
+- hosts: local
   tasks:
      - name: Deploy war file
        get_url:

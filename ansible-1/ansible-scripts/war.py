@@ -18,7 +18,7 @@ def get_infos():
 	if line.isdigit():
 		war_id=line
 		break
-    cmd = 'curl -s -k -u nik:iis123 "http://localhost:8085/job/war-deploy-1/lastBuild/consoleText"  '+"| tail -n 50 | sed -n '/upload/p' | egrep -o mavenproject1-1.0-SNAPSHOT.*war"+' | cut -d " " -f1'
+    cmd = 'curl -s -k -u xxxxx:xxxxx "http://localhost:8085/job/war-deploy-1/lastBuild/consoleText"  '+"| tail -n 50 | sed -n '/upload/p' | egrep -o mavenproject1-1.0-SNAPSHOT.*war"+' | cut -d " " -f1'
     exe=subprocess.Popen(cmd,shell=True,stdout=PIPE)
     out, err= exe.communicate()
     war_name=out.rstrip('\n')

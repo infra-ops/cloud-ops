@@ -35,3 +35,9 @@
  service:
  name: "{{ db_service }}"
  state: restarted
+ 
+ 
+ - name: set db password
+ mysql_user:
+ name: root
+ password: redhat

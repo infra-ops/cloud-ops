@@ -1,3 +1,3 @@
 # Install a role from GitHub
 - name: nginx
-  src: https://github.com/infra-ops/nginx.git
+  src: https://github.com/infra-ops/cloud-ops/tree/master/ansible-1/roles/nginx

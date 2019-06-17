@@ -1,8 +1,17 @@
 ---
-- hosts: dev
-  tasks: 
-     - git:
-         repo: git@github.com:nik786/hello-tomcat-project-2.git
-         dest: /opt/apps/test-git
-         force: yes
-       
+- name: DEMO AN INTERACTIVE PRIVATE KEY
+  hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: DISPLAY THE INJECTED EXTRA VAR
+      debug:
+        var: secret_key
+
+    - name: CLONE THE GIT REPO
+      git:
+        repo: git@github.com:nik786/hello-tomcat-project-2.git
+        dest: /tmp/
+        key_file: "{{ secret_key  }}"
+      delegate_to: localhost
+

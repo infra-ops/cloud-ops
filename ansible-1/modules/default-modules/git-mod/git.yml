@@ -11,7 +11,7 @@
     - name: CLONE THE GIT REPO
       git:
         repo: git@github.com:nik786/hello-tomcat-project-2.git
-        dest: /tmp/
+        dest: /tmp/test-git
         key_file: "{{ secret_key  }}"
       
 

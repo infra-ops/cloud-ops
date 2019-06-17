@@ -1,6 +1,6 @@
 ---
 - name: DEMO AN INTERACTIVE PRIVATE KEY
-  hosts: localhost
+  hosts: dev
   gather_facts: no
   tasks:
 
@@ -13,5 +13,5 @@
         repo: git@github.com:nik786/hello-tomcat-project-2.git
         dest: /tmp/
         key_file: "{{ secret_key  }}"
-      delegate_to: localhost
+      
 

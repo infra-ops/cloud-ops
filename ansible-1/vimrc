@@ -1,0 +1,12 @@
+set ruler
+set nohls
+set number
+set laststatus=2
+set ai
+colorscheme desert
+"set filetype plugin on
+"set filetype indent on
+"syntax on
+"set expandtab
+"set tabstop=2
+autocmd FileType yaml setlocal sts=2 cc=2,4,6,8,10,12 sw=2 et

@@ -18,3 +18,26 @@ curl -i \
 -X POST --data '{"extra_vars":{"ear_ver": "$(war1)"}}' "http://localhost/api/v2/job_templates/21/launch/"
 
 
+
+war1=`ls -lrt /var/lib/jenkins/workspace/war-deploy-1/target/ | grep -i .war | awk -F "/" '{print $NF}'`
+echo $war1
+curl -i \
+-u admin:password \
+-H "Accept: application/json" \
+-H "Content-Type:application/json" \
+-X POST --data '{"extra_vars":{"ear_ver": "$\{war1\}"}}' "http://localhost/api/v2/job_templates/21/launch/"
+
+
+
+
+war1=`ls -lrt /var/lib/jenkins/workspace/war-deploy-1/target/ | grep -i .war | awk -F "/" '{print $NF}'`
+echo $war1
+curl -i \
+-u admin:password \
+-H "Accept: application/json" \
+-H "Content-Type:application/json" \
+-X POST --data '{"extra_vars":{"ear_ver": "${war1}"}}' "http://localhost/api/v2/job_templates/21/launch/"
+
+
+
+

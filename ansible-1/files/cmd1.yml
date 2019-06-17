@@ -32,3 +32,20 @@ sshpass -p 'deploy@124'  ssh deploy@ip-10-0-2-193.ec2.internal   "netstat -ntlp 
 db.createCollection("instances")
 mongoimport -h 127.0.0.1  --port 27017 --db inventory --collection instances -u sys -p iis123 --type json --file /etc/ansible/nodes.json
 db.instances.find().pretty()
+
+wget -c https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/test_{01..02}.zip
+
+wget -r --spider -nd -nv -l 1 -w 1 -o wget.log https://s3.console.aws.amazon.com/s3/buckets/hello-artifactory/2019-05-11-20-05/
+
+lynx -dump "https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/" | awk '/http/{print $2}' | uniq >> list.txt 
+
+wget -q -nv -O /tmp/ggl.txt https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/test_{01..02}.zip >/dev/null 2>/dev/null 
+
+
+wget -q  -c https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/test_{01..02}.zip >/dev/null 2>/dev/null
+
+wget -q   -c https://s3.amazonaws.com/hello-artifactory/2019-05-11-20-05/test_{01..02}.zip -P /tmp/ >/dev/null 2>/dev/null 
+        
+        
+        
+

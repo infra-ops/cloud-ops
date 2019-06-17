@@ -1,0 +1,23 @@
+- hosts: 127.0.0.1
+  gather_facts: no
+  tasks:
+#      - include_vars:
+#          file: release.json
+#          name: variable
+#      - debug: var=variable 
+      - name: Read JSON file (can also be a variable).
+        shell: cat release.json
+        register: user_list
+      - name: App Details
+        debug: var=user_list
+      - set_fact: myvar="{{ user_list.stdout | regex_replace('-','_') | from_json }}"
+      - name: Parsed JSON
+        debug: var=myvar.us_east_1[0]
+#        #- set_fact: myvar2="{{ myvar | regex_replace('-', '_') | json_query('us_east_1[0]') }}"   
+#      - shell: echo '{{ myvar | to_json }}' | sed 's/-/_/g' | jq '.us_east_1[0]'
+#        register: myvar2
+#      - name: Parsed JSON
+#        debug: var=myvar2
+
+
+          

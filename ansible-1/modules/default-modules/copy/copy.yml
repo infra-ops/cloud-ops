@@ -1,4 +1,5 @@
-- hosts: dev
+- hosts: all
+  
   tasks:
       - copy:
           src: "{{ item }}"

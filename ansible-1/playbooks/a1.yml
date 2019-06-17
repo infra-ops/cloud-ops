@@ -1,0 +1,2 @@
+ curl -O -J \
+> http://content.example.com/tower3.3/x86_64/dvd/setup-bundle/ansible-tower-setupbundle.el7.tar.gz

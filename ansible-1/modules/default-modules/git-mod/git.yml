@@ -1,6 +1,8 @@
 ---
 - name: DEMO AN INTERACTIVE PRIVATE KEY
   hosts: dev
+  become: true
+  remote_user: deploy
   gather_facts: no
   tasks:
 

@@ -1,0 +1,59 @@
+---
+- name: deploy
+  hosts: dev
+  become: yes
+  become_user: deploy
+  become_method: sudo
+  gather_facts: true
+ 
+  tasks:
+      - name: deploy 1
+        file:
+           path: /etc/facts.d
+           state: directory
+           mode: 0755
+           owner: deploy
+           group: deploy
+      - name: deploy 2 
+        copy:
+          dest: /etc/facts.d/test
+          content: |
+           {
+            "system owner": "sudipta1436@gmail.com"
+           }
+          mode: 0644
+          owner: deploy
+          group: deploy 
+      - name: "Insert custom fact file"
+        copy:
+          src: custom.fact
+          dest: /etc/facts.d/custom.fact
+          mode: 0755    
+          owner: deploy
+          group: deploy
+      
+      - name: Set profile.d script to set AWS Region for everyone
+        template: src=profile.sh.j2 dest=/etc/facts.d/profile.sh mode=0755    
+      
+      - name: Touch aws.fact file with proper permissions 
+        file: path=/etc/facts.d/aws.fact state=touch mode="a=rw"   
+      - name: Run profile.sh to populate env vars and custom MOTD
+        shell: bash /etc/facts.d/profile.sh
+            
+      - name: Get OS distro
+        shell: "head -1 /etc/issue"
+        register: OS_DISTRO
+      
+      - name: Re-run setup to gather ansible_local custom facts from facts.d directory 
+        setup: filter=ansible_local
+      
+      - debug: msg="'{{ ansible_local.aws }}'"
+
+      
+        # - name: Re-run setup to gather ansible_local custom facts from facts.d directory 
+        #setup: filter=ansible_local
+      
+        #- debug: msg="Ansible variables ---- {{ ansible_local.aws }}"
+      
+        #- name: "Re-run setup to use custom facts"
+        #setup: ~     

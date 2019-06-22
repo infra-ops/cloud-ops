@@ -1,0 +1,81 @@
+#!/bin/bash
+ 
+# This script will gather dynamic EC2 instance meta-data and export as environment
+# variables, export to facts.d directory as custom ansible variables to make them 
+# available for ansible configurations as-needed, and will print out the MOTD 
+# (Message of the Day) banner with quick system info at a glance that users will 
+# see upon login.
+ 
+# Gather instance meta-data
+REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
+INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+INSTANCE_TYPE=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep instanceType | awk -F\" '{print $4}')
+ENV=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=env" --region=$REGION --output=text | cut -f5)
+AZ=$(curl -s http://169.254.169.254/latest/meta-data/placement//availability-zone/)
+AMI=$(curl -s http://169.254.169.254/latest/meta-data/ami-id)
+PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4/)
+INTERFACE=$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
+SUBNET_ID=$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/${INTERFACE}/subnet-id)
+VPC_ID=$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/${INTERFACE}/vpc-id)
+ 
+# Export as environment variables for later reference. Default AWS Regions makes AMI Roles work without needing to specify region.
+export AWS_DEFAULT_REGION=$REGION
+export INSTANCE_ID=$INSTANCE_ID
+export INSTANCE_TYPE=$INSTANCE_TYPE
+export ENV=$ENV 
+export AZ=$AZ 
+export AMI=$AMI
+export PUBLIC_IP=$PUBLIC_IP
+export SUBNET_ID=$SUBNET_ID
+export VPC_ID=$VPC_ID
+ 
+# Export as custom ansible variables to /etc/ansible/facts.d/aws.fact 
+printf "{\"REGION\":\"$REGION\",\
+\"INSTANCE_ID\":\"$INSTANCE_ID\",\
+\"INSTANCE_TYPE\":\"$INSTANCE_TYPE\",\
+\"ENV\":\"$ENV\",\
+\"AZ\":\"$AZ\",\
+\"AMI\":\"$AMI\",\
+\"PUBLIC_IP\":\"$PUBLIC_IP\",\
+\"SUBNET_ID\":\"$SUBNET_ID\",\
+\"VPC_ID\":\"$VPC_ID\"}" &gt; /etc/ansible/facts.d/aws.fact
+ 
+ 
+# Basic System Info
+OS=`head -1 /etc/issue`
+HOSTNAME=`uname -n`
+ROOT=`df -Ph | grep xvda1 | awk '{print $4}' | tr -d '\n'`
+ROOT_TOTAL=`df -Ph | grep xvda1 | awk '{print $2}' | tr -d '\n'`
+ 
+# System Load
+MEM_USED=`free -t -m | grep Total | awk '{print $3" MB";}'`
+MEM_TOTAL=`free -t -m | grep "Mem" | awk '{print $2" MB";}'`
+SWAP_USED=`free -m | tail -n 1 | awk '{print $3}'`
+SWAP_TOTAL=`free -m | tail -n 1 | awk '{print $2}'`
+LOAD1=`cat /proc/loadavg | awk {'print $1'}`
+LOAD5=`cat /proc/loadavg | awk {'print $2'}`
+LOAD15=`cat /proc/loadavg | awk {'print $3'}`
+ 
+# Print to stdout for MOTD banner
+printf "
+###############  System Summary  ##############
+===============================================
+   Operating System: $OS
+   Hostname: $HOSTNAME
+   Environment: $ENV
+   EC2 Instance ID: $INSTANCE_ID
+   EC2 Instance Type: $INSTANCE_TYPE
+   EC2 Region: $REGION
+   EC2 Availability Zone: $AZ
+   Public IP: $PUBLIC_IP
+   Private IPs: {{ ansible_all_ipv4_addresses | list | join() }}
+   VPC ID: $VPC_ID
+   Subnet ID: $SUBNET_ID
+   AMI: $AMI
+===============================================
+   ROOT Disk Space..........: $ROOT out of $ROOT_TOTAL remaining
+   CPU usage...........: $LOAD1, $LOAD5, $LOAD15 (1, 5, 15 min)
+   Memory used.........: $MEM_USED / $MEM_TOTAL
+   Swap in use.........: $SWAP_USED MB out of $SWAP_TOTAL MB
+===============================================
+"

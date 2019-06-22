@@ -1,0 +1,6 @@
+---
+- hosts: dev
+  roles:
+   - nginx
+  become: true
+  become_method: sudo

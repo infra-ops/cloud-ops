@@ -1,0 +1,1075 @@
+{
+        "count": 12, 
+        "next": null, 
+        "previous": null, 
+        "results": [
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_03_22T15:48:03.180790Z", 
+                "description": "", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": false, 
+                "id": 11, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 2, 
+                "last_job": 26, 
+                "last_job_host_summary": 6, 
+                "modified": "2019_03_22T15:51:07.817735Z", 
+                "name": "10.0.5.94", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/11/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/11/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/11/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/11/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/11/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/11/fact_versions/", 
+                    "groups": "/api/v2/hosts/11/groups/", 
+                    "insights": "/api/v2/hosts/11/insights/", 
+                    "inventory": "/api/v2/inventories/2/", 
+                    "inventory_sources": "/api/v2/hosts/11/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/11/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/11/job_host_summaries/", 
+                    "last_job": "/api/v2/jobs/26/", 
+                    "last_job_host_summary": "/api/v2/job_host_summaries/6/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/11/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/11/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 2, 
+                                "name": "dev"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 2, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "dev_inv_1", 
+                        "organization_id": 1, 
+                        "total_groups": 1, 
+                        "total_hosts": 1, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "last_job": {
+                        "description": "", 
+                        "failed": false, 
+                        "finished": "2019_03_22T15:51:07.876633Z", 
+                        "id": 26, 
+                        "job_template_id": 7, 
+                        "job_template_name": "dev_proxy_1_temp", 
+                        "name": "dev_proxy_1_temp", 
+                        "status": "successful"
+                    }, 
+                    "last_job_host_summary": {
+                        "failed": false, 
+                        "id": 6
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [
+                        {
+                            "finished": "2019_03_22T15:51:07.876633Z", 
+                            "id": 26, 
+                            "name": "dev_proxy_1_temp", 
+                            "status": "successful"
+                        }
+                    ], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/11/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_06_01T19:30:08.655476Z", 
+                "description": "", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": false, 
+                "id": 17, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 10, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_06_01T19:30:08.655494Z", 
+                "name": "127.0.0.1", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/17/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/17/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/17/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/17/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/17/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/17/fact_versions/", 
+                    "groups": "/api/v2/hosts/17/groups/", 
+                    "insights": "/api/v2/hosts/17/insights/", 
+                    "inventory": "/api/v2/inventories/10/", 
+                    "inventory_sources": "/api/v2/hosts/17/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/17/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/17/job_host_summaries/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/17/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/17/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 0, 
+                        "results": []
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 1, 
+                        "has_active_failures": true, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 1, 
+                        "id": 10, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "aws_static", 
+                        "organization_id": 2, 
+                        "total_groups": 1, 
+                        "total_hosts": 2, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/17/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_06_02T10:57:20.445718Z", 
+                "description": "", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": false, 
+                "id": 19, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 4, 
+                "last_job": 215, 
+                "last_job_host_summary": 69, 
+                "modified": "2019_06_02T13:19:24.922715Z", 
+                "name": "172.17.0.1", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/19/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/19/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/19/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/19/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/19/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/19/fact_versions/", 
+                    "groups": "/api/v2/hosts/19/groups/", 
+                    "insights": "/api/v2/hosts/19/insights/", 
+                    "inventory": "/api/v2/inventories/4/", 
+                    "inventory_sources": "/api/v2/hosts/19/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/19/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/19/job_host_summaries/", 
+                    "last_job": "/api/v2/jobs/215/", 
+                    "last_job_host_summary": "/api/v2/job_host_summaries/69/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/19/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/19/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 3, 
+                                "name": "local"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 4, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "local_inv_1", 
+                        "organization_id": 2, 
+                        "total_groups": 1, 
+                        "total_hosts": 1, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "last_job": {
+                        "description": "", 
+                        "failed": false, 
+                        "finished": "2019_06_02T13:19:24.975166Z", 
+                        "id": 215, 
+                        "job_template_id": 21, 
+                        "job_template_name": "aws_get_url_testing", 
+                        "name": "aws_get_url_testing", 
+                        "status": "successful"
+                    }, 
+                    "last_job_host_summary": {
+                        "failed": false, 
+                        "id": 69
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [
+                        {
+                            "finished": "2019_06_02T13:19:24.975166Z", 
+                            "id": 215, 
+                            "name": "aws_get_url_testing", 
+                            "status": "successful"
+                        }, 
+                        {
+                            "finished": "2019_06_02T13:19:09.144359Z", 
+                            "id": 213, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_02T13:04:37.441304Z", 
+                            "id": 211, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_02T11:24:40.221933Z", 
+                            "id": 209, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_02T11:22:20.663984Z", 
+                            "id": 207, 
+                            "name": "aws_get_url_testing", 
+                            "status": "successful"
+                        }
+                    ], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/19/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_05_11T09:29:28.726048Z", 
+                "description": "", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": false, 
+                "id": 15, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 9, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_05_11T09:29:28.726068Z", 
+                "name": "172.17.8.101", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/15/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/15/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/15/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/15/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/15/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/15/fact_versions/", 
+                    "groups": "/api/v2/hosts/15/groups/", 
+                    "insights": "/api/v2/hosts/15/insights/", 
+                    "inventory": "/api/v2/inventories/9/", 
+                    "inventory_sources": "/api/v2/hosts/15/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/15/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/15/job_host_summaries/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/15/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/15/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 0, 
+                        "results": []
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 9, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "kube_master", 
+                        "organization_id": 2, 
+                        "total_groups": 0, 
+                        "total_hosts": 0, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/15/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_05_11T10:22:17.732632Z", 
+                "description": "", 
+                "enabled": false, 
+                "has_active_failures": true, 
+                "has_inventory_sources": false, 
+                "id": 16, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 10, 
+                "last_job": 113, 
+                "last_job_host_summary": 26, 
+                "modified": "2019_06_01T19:30:25.340776Z", 
+                "name": "18.205.247.191", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/16/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/16/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/16/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/16/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/16/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/16/fact_versions/", 
+                    "groups": "/api/v2/hosts/16/groups/", 
+                    "insights": "/api/v2/hosts/16/insights/", 
+                    "inventory": "/api/v2/inventories/10/", 
+                    "inventory_sources": "/api/v2/hosts/16/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/16/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/16/job_host_summaries/", 
+                    "last_job": "/api/v2/jobs/113/", 
+                    "last_job_host_summary": "/api/v2/job_host_summaries/26/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/16/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/16/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 53, 
+                                "name": "dev"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 1, 
+                        "has_active_failures": true, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 1, 
+                        "id": 10, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "aws_static", 
+                        "organization_id": 2, 
+                        "total_groups": 1, 
+                        "total_hosts": 2, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "last_job": {
+                        "description": "", 
+                        "failed": true, 
+                        "finished": "2019_06_01T19:29:08.169874Z", 
+                        "id": 113, 
+                        "job_template_id": 21, 
+                        "job_template_name": "aws_get_url_testing", 
+                        "name": "aws_get_url_testing", 
+                        "status": "failed"
+                    }, 
+                    "last_job_host_summary": {
+                        "failed": true, 
+                        "id": 26
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [
+                        {
+                            "finished": "2019_06_01T19:29:08.169874Z", 
+                            "id": 113, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_01T19:24:15.910584Z", 
+                            "id": 111, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_01T19:23:19.791812Z", 
+                            "id": 109, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_01T19:21:58.549322Z", 
+                            "id": 107, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }, 
+                        {
+                            "finished": "2019_06_01T19:20:43.352607Z", 
+                            "id": 105, 
+                            "name": "aws_get_url_testing", 
+                            "status": "failed"
+                        }
+                    ], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/16/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_06_12T14:44:25.245939Z", 
+                "description": "imported", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": true, 
+                "id": 20, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 11, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_06_12T14:44:25.653246Z", 
+                "name": "18.209.228.253", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/20/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/20/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/20/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/20/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/20/ansible_facts/", 
+                    "fact_versions": "/api/v2/hosts/20/fact_versions/", 
+                    "groups": "/api/v2/hosts/20/groups/", 
+                    "insights": "/api/v2/hosts/20/insights/", 
+                    "inventory": "/api/v2/inventories/11/", 
+                    "inventory_sources": "/api/v2/hosts/20/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/20/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/20/job_host_summaries/", 
+                    "smart_inventories": "/api/v2/hosts/20/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/20/variable_data/"
+                }, 
+                "summary_fields": {
+                    "groups": {
+                        "count": 12, 
+                        "results": [
+                            {
+                                "id": 55, 
+                                "name": "ami_0ac019f4fcb7cb7e6"
+                            }, 
+                            {
+                                "id": 56, 
+                                "name": "ec2"
+                            }, 
+                            {
+                                "id": 57, 
+                                "name": "i_07670a846711942ad"
+                            }, 
+                            {
+                                "id": 59, 
+                                "name": "key_vpn41"
+                            }, 
+                            {
+                                "id": 61, 
+                                "name": "platform_undefined"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": true, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 11, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "aws_inv_4", 
+                        "organization_id": 2, 
+                        "total_groups": 18, 
+                        "total_hosts": 2, 
+                        "total_inventory_sources": 1
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/20/", 
+                "variables": "{\"ec2_account_id\": \"758637906269\", \"ec2_kernel\": \"\", \"ec2_state\": \"running\", \"ec2_ami_launch_index\": \"0\", \"ec2_id\": \"i_07670a846711942ad\", \"ec2_instance_type\": \"t2.micro\", \"ec2_platform\": \"\", \"ec2_sourceDestCheck\": \"true\", \"ec2_tag_ubuntu_dev_1\": \"ubuntu_node_1\", \"ec2_private_dns_name\": \"ip_10_0_1_195.ec2.internal\", \"ec2_eventsSet\": \"\", \"ec2_private_ip_address\": \"10.0.1.195\", \"ec2_security_group_names\": \"connector_test\", \"ec2_vpc_id\": \"vpc_0c5d756112c4f5cf3\", \"ec2_state_code\": 16, \"ec2_tag_Name\": \"ubuntu_node_1\", \"ec2_architecture\": \"x86_64\", \"ec2_monitoring\": \"\", \"ec2_group_name\": \"\", \"ec2_hypervisor\": \"xen\", \"ec2_reason\": \"\", \"ec2_spot_instance_request_id\": \"\", \"ec2_ebs_optimized\": false, \"ec2_state_reason\": \"\", \"ec2_key_name\": \"vpn41\", \"ec2_client_token\": \"\", \"ec2_region\": \"us_east_1\", \"ec2_public_dns_name\": \"ec2_18_209_228_253.compute_1.amazonaws.com\", \"ec2_persistent\": false, \"ec2_monitoring_state\": \"disabled\", \"ec2_previous_state_code\": 0, \"ec2_root_device_name\": \"/dev/sda1\", \"ec2_subnet_id\": \"subnet_0a6bfbe2292811d1d\", \"ec2_item\": \"\", \"ec2_security_group_ids\": \"sg_01b1b66c3aa25cfde\", \"ec2_placement\": \"us_east_1a\", \"ec2_block_devices\": {\"sda1\": \"vol_0d3d2ccebf589aa4d\"}, \"ec2_launch_time\": \"2019_06_12T13:55:26.000Z\", \"ec2_ip_address\": \"18.209.228.253\", \"ec2_image_id\": \"ami_0ac019f4fcb7cb7e6\", \"ansible_host\": \"18.209.228.253\", \"ec2_root_device_type\": \"ebs\", \"ec2_virtualization_type\": \"hvm\", \"ec2_monitored\": false, \"ec2_dns_name\": \"ec2_18_209_228_253.compute_1.amazonaws.com\", \"ec2_previous_state\": \"\", \"ec2_ramdisk\": \"\", \"ec2__in_monitoring_element\": false, \"ec2_requester_id\": \"\"}"
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_06_12T17:19:01.120837Z", 
+                "description": "imported", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": true, 
+                "id": 22, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 12, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_06_12T17:19:01.217970Z", 
+                "name": "18.209.228.253", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/22/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/22/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/22/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/22/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/22/ansible_facts/", 
+                    "fact_versions": "/api/v2/hosts/22/fact_versions/", 
+                    "groups": "/api/v2/hosts/22/groups/", 
+                    "insights": "/api/v2/hosts/22/insights/", 
+                    "inventory": "/api/v2/inventories/12/", 
+                    "inventory_sources": "/api/v2/hosts/22/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/22/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/22/job_host_summaries/", 
+                    "smart_inventories": "/api/v2/hosts/22/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/22/variable_data/"
+                }, 
+                "summary_fields": {
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 72, 
+                                "name": "dev"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": true, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 12, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "mongo_inv", 
+                        "organization_id": 2, 
+                        "total_groups": 2, 
+                        "total_hosts": 2, 
+                        "total_inventory_sources": 1
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/22/", 
+                "variables": "{\"host_var\": \"a_01\"}"
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_06_12T14:44:25.281142Z", 
+                "description": "imported", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": true, 
+                "id": 21, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 11, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_06_12T14:44:25.672168Z", 
+                "name": "34.227.31.30", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/21/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/21/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/21/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/21/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/21/ansible_facts/", 
+                    "fact_versions": "/api/v2/hosts/21/fact_versions/", 
+                    "groups": "/api/v2/hosts/21/groups/", 
+                    "insights": "/api/v2/hosts/21/insights/", 
+                    "inventory": "/api/v2/inventories/11/", 
+                    "inventory_sources": "/api/v2/hosts/21/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/21/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/21/job_host_summaries/", 
+                    "smart_inventories": "/api/v2/hosts/21/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/21/variable_data/"
+                }, 
+                "summary_fields": {
+                    "groups": {
+                        "count": 12, 
+                        "results": [
+                            {
+                                "id": 54, 
+                                "name": "ami_011b3ccf1bd6db744"
+                            }, 
+                            {
+                                "id": 56, 
+                                "name": "ec2"
+                            }, 
+                            {
+                                "id": 58, 
+                                "name": "i_0e044eab208bc0d6c"
+                            }, 
+                            {
+                                "id": 60, 
+                                "name": "key_vpn42"
+                            }, 
+                            {
+                                "id": 61, 
+                                "name": "platform_undefined"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": true, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 11, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "aws_inv_4", 
+                        "organization_id": 2, 
+                        "total_groups": 18, 
+                        "total_hosts": 2, 
+                        "total_inventory_sources": 1
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/21/", 
+                "variables": "{\"ec2_account_id\": \"758637906269\", \"ec2_kernel\": \"\", \"ec2_state\": \"running\", \"ec2_ami_launch_index\": \"0\", \"ec2_id\": \"i_0e044eab208bc0d6c\", \"ec2_instance_type\": \"t2.micro\", \"ec2_platform\": \"\", \"ec2_sourceDestCheck\": \"true\", \"ec2_private_dns_name\": \"ip_10_0_2_249.ec2.internal\", \"ec2_eventsSet\": \"\", \"ec2_private_ip_address\": \"10.0.2.249\", \"ec2_security_group_names\": \"connector_test,ecs_tomcat_lb\", \"ec2_vpc_id\": \"vpc_0c5d756112c4f5cf3\", \"ec2_state_code\": 16, \"ec2_tag_Name\": \"ecs_ec2_rh7_1\", \"ec2_architecture\": \"x86_64\", \"ec2_monitoring\": \"\", \"ec2_group_name\": \"\", \"ec2_hypervisor\": \"xen\", \"ec2_reason\": \"\", \"ec2_spot_instance_request_id\": \"\", \"ec2_ebs_optimized\": false, \"ec2_state_reason\": \"\", \"ec2_key_name\": \"vpn42\", \"ec2_client_token\": \"\", \"ec2_region\": \"us_east_1\", \"ec2_public_dns_name\": \"ec2_34_227_31_30.compute_1.amazonaws.com\", \"ec2_persistent\": false, \"ec2_monitoring_state\": \"disabled\", \"ec2_previous_state_code\": 0, \"ec2_root_device_name\": \"/dev/sda1\", \"ec2_subnet_id\": \"subnet_0030d7d3cfeab6886\", \"ec2_item\": \"\", \"ec2_security_group_ids\": \"sg_01b1b66c3aa25cfde,sg_0570336d53cc83d48\", \"ec2_placement\": \"us_east_1b\", \"ec2_block_devices\": {\"sda1\": \"vol_07ff86a64b363c1a8\"}, \"ec2_launch_time\": \"2019_06_12T13:26:53.000Z\", \"ec2_ip_address\": \"34.227.31.30\", \"ec2_image_id\": \"ami_011b3ccf1bd6db744\", \"ansible_host\": \"34.227.31.30\", \"ec2_root_device_type\": \"ebs\", \"ec2_virtualization_type\": \"hvm\", \"ec2_monitored\": false, \"ec2_dns_name\": \"ec2_34_227_31_30.compute_1.amazonaws.com\", \"ec2_previous_state\": \"\", \"ec2_ramdisk\": \"\", \"ec2__in_monitoring_element\": false, \"ec2_requester_id\": \"\"}"
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_06_12T17:19:01.151076Z", 
+                "description": "imported", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": true, 
+                "id": 23, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 12, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_06_12T17:19:01.234073Z", 
+                "name": "34.227.31.30", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/23/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/23/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/23/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/23/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/23/ansible_facts/", 
+                    "fact_versions": "/api/v2/hosts/23/fact_versions/", 
+                    "groups": "/api/v2/hosts/23/groups/", 
+                    "insights": "/api/v2/hosts/23/insights/", 
+                    "inventory": "/api/v2/inventories/12/", 
+                    "inventory_sources": "/api/v2/hosts/23/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/23/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/23/job_host_summaries/", 
+                    "smart_inventories": "/api/v2/hosts/23/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/23/variable_data/"
+                }, 
+                "summary_fields": {
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 73, 
+                                "name": "uat"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": true, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 12, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "mongo_inv", 
+                        "organization_id": 2, 
+                        "total_groups": 2, 
+                        "total_hosts": 2, 
+                        "total_inventory_sources": 1
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/23/", 
+                "variables": "{\"host_var\": \"a_02\"}"
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_03_22T15:44:19.376466Z", 
+                "description": "", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": false, 
+                "id": 10, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 5, 
+                "last_job": 23, 
+                "last_job_host_summary": 5, 
+                "modified": "2019_03_22T15:46:06.133668Z", 
+                "name": "54.226.39.33", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/10/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/10/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/10/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/10/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/10/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/10/fact_versions/", 
+                    "groups": "/api/v2/hosts/10/groups/", 
+                    "insights": "/api/v2/hosts/10/insights/", 
+                    "inventory": "/api/v2/inventories/5/", 
+                    "inventory_sources": "/api/v2/hosts/10/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/10/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/10/job_host_summaries/", 
+                    "last_job": "/api/v2/jobs/23/", 
+                    "last_job_host_summary": "/api/v2/job_host_summaries/5/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/10/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/10/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 4, 
+                                "name": "dev"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 5, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "dev_proxy_inv_1", 
+                        "organization_id": 2, 
+                        "total_groups": 1, 
+                        "total_hosts": 1, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "last_job": {
+                        "description": "", 
+                        "failed": false, 
+                        "finished": "2019_03_22T15:46:06.229037Z", 
+                        "id": 23, 
+                        "job_template_id": 11, 
+                        "job_template_name": "dev_proj_1_temp", 
+                        "name": "dev_proj_1_temp", 
+                        "status": "successful"
+                    }, 
+                    "last_job_host_summary": {
+                        "failed": false, 
+                        "id": 5
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [
+                        {
+                            "finished": "2019_03_22T15:46:06.229037Z", 
+                            "id": 23, 
+                            "name": "dev_proj_1_temp", 
+                            "status": "successful"
+                        }
+                    ], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/10/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_03_22T14:58:34.720935Z", 
+                "description": "", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": false, 
+                "id": 6, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 3, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_03_22T14:58:34.720950Z", 
+                "name": "54.84.105.187", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/6/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/6/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/6/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/6/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/6/ansible_facts/", 
+                    "created_by": "/api/v2/users/1/", 
+                    "fact_versions": "/api/v2/hosts/6/fact_versions/", 
+                    "groups": "/api/v2/hosts/6/groups/", 
+                    "insights": "/api/v2/hosts/6/insights/", 
+                    "inventory": "/api/v2/inventories/3/", 
+                    "inventory_sources": "/api/v2/hosts/6/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/6/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/6/job_host_summaries/", 
+                    "modified_by": "/api/v2/users/1/", 
+                    "smart_inventories": "/api/v2/hosts/6/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/6/variable_data/"
+                }, 
+                "summary_fields": {
+                    "created_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "groups": {
+                        "count": 1, 
+                        "results": [
+                            {
+                                "id": 1, 
+                                "name": "dev"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": false, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 3, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "dev_inv_2", 
+                        "organization_id": 2, 
+                        "total_groups": 1, 
+                        "total_hosts": 1, 
+                        "total_inventory_sources": 0
+                    }, 
+                    "modified_by": {
+                        "first_name": "", 
+                        "id": 1, 
+                        "last_name": "", 
+                        "username": "admin"
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/6/", 
+                "variables": ""
+            }, 
+            {
+                "ansible_facts_modified": null, 
+                "created": "2019_04_07T14:33:38.718726Z", 
+                "description": "imported", 
+                "enabled": true, 
+                "has_active_failures": false, 
+                "has_inventory_sources": true, 
+                "id": 13, 
+                "insights_system_id": null, 
+                "instance_id": "", 
+                "inventory": 7, 
+                "last_job": null, 
+                "last_job_host_summary": null, 
+                "modified": "2019_04_07T14:33:38.822738Z", 
+                "name": "instance_1", 
+                "related": {
+                    "activity_stream": "/api/v2/hosts/13/activity_stream/", 
+                    "ad_hoc_command_events": "/api/v2/hosts/13/ad_hoc_command_events/", 
+                    "ad_hoc_commands": "/api/v2/hosts/13/ad_hoc_commands/", 
+                    "all_groups": "/api/v2/hosts/13/all_groups/", 
+                    "ansible_facts": "/api/v2/hosts/13/ansible_facts/", 
+                    "fact_versions": "/api/v2/hosts/13/fact_versions/", 
+                    "groups": "/api/v2/hosts/13/groups/", 
+                    "insights": "/api/v2/hosts/13/insights/", 
+                    "inventory": "/api/v2/inventories/7/", 
+                    "inventory_sources": "/api/v2/hosts/13/inventory_sources/", 
+                    "job_events": "/api/v2/hosts/13/job_events/", 
+                    "job_host_summaries": "/api/v2/hosts/13/job_host_summaries/", 
+                    "smart_inventories": "/api/v2/hosts/13/smart_inventories/", 
+                    "variable_data": "/api/v2/hosts/13/variable_data/"
+                }, 
+                "summary_fields": {
+                    "groups": {
+                        "count": 9, 
+                        "results": [
+                            {
+                                "id": 31, 
+                                "name": "10.150.0.2"
+                            }, 
+                            {
+                                "id": 32, 
+                                "name": "35.245.244.42"
+                            }, 
+                            {
+                                "id": 33, 
+                                "name": "debian_9_stretch_v20190326"
+                            }, 
+                            {
+                                "id": 34, 
+                                "name": "n1_standard_1"
+                            }, 
+                            {
+                                "id": 35, 
+                                "name": "network_default"
+                            }
+                        ]
+                    }, 
+                    "inventory": {
+                        "description": "", 
+                        "groups_with_active_failures": 0, 
+                        "has_active_failures": false, 
+                        "has_inventory_sources": true, 
+                        "hosts_with_active_failures": 0, 
+                        "id": 7, 
+                        "inventory_sources_with_failures": 0, 
+                        "kind": "", 
+                        "name": "gcp_inv_1", 
+                        "organization_id": 2, 
+                        "total_groups": 9, 
+                        "total_hosts": 1, 
+                        "total_inventory_sources": 1
+                    }, 
+                    "recent_jobs": [], 
+                    "user_capabilities": {
+                        "delete": true, 
+                        "edit": true
+                    }
+                }, 
+                "type": "host", 
+                "url": "/api/v2/hosts/13/", 
+                "variables": "{\"ansible_ssh_host\": \"35.245.244.42\", \"gce_private_ip\": \"10.150.0.2\", \"gce_id\": \"7197222763337081199\", \"gce_image\": \"debian_9_stretch_v20190326\", \"gce_description\": \"\", \"gce_machine_type\": \"n1_standard_1\", \"gce_subnetwork\": \"default\", \"gce_uuid\": \"797448bbedc6d74fec1a1c16c4b7547cb38283e4\", \"gce_tags\": [\"http_server\", \"https_server\"], \"gce_name\": \"instance_1\", \"gce_zone\": \"us_east4_c\", \"gce_status\": \"RUNNING\", \"gce_network\": \"default\", \"gce_public_ip\": \"35.245.244.42\", \"gce_metadata\": {}}"
+            }
+        ]
+    }

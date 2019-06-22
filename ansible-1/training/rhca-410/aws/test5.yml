@@ -1,0 +1,9 @@
+---
+- name: Test Playbook
+  hosts: 127.0.0.1
+  become: yes
+  tasks:
+    - name: testing module
+      execute_command: command="uptime"
+      register: cmd
+    - debug: var=cmd

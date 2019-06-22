@@ -1,0 +1,33 @@
+- hosts: 127.0.0.1
+  gather_facts: no
+  tasks:
+      - name: Running API
+        uri:
+          url: http://127.0.0.1/api/v2/hosts/
+          user: nik
+          password: iis123
+          headers:
+            Content-Type: application/json
+            Accept: application/json
+          force_basic_auth: yes
+          return_content: yes
+        register: var2
+      
+      - name: App Details
+        debug: var=var2.json
+        
+        
+#      - name: App Details
+#        set_fact:
+#          myvar: "{{ var2.json | from_json }}"
+      - set_fact:
+          myvar: "{{ var2.json | regex_replace('-','_') | from_json }}"
+      - name: Parsed JSON
+        debug: var=myvar
+   
+  
+
+      
+          
+          
+          

@@ -1,0 +1,4 @@
+---
+[dev]
+ac1 ansible_ssh_host=xxxxx ansible_ssh_user=deploy
+

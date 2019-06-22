@@ -1,0 +1,8 @@
+---
+- name: deploy
+  hosts: 127.0.0.1
+  tasks:
+      - name: restart tomcat
+        service:
+           name: tomcat
+           state: started 

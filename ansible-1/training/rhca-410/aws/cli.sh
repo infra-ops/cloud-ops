@@ -1,6 +1,6 @@
 cat .tower_cli.cfg 
-username: nik
-password: iis123
+username: xxx
+password: xxxx
 verify_ssl: False 
 host: http://127.0.0.1:8052 
 

@@ -69,7 +69,7 @@ powershell.exe -ExecutionPolicy ByPass -File $file
 Enable-WSManCredSSP -Role Server -Force
 winrm enumerate winrm/config/Listener
 
-
+https://www.kjctech.net/how-to-enable-winrm-with-domain-group-policy-for-powershell-remoting/
 
 cat win.yml 
 [win]

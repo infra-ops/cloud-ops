@@ -3,9 +3,6 @@
   gather_facts: False
   connection: local
   tasks:
-    - shell: echo "hello"
-      register: result
-      
     - mail:
         host: smtp.gmail.com
         port: 587
@@ -15,13 +12,5 @@
         subject: Test
         subtype: html
         body: "{{ lookup('template', 'templates/mail_body.j2') }}"
-        #headers: "Content-type=text/html"
         #delegate_to: localhost
-        
-        #     body: '
-        #      <html>
-        #      <head>welcome</head>
-        #      <body>Hello HSBC</body>
-        #      </html>
-        #      '
-      #run_once: True
+

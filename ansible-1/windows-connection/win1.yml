@@ -9,3 +9,4 @@
   vars:
     ansible_become_user: some_user
     ansible_become_pass: password
+https://www.reddit.com/r/ansible/comments/8us6kt/how_to_copy_file_remote_to_remote_windows_servers/

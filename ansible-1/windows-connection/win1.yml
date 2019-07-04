@@ -1,0 +1,11 @@
+- name: copy files from A to B
+  win_copy:
+    src: C:\temp\
+    dest: \\serverb\c$\temp\
+    remote_src: yes
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: some_user
+    ansible_become_pass: password

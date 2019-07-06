@@ -1,0 +1,20 @@
+[TOWER]
+
+[GET TOKEN FROM TOWER]	
+- user-token_v.0.1.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/utokens/user-token_v.0.1.py
+- %s/api/v2/users/?username=%s'%(ur,user)
+- %s/api/v2/users/%s/personal_tokens/'%(ur,id)
+
+[GET CRED FROM TOWER]	
+- cred_tower_v.0.1.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/cred/cred_tower_v.0.1.py
+- http://localhost/api/v2/credentials/%s/'%id
+
+
+
+
+
+
+
+ 

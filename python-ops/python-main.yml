@@ -11,6 +11,46 @@
 - https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/cred/cred_tower_v.0.1.py
 - http://localhost/api/v2/credentials/%s/'%id
 
+[GET EMAIL FROM TOWER]	
+- get-email-6.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/emails/get-email-6.py
+- http://localhost/api/v2/users/?page=%s&page_size=100
+
+[GET HOST FROM TOWER]	
+- get-email-6.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/emails/get-email-6.py
+- http://localhost/api/v2/users/?page=%s&page_size=100
+
+[ASSIGN PERMISSION TO USERS IN TOWER]
+- user-v.0.4.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/permission/user-v.0.4.py
+- python check-user.py -p devops-pune-test-api-permission -u mike-1234
+- python check-user.py -p devops-pune-test-api-permission -l user-list-2.yml
+- python user-check.py -a 33 -u bob-1234
+- python user-check.py -a 33 -l user-list.yml
+- %s/api/v2/projects/?search=%s'%(uro,project)
+- %s/api/v2/projects/?search=%s'%(uro,project)
+- %s/api/v2/projects/%s/access_list/?search=%s'%(uro,pr,username)
+- %s/api/v2/users/?username=%s'%(uro,uid)
+- %s/api/v2/roles/%s/users/'%(uro,role)
+- %s/api/v2/users/?username=%s'%(uro,uid)
+- %s/api/v2/roles/%s/users/'%(uro,role)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

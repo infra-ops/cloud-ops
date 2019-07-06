@@ -38,6 +38,19 @@
 
 
 
+[JOB TEMPLATE EXECUTION IN TOWER]	
+- job-template-execution.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/jobs/job-template-execution.py
+- http://192.168.0.105/api/v2/job_templates/10/launch/
+
+
+[DELETE PENDING JOBS]
+- pending.py
+- https://github.com/infra-ops/cloud-ops/blob/master/python-ops/rest-api/tower/jobs/pending.py
+- http://localhost/api/v2/jobs/%s/cancel/'%id
+- http://localhost/api/v2/jobs/%s/cancel/'%id
+
+
 
 
 

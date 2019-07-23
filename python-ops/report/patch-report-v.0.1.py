@@ -4,6 +4,10 @@ from datetime import datetime as dt
 import subprocess
 import argparse
 import csv
+from email import Encoders
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEBase import MIMEBase
+from email.mime.text import MIMEText
 
 
 def mail(report):
@@ -70,7 +74,10 @@ def gencsv(out):
 			except:
 				writer.writerow([host,""])
 			for q in modules:
-				writer.writerow(["",q])
+				if '"msg":' in q:
+					pass
+				else:
+					writer.writerow(["",q.replace('"','')])
 def execute(fur,sur):
 		cmd2 = "ansible-playbook -i %s %s --vault-password-file .vault"%(fur,sur)
 		p = subprocess.Popen(cmd2, stdout=subprocess.PIPE, shell=True)  
@@ -84,5 +91,6 @@ if __name__ == '__main__':
 	if (args.i is not None) and (args.f is not None):
 		out = execute(args.i,args.f)
 		gencsv(out)
+		mail("patch-update-available.csv")
 	else:
 		print("Missing arguments .")

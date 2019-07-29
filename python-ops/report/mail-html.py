@@ -24,14 +24,7 @@ def mail():
        	 #part.set_payload(open("sample.csv", "rb").read())
 	 Encoders.encode_base64(part)
          #part.add_header('Content-Disposition', 'attachment', filename="sample.csv")
-         """
-         import smtplib
-         smtp = smtplib.SMTP()
-         smtp.connect('smtp.gmail.com')
-         smtp.login('sudipta1436@gmail.com', 'xxxxxx')
-         smtp.sendmail(strFrom, strTo, msgRoot.as_string())
-         smtp.quit()
-         """
+        
          p =subprocess.Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=subprocess.PIPE)
 	 p.communicate(msg.as_string())
 

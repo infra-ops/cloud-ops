@@ -256,6 +256,9 @@ docker run --name ecs-agent \
 amazon/amazon-ecs-agent:latest
 
 
+chmod 777 /opt/alerts/prometheus/data
+
+
 
 yum install -y ecs-init
 service docker start

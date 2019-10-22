@@ -277,5 +277,8 @@ wget -q -O - archive.kali.org/archive-key.asc | apt-key add
 curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
+
+curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /opt/bin/docker-compose
+
 docker-compose -f node-exporter-cadvisor.yaml up -d
 

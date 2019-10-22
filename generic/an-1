@@ -61,6 +61,8 @@ ansible-playbook nginx-v.1.0.1.yml -i /etc/ansible/inventory --extra-vars "nodes
 deploy ALL=(ALL) NOPASSWD: ALL
 usermod --shell /bin/bash deploy
 
+curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+
 
 
 cat /etc/hosts

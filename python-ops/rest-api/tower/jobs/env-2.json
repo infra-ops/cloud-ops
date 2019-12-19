@@ -1,0 +1,11 @@
+{
+	"stage": [
+		"http://192.168.10.117",
+                "1K7eLFJL1XNU0nglxaqd7gk3DNTCGf"
+
+	],
+	"prod": [
+	       	 "http://192.168.10.117",
+		 "1K7eLFJL1XNU0nglxaqd7gk3DNTCGf"
+	]
+}

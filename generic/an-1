@@ -166,6 +166,7 @@ https://www.vagrantbox.es/
 
 
 vagrant box add ubuntu-16.04  https://github.com/jose-lpa/packer-ubuntu_lts/releases/download/v3.1/ubuntu-16.04.box
+vagrant box add generic/ubuntu1804
 
  vim /etc/apt/sources.list
 deb http://mirrors.kernel.org/ubuntu/ xenial main

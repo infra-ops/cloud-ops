@@ -1,0 +1,16 @@
+---
+- hosts: dev
+  tasks:
+      - copy:
+          src: "{{ item }}"
+          dest: /opt/apps
+        with_fileglob:
+          - /home/nik/Desktop/git-repo/python-git/python-ops/rest-api/tower/jobs/sa/sa-env/cred.json
+
+      - name: execute script
+        shell: python /opt/apps/key-9.py -e stage -l http://192.168.10.117 -t 1K7eLFJL1XNU0nglxaqd7gk3DNTCGf -c gcp-test-1 -u test-sa-12@connector-2-250114.iam.gserviceaccount.com -p connector-2-250114 -o 5
+        register: helo
+
+      - name: Print helo
+        debug:
+          msg: "helo output: {{ helo.stdout }}"

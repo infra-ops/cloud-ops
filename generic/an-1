@@ -1,5 +1,8 @@
 ssh username@your.remote.host.for.ssh.com 'bash -s' < server-script.sh
 
+%s#/opt/AIC-CLOUDS/#/opt/apps/
+
+
 sshpass -p iis123 ssh -o StrictHostKeyChecking=no root@192.168.122.113 'cd /etc/ansible;ansible-playbook ap.yml'
 
 http://ridz1ba.blogspot.in/2014/12/installing-oracle-java-jdk8-on-ubuntu.html

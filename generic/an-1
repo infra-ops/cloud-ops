@@ -2,6 +2,8 @@ ssh username@your.remote.host.for.ssh.com 'bash -s' < server-script.sh
 
 %s#/opt/AIC-CLOUDS/#/opt/apps/
 
+kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
+
 
 sshpass -p iis123 ssh -o StrictHostKeyChecking=no root@192.168.122.113 'cd /etc/ansible;ansible-playbook ap.yml'
 

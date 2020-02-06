@@ -2,6 +2,10 @@ ssh username@your.remote.host.for.ssh.com 'bash -s' < server-script.sh
 
 %s#/opt/AIC-CLOUDS/#/opt/apps/
 
+https://www.techgig.com/
+https://testpot.com/online-test
+
+
 kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
 
 

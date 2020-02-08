@@ -268,6 +268,13 @@ docker run --name ecs-agent \
 amazon/amazon-ecs-agent:latest
 
 
+
+
+import re
+r = "The rain in Spain"
+r = "10.0.2.15 - - [08/Feb/2020:12:01:59 +0000] "GET / HTTP/1.0" 200 116 "-" "ApacheBench/2.3""
+r = "10.0.2.15 - - [08/Feb/2020:12:04:39 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.58.0""
+
 chmod 777 /opt/alerts/prometheus/data
 
 

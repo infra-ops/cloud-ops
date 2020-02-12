@@ -22,25 +22,24 @@ def prime(x):
 """
 
 
-def prime(a):
-    x = True 
-    for i in range(2, a):
-       if a%i == 0:
-           x = False
-           break # ends the for loop
-       # no else block because it does nothing ...
-
-
+n=7
+def check(n):
+    x = True
+    for i in range(2, n):
+        if n%i == 0:
+            x = False
+            break
     if x:
-        print "prime"
+        print("prime")
     else:
-        print "not prime"
+        print("not prime")
+check(n)          
 
 
 
 
-for i in range(20):
-    print i, prime(i)
+#for i in range(20):
+#    print i, prime(i)
 
 #x = int(raw_input("enter a prime number"))
 #print prime(x)

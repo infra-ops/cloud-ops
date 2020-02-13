@@ -7,6 +7,7 @@ https://testpot.com/online-test
 
 
 kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
+kill $(ps aux | grep -i skype | awk '{print $2}')
 
 
 sshpass -p iis123 ssh -o StrictHostKeyChecking=no root@192.168.122.113 'cd /etc/ansible;ansible-playbook ap.yml'

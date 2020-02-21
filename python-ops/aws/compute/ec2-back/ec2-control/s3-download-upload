@@ -1,0 +1,11 @@
+{
+  "command": "download",
+  "src-bucket": "dev-3",
+  "log-bucket": "dev-log-3",
+  "destination": "/home/nik/test-1",
+  "instances": [
+    "xxxxxx",
+    "xxxxxx"
+  ]
+}
+

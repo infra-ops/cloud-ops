@@ -1,0 +1,33 @@
+{
+    "containerDefinitions": [
+      {
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/tomcat-container-logs",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        },
+        "portMappings": [
+          {
+            "hostPort": 8888,
+            "protocol": "tcp",
+            "containerPort": 8888
+          }
+        ],
+        "cpu": 1024,
+        "memory": 256,
+        "image": "758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev:29",
+        "essential": true,
+        "name": "python-app"
+      }
+    ],
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "memory": "256",
+    "family": "python-app",
+    "networkMode": "bridge",
+    "cpu": "1024"
+  }

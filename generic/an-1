@@ -9,6 +9,10 @@ https://testpot.com/online-test
 kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
 kill $(ps aux | grep -i skype | awk '{print $2}')
 
+ps -eo size,pid,user,command --sort -size | \
+>     awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' |\
+>     cut -d "" -f2 | cut -d "-" -f1
+
 
 sshpass -p iis123 ssh -o StrictHostKeyChecking=no root@192.168.122.113 'cd /etc/ansible;ansible-playbook ap.yml'
 

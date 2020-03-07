@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "cm06" do |cm06|
+    cm06.vm.box = "ubuntu/bionic64"
+    cm06.disksize.size = '30GB'
+    cm06.vm.hostname = 'cm06'
+    cm06.vm.network :private_network, ip: "192.168.56.126"
+    cm06.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", 4000]
+      v.customize ["modifyvm", :id, "--name", "cm06"]
+    end
+  end
+  config.vm.define "cw07" do |cw07|
+    cw07.vm.box = "ubuntu/bionic64"
+    cw07.disksize.size = '30GB'
+    cw07.vm.hostname = 'cw07'
+    cw07.vm.network :private_network, ip: "192.168.56.127"
+    cw07.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", 4092]
+      v.customize ["modifyvm", :id, "--name", "cw07"]
+
+    end
+  end
+end

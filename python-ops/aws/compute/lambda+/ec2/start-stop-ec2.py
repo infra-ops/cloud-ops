@@ -1,8 +1,8 @@
 ##python start-stop-ec2.py -s start -f nodes.json
 ##python start-stop-ec2.py -k start -f nodes.json
 
-##python start-stop-ec2.py -p start -u https://u2gxjtmno6.execute-api.us-east-1.amazonaws.com/prod/service 
-##python start-stop-ec2.py -p stop -u https://u2gxjtmno6.execute-api.us-east-1.amazonaws.com/prod/service
+##python start-stop-ec2.py -p start -u 
+##python start-stop-ec2.py -p stop -u 
 
 import boto3
 import requests
@@ -182,6 +182,6 @@ if __name__ == '__main__':
 ##python start-stop-ec2.py -s start -f nodes.json
 ##python start-stop-ec2.py -k start -f nodes.json
 
-##python start-stop-ec2.py -p start -u https://u2gxjtmno6.execute-api.us-east-1.amazonaws.com/prod/service 
-##python start-stop-ec2.py -p stop -u https://u2gxjtmno6.execute-api.us-east-1.amazonaws.com/prod/service
+##python start-stop-ec2.py -p start -u 
+##python start-stop-ec2.py -p stop -u 
 

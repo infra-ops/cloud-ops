@@ -10,6 +10,29 @@ kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
 kill $(ps aux | grep -i skype | awk '{print $2}')
 
 
+variable "gce_ssh_pub_key_file" {
+  default = "/opt/gcp-tera-ansible/google_cloud_bastion.pub"
+
+}
+
+
+ metadata {
+    hostname = "${lookup(var.hostname, "host${count.index}")}"
+    sshKeys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
+  }
+
+
+
+
+
+
+
+
+ps -eo size,pid,user,command --sort -size | \
+>     awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' |\
+>     cut -d "" -f2 | cut -d "-" -f1
+
+
 sshpass -p iis123 ssh -o StrictHostKeyChecking=no root@192.168.122.113 'cd /etc/ansible;ansible-playbook ap.yml'
 
 http://ridz1ba.blogspot.in/2014/12/installing-oracle-java-jdk8-on-ubuntu.html

@@ -1,0 +1,5 @@
+python ecs-lambda-update.py ecs-update.json
+python ecs-post.py
+python post.py ecs-update.json
+python ecs-service.py -t python-task-cli.json -r us-east-1 
+python ecs-service.py -c  python-svc-cli.json -r us-east-1

@@ -1,0 +1,20 @@
+{
+
+      "cluster": "connector-clus",
+      "serviceName": "test-service-5",
+      "taskDefinition": "tomcat-22:1",
+      "desiredCount": 1,
+      "clientToken": "test-service-1",
+      "launchType": "EC2",
+      "loadBalancers": [
+        {
+          "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:758637906269:targetgroup/tomcat-demo-tg/510d919f193f067e",
+          "containerName": "tomcat-22",
+          "containerPort": 9090
+        }
+      ],
+      "deploymentConfiguration": {
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 50
+      }
+    }

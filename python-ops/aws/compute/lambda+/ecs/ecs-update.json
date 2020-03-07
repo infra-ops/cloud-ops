@@ -1,0 +1,7 @@
+{
+  "region": "us-east-1",
+  "service": "test-service-5",
+  "cluster": "connector-clus",
+  "image": "758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev:tom",
+  "desiredCount": 1
+}

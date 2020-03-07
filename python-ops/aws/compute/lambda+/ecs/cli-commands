@@ -1,0 +1,13 @@
+#creating cluster
+aws ecs create-cluster --cluster-name "test"
+
+#registering task definintion 
+aws ecs register-task-definition --cli-input-json file://tomcat-task-cli.json
+
+#creating a service
+aws ecs create-service --cli-input-json file://tomcat-svc-cli.json
+
+python ecs.py -t tom-task.json
+python ecs.py -c tom-svc.json
+python ecs.py -u tom-svc.json
+python ecs.py -d tom-svc.json

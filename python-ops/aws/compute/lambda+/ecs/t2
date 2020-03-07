@@ -1,0 +1,39 @@
+creation of task
+
+
+We will parse follwoing json to create task through post call via postman to gw
+
+        {
+
+        "image": "758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev:17",
+        "name": "tomcat"
+
+        }
+
+
+it will print in return "task tomcat created"
+
+
+
+
+We will parse follwoing json to create svc through post call via postman to gw
+
+  {
+      "cluster": "connector-clus",
+      "serviceName": "test-service-5",
+      "taskDefinition": "tomcat:7",
+      "desiredCount": 1,
+ "loadBalancers": [
+        {
+          "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:758637906269:targetgroup/tomcat-demo-tg/510d919f193f067e",
+          "containerName": "tomcat",
+          "containerPort": 9090
+        }
+
+]
+}
+
+
+
+it will print in return "service tomcat created"
+

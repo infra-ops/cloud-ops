@@ -1,0 +1,35 @@
+pipeline {
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn package'
+            }
+           
+        }
+        stage('Deliver') {
+            steps {
+                ansiblePlaybook \
+		    playbook: '/var/lib/jenkins/helo.yml',
+		    inventory: '/var/lib/jenkins/local.yml'/*,
+            }
+        }
+    
+      finally {
+         if (currentBuild.result == 'SUCCESS') {
+         stage 'Announce'
+   
+    }
+
+
+
+}
+
+#https://bulldogjob.com/articles/726-exploring-jenkins-pipelines-a-simple-delivery-flow
+https://github.com/amuniz/maven-helloworld/blob/master/Jenkinsfile
+https://github.com/arun-gupta/docker-jenkins-pipeline/blob/master/Jenkinsfile
+https://github.com/jenkins-docs/simple-java-maven-app/blob/master/jenkins/Jenkinsfile

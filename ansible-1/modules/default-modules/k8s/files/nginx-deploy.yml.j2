@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+  namespace: testing
+spec:
+  containers:
+  - name: 1st
+    image: "{{ ni }}"

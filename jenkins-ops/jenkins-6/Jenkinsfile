@@ -1,0 +1,91 @@
+
+import java.text.SimpleDateFormat
+
+
+jobName = null
+deploy_Env = null
+environment = null
+microSvcName = null
+
+ecRegistry = "https://758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev"
+aws_cred = "awscred"
+ecr_repo = "758637906269.dkr.ecr.us-east-1.amazonaws.com/connector-dev"
+project = 'hello-tomcat-projects'  
+branch = "master"    
+gitCreds = 'cred7864'      
+build_dir = '/var/lib/jenkins/node/workspace/test-ecs-pipe/target'  
+docker_files = "/var/lib/jenkins/node/workspace/test-ecs-pipe/Dockerfiles"
+deploy_dir = "hello-artifactory/${env.BUILD_NUMBER}"
+s3_cmd = "aws s3 cp"
+war="mavenproject1-1.0-SNAPSHOT.war"
+
+def checkout() 
+{
+   git url: "https://github.com/nik786/${project}.git", branch: "${branch}", credentialsId: "${gitCreds}"
+       
+   		
+}
+
+def maven_build() 
+{
+		dir(".") {
+		    withEnv(["MAVEN=/opt/apps/maven/bin", "PATH=${PATH}:/opt/apps/maven/bin"]) {
+		        sh "mvn clean package"   
+		    }
+		}
+}
+
+
+def s3() {
+   echo "${env.BUILD_NUMBER}"
+   sh  "${s3_cmd} ${build_dir}/${war} s3://${deploy_dir}/${war}"
+   sh  "cp -r ${build_dir}/${war} ${docker_files}"
+}
+
+
+def docker_build() 
+{
+   sh "docker build -t ${ecr_repo}:tom-${env.BUILD_NUMBER} --pull=true --file=${docker_files}/tomcat-dockerfile ${docker_files}"
+}
+
+
+def docker_push()
+
+{
+    sh "docker push ${ecr_repo}:tom-${env.BUILD_NUMBER}"
+}
+
+
+
+try{
+		
+	
+		node('ec2') 
+       {
+				
+				
+				stage('Checkout') {
+				    checkout()
+				}
+	 			
+			    stage('Maven Build') {
+					maven_build()  
+				}
+				
+				stage('Copy to Artifacts') {
+						s3()
+				}
+		        stage("Docker Build") {
+						docker_build()
+				}	
+				
+				stage("Docker Push") {
+						docker_push()
+				}	
+      
+    }
+} finally {
+		if (currentBuild.result == 'SUCCESS') {
+				stage("Announce") {}
+		}
+}

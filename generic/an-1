@@ -132,7 +132,7 @@ web123  ansible_ssh_host=172.xx.xx.xx   ansible_ssh_user=xxxx
 
 
 
-
+https://stackoverflow.com/questions/25505146/how-to-copy-files-between-two-nodes-using-ansible
 
 
 

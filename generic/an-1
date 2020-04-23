@@ -22,7 +22,7 @@ variable "gce_ssh_pub_key_file" {
   }
 
 
-
+nex = "%s&started_gt=%sT11:13:31.189777Z&started_lt=%sT11:13:31.189777Z"%(str(data["next"]),sg,sl)
 
 
 

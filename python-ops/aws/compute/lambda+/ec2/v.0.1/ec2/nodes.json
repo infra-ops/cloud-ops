@@ -1,0 +1,11 @@
+{
+  "command": "stop",
+  "instances": {
+    "us-east-1": [
+      "i-0853b68fd170db975"
+    ],
+    "us-west-2": [
+      "i-0893bf0d78af6d127"
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+[gcloud installation]
+
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+apt-get update && sudo apt-get install google-cloud-sdk
+
+
+
+
+[gcloud basic commands]
+
+gcloud compute images list | awk '{print $3}'  | awk '!a[$0]++'
+gcloud iam service-accounts list
+
+
+gcloud auth login --no-launch-browser
+gcloud auth activate-service-account  --key-file=/opt/gcp-creation-playbook/connet.json
+gcloud auth list
+gcloud config set account conne@conn.iam.gserviceaccount.com
+gcloud projects list
+gcloud config set project conn
+gcloud compute images list
+gcloud compute regions list
+
+
+
+
+gcloud init
+gcloud config set project terra-test
+gcloud config set region/us-east1
+gcloud config set compute/zone us-east1-b/c
+gcloud compute ssh compute-instance-0 --internal-ip
+
+
+
+
+
+#export GCP_AUTH_KIND=serviceaccount
+#export GCP_SERVICE_ACCOUNT_EMAIL='36@gmail.com'
+export GCP_SERVICE_ACCOUNT_FILE='/opt/sa/con.json'
+#export GCP_SCOPES='https://www.googleapis.com/auth/compute'
+export GOOGLE_APPLICATION_CREDENTIALS='/opt/sa/con.json'
+
+
+
+
+
+[ssh]
+
+ssh-keygen -t rsa -f google_cloud_bastion -C 36
+
+
+
+[Install Ruby 2.6]
+
+apt-add-repository ppa:brightbox/ruby-ng
+apt-get update
+apt-get install ruby2.6 ruby2.6-dev
+
+[Install landscape]
+
+gem install terraform_landscape
+
+
+
+[tf]
+wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
+
+
+terraform plan -out=tfplan.tfstate -lock=false
+terraform destroy -target=google_compute_instance_group.web-nodes -lock=false
+terraform destroy -target=module.gce-lb-http --auto-approve -lock=false && terraform apply --auto-approve -lock=false
+terraform plan -out=tfplan.tfstate -lock=false
+terraform force-unlock 1567779469142061
+terraform init
+terraform plan
+terraform plan  -out=tfplan
+terraform apply
+terraform destroy
+terraform output instance_ips
+terraform output -json instance_ips | jq '.value[0]'
+terraform apply \
+ -var-file="secret.tfvars" \
+ -var-file="production.tfvars"
+
+
+
+
+
+
+
+
+provisioner "local-exec" {
+   command = "ansible-playbook -u sudipta1436 -i '${self.network_interface.0.network_ip},' --private-key /opt/gcp-tera-ansible/google_cloud_bastion  file.yml"
+}
+
+
+provisioner "local-exec" {
+   command = "ansible-playbook -u sudipta1436 -i ./gce.py file.yml --extra-vars node='${self.network_interface.0.network_ip}'"
+}
+
+
+
+
+boot_disk {
+    initialize_params {
+      image = "${var.os}"
+    }
+  }
+
+
+
+
+root@controller:/opt/gcp-tera-ansible# cat output.tf 
+output "public_instance_ip" {
+  value = ["${google_compute_instance.bastion-instance.network_interface.0.access_config.0.nat_ip}"]
+}
+
+
+output "private_instance_ip" {
+  value = ["${google_compute_instance.compute-instance.network_interface.0.network_ip}"]
+}
+
+
+
+
+
+
+
+
+gcloud source repos create helloworld-image-factory
+
+
+
+output "private_instance_ip" { value = ["${google_compute_instance.pri-instance.network_interface.0.network_ip}"] }
+
+
+
+
+
+
+
+
+Enable AppEngine Admin API/AppEngine Fexible API
+
+
+
+[ansible]
+export GCE_INI_PATH=/opt/gcp-tera-ansible/inventory/dynamic/gce.ini
+./gce.py --list
+ansible -i inventory.gcp.yml --private-key=/opt/gcp-tera-ansible/google_cloud_bastion -u su36 -m ping all
+ansible -i ./gce.py --private-key=/opt/gcp-tera-ansible/google_cloud_bastion -u su36 -m ping 146.148.34.217
+ansible -i ./gce.py --private-key=/opt/gcp-tera-ansible/google_cloud_bastion -u su36 -m ping bastion-instance
+ansible-playbook -i ./gce.py --private-key=/opt/gcp-tera-ansible/google_cloud_bastion -u su36 helo.yml
+ansible-playbook -i ./gce.py helo.yml --extra-vars "node=compute-instance-0"
+
+
+
+[playbook]
+
+---
+- hosts: dev
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+      - name: print tf output
+        shell: terraform plan | landscape --no-color
+        args:
+          chdir: /etc/ansible/scripts/terraform-stack/gcp/gcp-without-lb
+        register: tdata
+      - debug: msg="{{ tdata.stdout }}"
+      - name: terraform plan
+        terraform:
+          project_path: '/etc/ansible/scripts/terraform-stack/gcp/gcp-without-lb'
+          plan_file: '/etc/ansible/scripts/terraform-stack/gcp/gcp-without-lb/tfplan'
+          lock: true
+          state: planned
+          force_init: true
+        register: tf
+      #- debug: var=tf.stdout
+
+
+
+
+[pip]
+
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+pip install --upgrade requests
+pip install --ignore-installed six
+pip install launchpadlib
+pip install apache-libcloud
+pip install requests google-auth
+pip install certifi
+
+
+[GO] 
+curl -O https://storage.googleapis.com/golang/go1.11.2.linux-amd64.tar.gz
+export GOROOT=/opt/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+
+

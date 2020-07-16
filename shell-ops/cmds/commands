@@ -9,6 +9,7 @@ grep -rl 'apples' /opt | xargs sed -i 's/apples/oranges/g'
 
 
 cat art.xml | grep -i sizeOnDisk | awk  'NR==1 || NR==6' | sed 's/.............$//' | sed 's/^..................//'
+cat art.xml | grep -i sizeOnDisk | sed -n '1p;7p' | sed 's/.............$//' | sed 's/^..................//'
 
 
 for i in *.txt; do mv "$i" "unix$i"; done

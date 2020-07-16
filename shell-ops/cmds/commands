@@ -8,6 +8,7 @@ ps aux  |  grep -i csp_build  |  awk '{print $2}'  |  xargs  kill -9
 grep -rl 'apples' /opt | xargs sed -i 's/apples/oranges/g'
 
 
+cat art.xml | grep -i sizeOnDisk | awk  'NR==1 || NR==6' | sed 's/.............$//' | sed 's/^..................//'
 
 
 for i in *.txt; do mv "$i" "unix$i"; done

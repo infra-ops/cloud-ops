@@ -1,0 +1,4 @@
+---
+[dev]
+#ac2 ansible_ssh_host=192.168.56.165 ansible_ssh_user=root ansible_ssh_pass=xxxxx
+slave ansible_ssh_host=192.168.56.170 ansible_ssh_user=root ansible_ssh_pass=xxxxx

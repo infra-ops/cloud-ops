@@ -1,0 +1,20 @@
+---
+- name: A Playbook to test Async and Poll
+  hosts: dev
+  
+  tasks:
+    - name: Execute the script
+      shell: "/tmp/as.sh 60" # Run for 60 seconds 
+      async: 180 # Maximum allowed time in Seconds
+      poll: 0 # Polling Interval in Seconds
+      register: scrout
+
+    - name: Some task just to debug
+      debug: var=scrout.stdout_lines
+    
+    - name: Checking the Job Status
+      async_status:
+        jid: "{{ scrout.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 30  

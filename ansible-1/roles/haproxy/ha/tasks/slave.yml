@@ -1,0 +1,108 @@
+---
+- name: print hello
+  shell: echo "hello world"
+  register: helo
+
+- name: helo
+  debug:
+    msg: "{{ helo.stdout }}"      
+
+- name: Install prerequsites and keepalived
+  yum: 
+    name: 
+      - epel-release
+      - libslz
+      - gcc
+      - pcre-static
+      - pcre-devel 
+      - keepalived  
+
+
+- name: Install haproxy 2.0
+  yum:
+    name: 
+       - http://au1.mirror.crc.id.au/repo/el7-extra/x86_64/haproxy-2.0.14-4.el7.x86_64.rpm
+       - http://au1.mirror.crc.id.au/repo/el7-extra/x86_64/haproxy-debuginfo-2.0.14-4.el7.x86_64.rpm  
+    state: present
+
+
+- name: create certification deploy directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/ssl/my-abc-power.com/
+      
+
+
+
+- name: copy files
+  copy:
+    src: "{{ item }}" 
+    dest: "/etc/ssl/my-abc-power.com/"
+  loop:
+    - my-abc-power.com.crt 
+    - my-abc-power.com.csr  
+    - my-abc-power.com.key  
+    - my-abc-power.com.pem
+
+      
+- name: deploy haproxy config
+  template:
+    src: haproxy-slave.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    
+
+- name: deploy haproxy config
+  template:
+    src: haproxy.service.j2
+    dest: /lib/systemd/system/haproxy.service
+  
+
+- name: reload config
+  systemd:
+    daemon_reload: yes
+
+
+- name: RESTART HAPROXY
+  service:
+    name: haproxy
+    state: started
+    enabled: yes    
+
+
+- name: Disable SELinux
+  selinux:
+    state: disabled    
+      
+
+
+
+- name: deploy keepalived config
+  template:
+    src: keepalived-slave.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify: restart keep
+
+
+- name: inject entry of my-devops-power.com  in /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: ' '
+    line: '192.168.56.79  my-devops-power.com'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

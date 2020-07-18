@@ -1,0 +1,57 @@
+- hosts: dev
+  gather_facts: false
+  serial: 6
+  tasks:
+      - name: print hello
+        shell: echo "hello world" 
+        register: helo
+
+      - name: Print helo
+        debug:
+          msg: "helo output: {{ helo.stdout }}"
+
+      - name: update apt
+        apt:
+          update_cache: yes    
+       
+      - name: install redis
+        apt: pkg=redis-server state=latest
+      
+      - name: download logstash from s3
+        get_url:
+          url: https://nexus-artifactory-01.s3.amazonaws.com/soft-repo/logstash-7.8.0.tar.gz
+          dest: /tmp/logstash-7.8.0.tar.gz  
+        async: 180
+        poll: 10
+        register: my_task
+      
+      - name: get the task status using ansible async_status
+        async_status:
+           jid: "{{ my_task.ansible_job_id }}"
+        register: result
+        until: result.finished
+        retries: 5
+    
+
+      - name: download tomcat from s3
+        get_url:
+          url: https://nexus-artifactory-01.s3.amazonaws.com/soft-repo/apache-tomcat-8.5.41.tar.gz
+          dest: /tmp/apache-tomcat-8.5.41.tar.gz
+    
+
+      - name: download maven from s3
+        get_url:
+          url: https://nexus-artifactory-01.s3.amazonaws.com/soft-repo/apache-maven-3.3.9-bin.tar.gz
+          dest: /tmp/apache-maven-3.3.9-bin.tar.gz
+
+      - name: Execute the script
+        shell: "bash /tmp/as.sh 60" # Run for 60 seconds 
+        async: 120 # Maximum allowed time in Seconds
+        poll: 05 # Polling Interval in Seconds
+        register: scrout    
+
+      - name: Some task just to debug
+        debug: var=scrout.stdout_lines   
+      
+
+

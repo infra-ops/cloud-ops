@@ -1,5 +1,7 @@
 $#    Stores the number of command-line arguments that 
       were passed to the shell program.
+      $# represents the number of arguments
+      
 $?    Stores the exit value of the last command that was 
       executed.
 $0    Stores the first word of the entered command (the 
@@ -8,3 +10,18 @@ $*    Stores all the arguments that were entered on the
       command line ($1 $2 ...).
 "$@"  Stores all the arguments that were entered
       on the command line, individually quoted ("$1" "$2" ...).
+      $@ expands to the positional arguments passed from the caller to either a function or a script
+      
+      $* means all the arguments passed to the script or function, split by word. 
+      It is usually wrong and should be replaced by "$@" , which separates the arguments properly.
+      
+      
+ $! - shows last process ID which has started in background
+ $$ is the process id of the shell in which your script is running.
+ 
+$0 is the name of the script itself, $1 is the first argument
+
+"#!" is an operator called shebang which directs the script to the interpreter location.
+
+The $- variable contains the shell's flags currently active in your terminal. 
+These flags determine how your shell will function for you.

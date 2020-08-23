@@ -192,6 +192,6 @@ chown -R nik:root /etc/modprobe.d/
 chown -R nik:root /etc/fstab
 chown -R nik:root /etc
 
-
+ansible all -i inv.yml -m setup -a "filter=ansible_eth1_0"
 
 

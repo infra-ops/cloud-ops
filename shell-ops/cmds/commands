@@ -183,3 +183,15 @@ sed -i "9i auth  sufficient    pam_unix.so likeauth nullok" /etc/pam.d/system-au
 
 
 vagrant scp ec2_lambda_less_v0.2.py centnode1:/tmp
+
+
+chown -R nik:root /etc/pam.d/
+chown -R nik:root /etc/sysconfig/selinux 
+chown -R nik:root /etc/selinux/
+chown -R nik:root /etc/modprobe.d/
+chown -R nik:root /etc/fstab
+chown -R nik:root /etc
+
+
+
+

@@ -4,6 +4,8 @@ webalizer ALL=NOPASSWD: /sbin/service httpd start, /sbin/service httpd stop, /sb
 ls *csv | awk -F"." '{print"mv -v "$0" "$1".txt"}' | sh
 
 ps aux  |  grep -i csp_build  |  awk '{print $2}'  |  xargs  kill -9
+ps aux  |  grep -i supervisor  |  awk '{print $2}'  |  xargs  kill -9
+
 
 grep -rl 'apples' /opt | xargs sed -i 's/apples/oranges/g'
 

@@ -176,5 +176,10 @@ for file in (ls *.csv) ; do mv $file $(file%.csv).txt done
 10.135.2.16   www.xyz.com www 
  
 sed -e "\$a10.135.2.16 www.abc.com www \n10.135.2.16 www.xyz.com www" -i <filename>
+sed -i "9i auth  sufficient    pam_unix.so likeauth nullok" /etc/pam.d/system-auth
+
+
+
+
 
 vagrant scp ec2_lambda_less_v0.2.py centnode1:/tmp

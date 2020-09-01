@@ -17,7 +17,7 @@ gcloud iam service-accounts list
 gcloud auth login --no-launch-browser
 gcloud auth activate-service-account  --key-file=/opt/gcp-creation-playbook/connet.json
 gcloud auth activate-service-account  --key-file=connector-2-31-Aug-2020.json
-
+gcloud auth activate-service-account  --key-file=connector-2-31-Aug-2020-tf-admin.json
 
 gcloud auth list
 gcloud config set account conne@conn.iam.gserviceaccount.com

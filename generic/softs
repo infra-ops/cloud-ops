@@ -1,0 +1,78 @@
+pip install -r kubespray/requirements.txt
+pip install netaddr
+pip install docker-py ruamel.yaml
+apt-get install docker.io -y
+swapoff -a
+
+apt-get update && apt-get install python3-netaddr python-netaddr libyaml-dev python-dev python-pip  wget curl net-tools telnet nmap  aufs-tools apt-transport-https software-properties-common openssl unzip ipvsadm python-httplib2 curl gnupg-agent 
+ca-certificates docker.io python3-distutils
+
+pip install ruamel.yaml
+
+
+yum install gcc openssl-devel bzip2-devel libffi-devel -y
+Yum install python3 -y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PYTHON SETUP
+
+https://www.gungorbudak.com/blog/2018/08/02/correct-installation-and-configuration-of-pip2-and-pip3/
+
+wget https://bootstrap.pypa.io/get-pip.py
+
+python2 get-pip.py
+
+python3 get-pip.py
+
+root@kcluster:/opt/playbook# pip2 --version
+pip 20.0.2 from /usr/local/lib/python2.7/dist-packages/pip (python 2.7)
+root@kcluster:/opt/playbook# pip3 --version
+pip 20.0.2 from /usr/local/lib/python3.5/dist-packages/pip (python 3.5)
+
+cp /usr/local/bin/pip .
+root@kcluster:/usr/bin# chmod 777 pip 
+
+
+ pip install ansible==2.9.6
+pip install awscli
+
+python3 -m pip uninstall pip setuptools wheel
+sudo apt-get --reinstall install  python3-setuptools python3-wheel python3-pip
+
+python -m pip uninstall pip setuptools wheel
+sudo apt-get --reinstall install python-setuptools python-wheel python-pip
+
+
+update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+policies:
+ - name: s3-bucket-encryption-off
+   description: |
+     Checks S3 for buckets with encryption access
+   resource: aws.s3
+   region: us-east-1
+   filters:
+     - type: bucket-encryption
+       state: False       
+
+ - name: remove-global-grants
+   resource: s3
+   filters:
+     - type: global-grants
+       allow_website: false
+   actions:
+     - delete-global-grants       
+
+ - name: s3-public-policy
+   resource: s3
+   filters:
+      - type: has-statement
+        statements:
+          - Effect: Allow
+            Action: 's3:*'
+            Principal: '*'      
+ - name: CheckForPublicAclBlock-Off
+   resource: s3
+   region: us-east-1
+   filters:
+      - type: check-public-block
+        BlockPublicAcls: true
+        BlockPublicPolicy: true       
+
+
+ - name: s3-acl
+   resource: s3
+   region: us-east-1
+   filters:
+      - type: cross-account

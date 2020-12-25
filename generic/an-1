@@ -328,3 +328,34 @@ curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compos
 
 docker-compose -f node-exporter-cadvisor.yaml up -d
 
+[mail]
+
+
+apt-get install postfix mailutils libsasl2-modules
+
+
+https://support.google.com/accounts/answer/6010255
+
+
+cat /etc/postfix/main.cf
+
+relayhost = [smtp.gmail.com]:587
+smtp_use_tls = yes
+smtp_tls_security_level = encrypt
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options = noanonymous
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
+cat /etc/postfix/sasl_passwd
+[smtp.gmail.com]:587    sudiptaxxxx@gxxx.com:xxxxx
+
+postmap /etc/postfix/sasl_passwd
+
+systemctl restart postfix
+
+echo "This is the body of the email" | mail -s "This is the subject line" sudipta1436@gmail.com
+
+
+
+

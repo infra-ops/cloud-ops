@@ -367,7 +367,7 @@ docker run -d \
     frodenas/postgresql
 
 
-
+postgres
 
 root@controller:/etc/ansible/key-generation# docker exec -it 092f02fdff14 /bin/bash
 root@092f02fdff14:~# postgres
@@ -381,6 +381,43 @@ Type "help" for help.
 
 
 
+CREATE DATABASE LIBRARY;
+\l
+\c library ;
 
+
+CREATE TABLE RACK1
+( 
+  book_id integer NOT NULL,
+  book_type varchar(20),
+  book_name varchar(20),
+  author_name varchar(20),
+  price integer NOT NULL
+);
+
+
+CREATE TABLE RACK2
+( 
+  book_id integer NOT NULL,
+  book_type varchar(20),
+  book_name varchar(20),
+  author_name varchar(20),
+  price integer NOT NULL
+);
+
+\d ;
+
+DROP TABLE table_name;
+
+INSERT INTO RACK1 (book_id,book_type,book_name,author_name,price) VALUES (1, 'mystery', 'diamond', 'Arthur Doyel', 200 );
+INSERT INTO RACK1 (book_id,book_type,book_name,author_name,price) VALUES (2, 'mystery', 'hound', 'Arthur Doyel', 300 );
+
+UPDATE RACK1 SET book_name = diamond WHERE col1 = dataA2;
+
+
+
+
+
+drop database Library;
 
 

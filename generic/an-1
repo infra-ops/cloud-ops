@@ -357,5 +357,30 @@ systemctl restart postfix
 echo "This is the body of the email" | mail -s "This is the subject line" sudipta1436@gmail.com
 
 
+docker pull frodenas/postgresql
+
+docker run -d \
+    --name postgresql \
+    -p 5432:5432 \
+    -e POSTGRES_USERNAME=nik \
+    -e POSTGRES_PASSWORD=post7864 \
+    frodenas/postgresql
+
+
+
+
+root@controller:/etc/ansible/key-generation# docker exec -it 092f02fdff14 /bin/bash
+root@092f02fdff14:~# postgres
+
+root@092f02fdff14:~# su postgres
+
+postgres@092f02fdff14:/root$ cd
+postgres@092f02fdff14:~$ psql
+psql (9.6.2)
+Type "help" for help.
+
+
+
+
 
 

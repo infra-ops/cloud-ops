@@ -414,10 +414,15 @@ INSERT INTO RACK1 (book_id,book_type,book_name,author_name,price) VALUES (2, 'my
 
 UPDATE RACK1 SET book_name = diamond WHERE col1 = dataA2;
 
+\q;
 
 
 
 
 drop database Library;
+
+PGPASSWORD=post7864 psql -h 172.17.0.2 -p 5432 -d library -U nik
+
+
 
 

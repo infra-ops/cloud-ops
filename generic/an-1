@@ -424,5 +424,5 @@ drop database Library;
 PGPASSWORD=post7864 psql -h 172.17.0.2 -p 5432 -d library -U nik
 
 
-
+GRANT ALL PRIVILEGES ON DATABASE "library" to nik ;
 

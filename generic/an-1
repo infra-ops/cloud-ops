@@ -275,6 +275,9 @@ db.awsinstances.insert({ region_id: 'us-east-1', public_ip_address: '54.236.58.3
 git pull origin sc-ss-1209
 
 
+docker run --name dev-jen  -p 8080:8080 -d jenkins
+
+
 
 docker run --name ecs-agent \
 --detach=true \

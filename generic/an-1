@@ -430,3 +430,78 @@ PGPASSWORD=post7864 psql -h 172.17.0.2 -p 5432 -d library -U nik
 GRANT ALL PRIVILEGES ON DATABASE "library" to nik ;
 
 sudo apt-get install postgresql-client
+
+cat inv.yml 
+[dev]
+os ansible_ssh_host=xxxx ansible_ssh_user=xxxx  ansible_ssh_pass=xxx
+
+ansible -i inv.yml -m setup os
+
+cat helo.yml 
+- hosts: dev
+  gather_facts: true
+  vars:
+    action_type: "hi"
+    
+  tasks:
+     - name: print hello
+       shell: echo "hi" 
+       register: helo
+     - name: out
+       debug:
+         msg: "{{ helo.stdout }}"      
+     - debug: var=ansible_all_ipv4_addresses
+     - debug: var=ansible_default_ipv4.address
+
+
+ansible -i inv.yml -m setup os | grep -i ansible_hostname
+
+<html>
+<center>
+   <h1> The hostname of this webserver is {{ ansible_hostname }}</h1>
+   <h3> It is running on {{ ansible_os_family}}system </h3>
+</center>
+</html>
+
+
+cat db-automate/tasks/main.yml 
+---
+
+- include_tasks: db.yml
+  when: ansible_hostname == 'anode2'  
+
+
+
+cat helo.yml 
+- hosts: dev
+  gather_facts: true
+  vars:
+    action_type: "hi"
+    
+  tasks:
+     - name: print hello
+       shell: echo "hi" 
+       register: helo
+     - name: out
+       debug:
+         msg: "{{ helo.stdout }}"      
+     - debug: var=ansible_all_ipv4_addresses
+     - debug: var=ansible_default_ipv4.address
+     - debug: var=ansible_hostname
+     - debug: var=ansible_enp0s8.ipv4.address 
+     - debug: var=ansible_eth0.ipv4.address  
+
+
+
+- hosts: loc
+  tasks:
+  - stat:
+      path: sample_directory
+    register: result
+
+  - debug:
+      msg: "Ansible when directory exists example"
+    when: result.stat.exists == true and result.stat.isdir == true
+    
+    
+    https://www.mydailytutorials.com/working-ansible-conditionals-using-clause/

@@ -314,10 +314,16 @@ db.nodes.find().pretty()
 
 db.nodes.insert({ region_id: 'us-east-1', public_ip_address: '54.236.58.33', InstanceId: 'i-0199acc8a7d913cd5' })
 
+mongoimport -h 172.17.0.2  --port 27017 --db inv --collection nodes -u u3 -p iis123 --type json --file  inv.json
+
+cat inv5.json 
+
+[{ "type": "ho", "number": "212-555-1234" }, 
+ { "type": "cel", "number": "646-555-4567" }, 
+ { "type": "of", "number": "202-555-0182"}]
 
 
-
-
+mongoimport -h 172.17.0.2  --port 27017 --db inv --collection nodes -u u3 -p iis123 --type json --file  inv5.json
 
 
 

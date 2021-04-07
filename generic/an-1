@@ -284,8 +284,8 @@ docker exec -it dev-mongo mongo admin
 
 db.createUser({ user: 'aws-admin', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
 db.createUser({ user: 'u1', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
-db.createUser({ user: 'u2', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "inv" } ] });
 
+use inv
 db.createUser({ user: "u3", pwd: "iis123", roles: [ { role: "readWrite", db: "inv" } ]});
 
 

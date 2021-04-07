@@ -266,11 +266,63 @@ systemctl restart mongod
 mongo --host 192.168.10.65 --port 27017
 
 
+
+optional
+docker run -d --name dev-mongo  -p 27017:27017 -v /opt/apps/mongo-data:/data/db \
+    -e MONGO_INITDB_ROOT_USERNAME=mdmin \
+    -e MONGO_INITDB_ROOT_PASSWORD=mpass \
+    mongo
+
+
+cat mongo-start.sh 
 docker run --name dev-mongo  -p 27017:27017 -v /opt/apps/data:/data/db -d mongo
+
+cat mongo-login.sh
 docker exec -it dev-mongo mongo admin
+
+
+
 db.createUser({ user: 'aws-admin', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
+db.createUser({ user: 'u1', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
+db.createUser({ user: 'u2', pwd: 'iis123', roles: [ { role: "userAdminAnyDatabase", db: "inv" } ] });
+
+db.createUser({ user: "u3", pwd: "iis123", roles: [ { role: "readWrite", db: "inv" } ]});
+
+
+
 
 db.awsinstances.insert({ region_id: 'us-east-1', public_ip_address: '54.236.58.33', InstanceId: 'i-0199acc8a7d913cd5' })
+
+mongo-cli-login.sh
+
+mongoimport -h 127.0.0.1  --port 27017 --db inventory --collection nodes -u wadmin -p iis123 --type json --file  sample.json
+
+
+mongo 172.17.0.2:27017/inv -u u3 -p iis123
+
+
+
+
+
+
+
+
+use inventory
+db.createCollection("nodes")
+show collections
+db.nodes.find().pretty()
+
+db.nodes.insert({ region_id: 'us-east-1', public_ip_address: '54.236.58.33', InstanceId: 'i-0199acc8a7d913cd5' })
+
+
+
+
+
+
+
+
+
+
 
 git pull origin sc-ss-1209
 

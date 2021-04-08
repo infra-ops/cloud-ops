@@ -321,6 +321,17 @@ cat inv5.json
 [{ "type": "ho", "number": "212-555-1234" }, 
  { "type": "cel", "number": "646-555-4567" }, 
  { "type": "of", "number": "202-555-0182"}]
+ 
+ [{ "flatno": "aa4", "ownername": "user1" }, 
+ { "flatno":  "ae1", "ownername": "user2" }, 
+ { "flatno":  "bb3", "ownername": "user3"}]
+
+
+
+db.nodes.drop()
+
+
+
 
 
 mongoimport -h 172.17.0.2  --port 27017 --db inv --collection nodes -u u3 -p iis123 --type json --file  inv5.json

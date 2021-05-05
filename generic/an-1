@@ -574,3 +574,31 @@ cat helo.yml
     
     
     https://www.mydailytutorials.com/working-ansible-conditionals-using-clause/
+
+
+
+ansible_ssh_common_args: "-o ProxyCommand=\"sshpass -p '{{gw_password}}' ssh -W %h:%p -t -q deploy@xxxxxx\""
+#ansible_ssh_common_args: '-o ProxyCommand="ssh -i /root/.ssh/id_rsa_10.0.5.32 -o StrictHostKeyChecking=no -W %h:%p -t -q  deploy@xxxxxxx"'
+
+inv.yml 
+[dev]
+10.0.1.195
+
+[uat]
+10.0.5.94
+
+
+helo.yml 
+---
+- hosts: dev
+  
+
+  tasks:
+      - name: print hello
+        shell: echo "hello world" 
+        register: helo
+      - name: Print helo
+        debug:
+          msg: "helo output: {{ helo.stdout }}"
+
+

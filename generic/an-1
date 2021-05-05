@@ -601,4 +601,15 @@ helo.yml
         debug:
           msg: "helo output: {{ helo.stdout }}"
 
+ansible -m ping web-servers
+ansible -m ping all
+
+virtualenv ansible2.1
+source ansible2.1/bin/activate
+pip install ansible==2.1
+pip install redis
+
+
+pip uninstall redis
+
 

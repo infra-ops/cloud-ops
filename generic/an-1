@@ -628,7 +628,7 @@ apt-get install docker.io -y
 swapoff -a
 
 apt-get update && apt-get install python3-netaddr python-netaddr libyaml-dev python-dev python-pip  wget curl net-tools telnet nmap  aufs-tools apt-transport-https software-properties-common openssl unzip ipvsadm python-httplib2 curl gnupg-agent 
-ca-certificates docker.io python3-distutils apt-transport-https
+ca-certificates docker.io python3-distutils apt-transport-https python-docker
 
 pip install ruamel.yaml
 
@@ -685,7 +685,7 @@ wget https://github.com/kubernetes/helm/releases/download/v3.4.0/helm-v3.4.0-lin
 
 
 
-
+apt install 
 
 
 

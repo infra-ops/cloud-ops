@@ -613,3 +613,86 @@ pip install redis
 pip uninstall redis
 
 
+
+
+
+
+
+
+
+
+pip install -r kubespray/requirements.txt
+pip install netaddr
+pip install docker-py ruamel.yaml
+apt-get install docker.io -y
+swapoff -a
+
+apt-get update && apt-get install python3-netaddr python-netaddr libyaml-dev python-dev python-pip  wget curl net-tools telnet nmap  aufs-tools apt-transport-https software-properties-common openssl unzip ipvsadm python-httplib2 curl gnupg-agent 
+ca-certificates docker.io python3-distutils
+
+pip install ruamel.yaml
+
+
+yum install gcc openssl-devel bzip2-devel libffi-devel -y
+Yum install python3 -y
+
+https://www.gungorbudak.com/blog/2018/08/02/correct-installation-and-configuration-of-pip2-and-pip3/
+
+wget https://bootstrap.pypa.io/get-pip.py
+
+python2 get-pip.py
+
+python3 get-pip.py
+
+root@kcluster:/opt/playbook# pip2 --version
+pip 20.0.2 from /usr/local/lib/python2.7/dist-packages/pip (python 2.7)
+root@kcluster:/opt/playbook# pip3 --version
+pip 20.0.2 from /usr/local/lib/python3.5/dist-packages/pip (python 3.5)
+
+
+pip install ansible==2.9.6
+pip install awscli
+
+python3 -m pip uninstall pip setuptools wheel
+sudo apt-get --reinstall install  python3-setuptools python3-wheel python3-pip
+
+python -m pip uninstall pip setuptools wheel
+sudo apt-get --reinstall install python-setuptools python-wheel python-pip
+
+
+
+curator show indices --all-indices
+pip install elasticsearch-curator
+curator --host 127.0.0.1 delete indices --older-than 30 --time-unit days --timestring '%Y.%m.%d'
+curator --host <ip address> delete indices --time-unit days --older-than 60 --timestring '%Y%m%d'
+
+curl -GET http://localhost:9200/_cat/indices
+curl -XDELETE http://localhost:9200/logstash-2016.12.10
+curl -XDELETE http://localhost:9200/_all
+
+
+curl -O https://github.com/kubernetes/helm/archive/v2.7.2.tar.gz
+
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+
+https://github.com/helm/helm/releases?after=v2.7.2
+https://github.com/helm/helm/releases?after=v.3.4.0
+
+wget https://github.com/kubernetes/helm/releases/download/v3.4.0/helm-v3.4.0-linux-amd64.tar.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+

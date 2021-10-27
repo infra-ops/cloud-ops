@@ -688,6 +688,8 @@ wget https://github.com/kubernetes/helm/releases/download/v3.4.0/helm-v3.4.0-lin
 apt install 
 
 
+https://github.com/vshn/ansible-dynamic-inventory-ec2
+https://aws.amazon.com/blogs/apn/getting-started-with-ansible-and-dynamic-amazon-ec2-inventory-management/
 
 
 

@@ -10,3 +10,6 @@
       - name: Print helo
         debug:
           msg: "helo output: {{ helo.stdout }}"
+          
+      - name: Print mosh version
+        debug: "msg=helo: '{{ helo.stdout }}'"    

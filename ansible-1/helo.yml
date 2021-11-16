@@ -13,3 +13,9 @@
           
       - name: Print mosh version
         debug: "msg=helo: '{{ helo.stdout }}'"    
+      
+      - debug:
+        msg: "{{ instance.images[0].image_id }}"
+
+      - debug: var=instance.images[0].image_id
+

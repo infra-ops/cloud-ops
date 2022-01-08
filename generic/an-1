@@ -692,6 +692,16 @@ https://github.com/vshn/ansible-dynamic-inventory-ec2
 https://aws.amazon.com/blogs/apn/getting-started-with-ansible-and-dynamic-amazon-ec2-inventory-management/
 
 
+docker login
+
+docker build -t nik786/kib-lg -f logtrail-kibana-v.0.1 .
+
+docker run --name kb-2 -d  nik786/kib-lg 
+
+docker exec -it kb-2 /bin/bash
+
+docker push nik786/kib-lg
+
 
 
 

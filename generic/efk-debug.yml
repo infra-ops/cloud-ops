@@ -1,0 +1,49 @@
+curl 10.233.120.28:9200
+curl 10.233.120.28:9200/_cat/indices
+curl 10.233.120.28:9200/_cluster/health
+
+
+curl  192.168.119.195:9200/_cat/indices
+curl  192.168.119.195:9200/_cat/indices| awk '{print $3}'
+curl  192.168.119.195:9200/_cat/indices| awk '$3 ~ /logstash-2018.10/ {print $3}'
+curl  192.168.119.195:9200/_cat/indices| awk '$3 ~ /logstash-2018.09/ {print $3}'
+kubectl describe cronjob -n logging
+curl  192.168.119.195:9200/_cat/indices| awk '$3 ~ /logstash-2018.09/ {print $3}'
+curl -s 192.168.119.195:9200/_cat/indices| awk '$3 ~ /logstash-2018.09/ {print $3}'
+for i in $(curl -s 192.168.119.195:9200/_cat/indices| awk '$3 ~ /logstash-2018.09/ {print $3}') do curl -X DELETE 192.168.119.195:9200/$i; done
+for i in $(curl -s 192.168.119.195:9200/_cat/indices| awk '$3 ~ /logstash-2018.09/ {print $3}'); do curl -X DELETE 192.168.119.195:9200/$i; done
+curl  192.168.119.195:9200/_cluster/health?pretty
+curl -kv 192.168.119.195:9200/_cat/indices
+
+
+
+curl  192.168.119.195:9200/_cat/indices
+curl  192.168.119.195:9200/_cluster/health
+curl  192.168.119.195:9200/_cluster/health?pretty
+kubectl logs --tail=10 -f po/elasticsearch-0 -n logging
+
+while true;      do curl -I http://192.168.119.208/index.html; sleep 0.25; done
+curl 192.168.119.195:9200/logstash-2018.10.27/_search
+curl 192.168.119.195:9200/logstash-2018.10.27/_search?pretty
+curl -X DELETE 192.168.119.195:9200/logstash-2018.10.27
+curl 192.168.119.195:9200/_cat/indices
+curl 192.168.119.195:9200/logstash-2018.10.27/_search?pretty
+while true;      do curl -I http://192.168.119.208; sleep 0.25; done
+while true;      do curl -I http://192.168.119.208/mydemo.html; sleep 0.25; done
+
+
+curl -X DELETE 192.168.119.195:9200/.kibana
+curl 192.168.119.195:9200/_cat/indices
+
+chown -R elasticsearch:root es-config/
+chmod -R 755 es-config/
+
+for i in {1..5};do ab -n 100 -c 2 http://10.233.58.133/;done
+
+
+#ab -n 1000 -c 2 http://10.233.68.224/
+#for i in {1..100};do curl http://10.233.119.203/;done
+
+
+
+

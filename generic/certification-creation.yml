@@ -1,0 +1,1148 @@
+docker run --name dev-jen -d  -p 8080:9090  -v /opt/apps/jen-data:/var/jenkins_home   zlid/jenkins-sudo
+
+etcdctl member list
+
+etcdctl cluster-health
+
+
+curl http://172.17.8.101:2379/version
+
+etcdctl snapshot save /var/lib/etcd_backup/database.db
+
+/opt/apps/cni/bin/calicoctl get ippool -o wide
+
+
+[kube-config-files]
+
+Kube-proxy-csr.conf
+Kubelet-csr.conf
+Controller-manager-csr.conf
+Apiserver-csr.conf
+Calico-controller-kubeconfig
+Kube-proxy-kubeconfig
+Kubeconfig
+
+
+:%le
+:g/^$/d
+:%s/\/srv\/kubernetes\//\/opt\/apps\/certs\/etcd-certs/ 
+:%s#/srv/kubernetes/#/opt/apps/certs/etcd-certs/
+
+
+[Certificate Creation for KUBE-API-SERVER]
+
+Generate Self Signed CA (Certificate Authority)
+  a) Generate a ca.key with 2048bit:
+     openssl genrsa -out ca.key 2048
+
+  b) According to the ca.key generate a ca.crt
+     openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
+ 
+2) Generate Certificate for API Server.
+
+  a) Generate a apiserver.key with 2048bit:
+     openssl genrsa -out apiserver.key 2048
+ 
+b) Create config file for generating Certificate Signing Request (CSR).
+
+
+cat apiserver-csr.conf
+ 
+[ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+  
+ [ dn ]
+ C = IN
+ ST = MAHARASHTRA
+ L = MUMBAI
+ O = Connector
+ OU = IT
+ CN = kube-apiserver
+  
+ [ req_ext ]
+ subjectAltName = @alt_names
+  
+ [ alt_names ]
+ DNS.1 = kubernetes
+ DNS.2 = kubernetes.default
+ DNS.3 = kubernetes.default.svc
+ DNS.4 = kubernetes.default.svc.cluster
+ DNS.5 = kubernetes.default.svc.cluster.local
+ IP.1 = 10.254.0.1
+ IP.2 = 172.17.8.101
+
+  
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=serverAuth
+ subjectAltName=@alt_names
+  
+
+
+Generate the certificate signing request(CSR) based on config file
+openssl req -new -key apiserver.key -out apiserver.csr -config apiserver-csr.conf
+  
+Generate the apiserver certificate using the ca.key, ca.crt and apiserver.csr:
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver.crt -days 10000 -extensions v3_ext -extfile apiserver-csr.conf
+
+
+2. 2nd we need to create certificate for Kube-control-Manager
+
+
+Kube-Control-Manager
+
+1 .  Generate ServiceAccount(SA) private and public keys.
+
+  a) Generate a sa.key with 2048 bit:
+      openssl genrsa -out sa.key 2048
+
+  b) Extract public key out of above generated sa.key
+      openssl rsa -in sa.key -pubout > sa.pub
+
+2. Generate Control-Manager client private and public keys.
+
+  a) Generate a controller-manager.key with 2048bit:
+      openssl genrsa -out controller-manager.key 2048
+  b) Create config file for generating Certificate Signing Request (CSR).
+  
+  
+cat controller-manager-csr.conf
+ 
+[ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+ [ dn ]
+ CN = system:kube-controller-manager
+ [ req_ext ]
+ [ alt_names ]
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth
+
+c) Generate the certificate signing request(CSR) based on config file.
+ openssl req -new -key controller-manager.key -out controller-manager.csr -config controller-manager-csr.conf
+ 
+d) Generate the controller-manager certificate using the ca.key, ca.crt and controller-manager-csr.conf:
+  openssl x509 -req -in controller-manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out controller-manager.crt -days 10000 -extensions v3_ext -extfile controller-manager-csr.conf
+
+ 
+ Certificate Creation For KUBE-SCHEDULER
+
+Generate Scheduler client private and public keys.
+      a) Generate a scheduler.key with 2048bit:
+      openssl genrsa -out scheduler.key 2048
+      b) Create config file for generating Certificate Signing Request (CSR)
+     
+ cat scheduler-csr.conf
+ 
+[ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+ [ dn ]
+ CN = system:kube-scheduler
+ [ req_ext ]
+ [ alt_names ]
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth
+ 
+ c) Generate the certificate signing request(CSR) based on config file
+    openssl req -new -key scheduler.key -out scheduler.csr -config scheduler-csr.conf
+ 
+ d) Generate the scheduler certificate using the ca.key, ca.crt and scheduler-csr.conf
+     openssl x509 -req -in scheduler.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out scheduler.crt -days 10000 -extensions v3_ext -extfile scheduler-csr.conf
+
+
+
+
+
+
+
+
+
+WORKER
+
+1.
+Certificate Creation For Kubelet
+
+1) Generate Kubelet client private and public keys.
+  
+a) Generate a kubelet.key with 2048bit:
+      openssl genrsa -out kubelet.key 2048
+ b) Create config file for generating Certificate Signing Request (CSR).
+
+cat kubelet-csr.conf
+
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+ [ dn ]
+ O = system:nodes
+ CN = system:node:172.17.9.102
+ [ req_ext ]
+ [ alt_names ]
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth
+
+  c) Generate the certificate signing request(CSR) based on config file.
+     openssl req -new -key kubelet.key -out kubelet.csr -config kubelet-csr.conf
+
+
+  d) Generate the kubelet certificate using the ca.key, ca.crt and kubelet-csr.conf:
+      openssl x509 -req -in kubelet.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kubelet.crt -days 10000 -extensions v3_ext -extfile kubelet-csr.conf
+ 
+
+
+
+
+
+#####################################################################
+
+
+2.
+
+Certificate Creation For KubeProxy
+
+openssl genrsa -out kube-proxy.key 2048
+
+Cat kube-proxy.conf
+
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+  
+ [ dn ]
+ O = system:node-proxier
+ CN = system:kube-proxy
+  
+ [ req_ext ]
+   
+ [ alt_names ]
+  
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth 
+
+
+
+openssl req -new -key kube-proxy.key -out kube-proxy.csr -config kube-proxy.conf
+
+
+openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kube-proxy.crt -days 10000 -extensions v3_ext -extfile kube-proxy.conf
+
+
+#####################
+
+
+
+
+
+
+
+
+Setting up “kubeconfig”
+Create base64 encoded string of CA certificate.
+
+ cat /etc/kubernetes/ssl/ca.crt  | base64 -w0
+Cat /opt/apps/certs/ssl/ca.crt | base64 -w0
+
+
+Insert Encoded string into the “kubeconfig” file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cat /opt/apps/bin/kubeconfig
+apiVersion: v1
+clusters:
+- cluster:
+	certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvVENDQWVXZ0F3SUJBZ0lKQUkvMk5RU0x1NXBLTUEwR0NTcUdTSWIzRFFFQkN3VUFNQlV4RXpBUkJnTlYKQkFNTUNtdDFZbVZ5Ym1WMFpYTXdIaGNOTVRnd05URTRNVEExTlRVeVdoY05ORFV4TURBek1UQTFOVFV5V2pBVgpNUk13RVFZRFZRUUREQXByZFdKbGNtNWxkR1Z6TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCCkNnS0NBUUVBdnFwaWFaa21pbWkxOWNyWCtPT2EybTk0S2VGU2NjN2d1UGFyNktFdTRzbW9TYUhqRkJVTHdOcWsKRGNYTkhzRG5QNUdHSmd6MGs4d3p5QWlxMXMrS3JnekJOT1hLTW1KNnpuM09XUFhheDJ1Y3pzaWdFRXdIbU5pSwp5QkQwUmxmRmZHZTcxcFVCSS94VSt2aGNnZ2g3M2dScVUrL0s5NDN5RFExLzlGSVpwWGViOU9EdWJEbUphaEpqCnhlWkVPOGphWlhSamQ1OVhxdE1UV2VLYVZHT1N1TVp3OWNJejg1dHQvbEk2NHdZNlhUOUc0STF0Y2hYdHBOa2cKU2xWOGJIdGFtbEFTem5Qc2VOZjBHUGMydnhqeFlnRzJvQXZXampCMU54L1JFY2dFeTJOdUpVOGNhbUIwVXBkVApQV2FDS3pNSnZQS1ZCQWwzOG9iZW10TTNLSXhmUVFJREFRQUJvMUF3VGpBZEJnTlZIUTRFRmdRVTFwbzdBb2tsCjRvWVFzcU9CbkhRU0hEdzE5c1l3SHdZRFZSMGpCQmd3Rm9BVTFwbzdBb2tsNG9ZUXNxT0JuSFFTSER3MTlzWXcKREFZRFZSMFRCQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFsd011SktXVWhsVGR3Rzc2WVRBNwo1eklEN2tZeUdwTEJXemFrSGtoMlVKQTBPU0ZuZnl3c25aeFZEQitZSURNMW1rYzY0YkMwZWs5cG8yR0hBRGN1CnRnNUVVdHlrcHZiVDJSQ3NrOG1PR3Y3QVdvSk5JWE1FWWRLWE4zMVZ6S1RFMzh3SG9DbHo4aEdYUk4yVzJqSE8KSjdWYTdBQjVtcUN4N280OGFlRHBkTWlpdWtHZG9ncS9wc0cycnkzQk9vNkhIREFxWWRRam5MN290Nmg3ZlBDTAplR1lnd1ZNSjdyV2tTcCtud3ZFcG5LYWJ1WjBCQ1FPSG94ZlR6aHBkaGc3dE1JY3gvVWdlMWhWUUszdjFNOG4vCmJEb0x4VTNpOTJZSXJqbGNrR1VYSW5iZWpXUzZFRU5FemRTQmlpMko0MGNxaWZaaDVGNHpHNXhvbFdCclBnekoKNWc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+	server: https://10.24.68.5:6443
+  name: kubernetes
+contexts:
+- context:
+	cluster: kubernetes
+	user: system:node:10.24.68.6
+	namespace: default
+  name: system:node:10.24.68.6@kubernetes
+current-context: system:node:10.24.68.6@kubernetes
+kind: Config
+preferences: {}
+users:
+- name: system:node:10.24.68.6
+  user:
+	client-certificate: /etc/kubernetes/ssl/kubelet.crt
+	client-key: /etc/kubernetes/ssl/kubelet.key
+
+##################################################
+
+
+
+
+
+Setting up “kube-proxy-kubeconfig”
+Create base64 encoded string of CA certificate.
+
+cat /etc/kubernetes/ssl/ca.crt  | base64 -w0
+
+Insert Encoded string into the “kube-proxy-kubeconfig” file.
+
+cat /etc/kubernetes/kube-proxy-kubeconfig
+apiVersion: v1
+clusters:
+- cluster:
+	certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvVENDQWVXZ0F3SUJBZ0lKQUkvMk5RU0x1NXBLTUEwR0NTcUdTSWIzRFFFQkN3VUFNQlV4RXpBUkJnTlYKQkFNTUNtdDFZbVZ5Ym1WMFpYTXdIaGNOTVRnd05URTRNVEExTlRVeVdoY05ORFV4TURBek1UQTFOVFV5V2pBVgpNUk13RVFZRFZRUUREQXByZFdKbGNtNWxkR1Z6TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCCkNnS0NBUUVBdnFwaWFaa21pbWkxOWNyWCtPT2EybTk0S2VGU2NjN2d1UGFyNktFdTRzbW9TYUhqRkJVTHdOcWsKRGNYTkhzRG5QNUdHSmd6MGs4d3p5QWlxMXMrS3JnekJOT1hLTW1KNnpuM09XUFhheDJ1Y3pzaWdFRXdIbU5pSwp5QkQwUmxmRmZHZTcxcFVCSS94VSt2aGNnZ2g3M2dScVUrL0s5NDN5RFExLzlGSVpwWGViOU9EdWJEbUphaEpqCnhlWkVPOGphWlhSamQ1OVhxdE1UV2VLYVZHT1N1TVp3OWNJejg1dHQvbEk2NHdZNlhUOUc0STF0Y2hYdHBOa2cKU2xWOGJIdGFtbEFTem5Qc2VOZjBHUGMydnhqeFlnRzJvQXZXampCMU54L1JFY2dFeTJOdUpVOGNhbUIwVXBkVApQV2FDS3pNSnZQS1ZCQWwzOG9iZW10TTNLSXhmUVFJREFRQUJvMUF3VGpBZEJnTlZIUTRFRmdRVTFwbzdBb2tsCjRvWVFzcU9CbkhRU0hEdzE5c1l3SHdZRFZSMGpCQmd3Rm9BVTFwbzdBb2tsNG9ZUXNxT0JuSFFTSER3MTlzWXcKREFZRFZSMFRCQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFsd011SktXVWhsVGR3Rzc2WVRBNwo1eklEN2tZeUdwTEJXemFrSGtoMlVKQTBPU0ZuZnl3c25aeFZEQitZSURNMW1rYzY0YkMwZWs5cG8yR0hBRGN1CnRnNUVVdHlrcHZiVDJSQ3NrOG1PR3Y3QVdvSk5JWE1FWWRLWE4zMVZ6S1RFMzh3SG9DbHo4aEdYUk4yVzJqSE8KSjdWYTdBQjVtcUN4N280OGFlRHBkTWlpdWtHZG9ncS9wc0cycnkzQk9vNkhIREFxWWRRam5MN290Nmg3ZlBDTAplR1lnd1ZNSjdyV2tTcCtud3ZFcG5LYWJ1WjBCQ1FPSG94ZlR6aHBkaGc3dE1JY3gvVWdlMWhWUUszdjFNOG4vCmJEb0x4VTNpOTJZSXJqbGNrR1VYSW5iZWpXUzZFRU5FemRTQmlpMko0MGNxaWZaaDVGNHpHNXhvbFdCclBnekoKNWc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+	server: https://10.24.68.5:6443
+  name: kubernetes
+contexts:
+- context:
+	cluster: kubernetes
+	user: system:kube-proxy
+	namespace: default
+  name: system:kube-proxy@kubernetes
+current-context: system:kube-proxy@kubernetes
+kind: Config
+preferences: {}
+users:
+- name: system:kube-proxy
+  user:
+	client-certificate: /etc/kubernetes/ssl/kube-proxy.crt
+	client-key: /etc/kubernetes/ssl/kube-proxy.key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+Certification creation for kubectl  to access kube-cluster from outside
+10) Generate Kubectl client private and public keys.
+
+[Kube Controller]
+
+It will be done kube controller master node
+
+Generate a ca.key with 2048bit:
+  openssl genrsa -out ca.key 2048
+
+b) According to the ca.key generate a ca.crt
+      openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
+
+ a) Generate a kubectl.key with 2048 bit:
+      openssl genrsa -out kubectl.key 2048
+  
+b) Create config file for generating Certificate Signing Request (CSR).
+    cat kubectl-csr.conf
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+ [ dn ]
+ O = system:masters
+ CN = kubernetes-admin
+ [ req_ext ]
+ [ alt_names ]
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth
+
+  c) Generate the certificate signing request(CSR) based on config file.
+     openssl req -new -key kubectl.key -out kubectl.csr -config kubectl-csr.conf
+
+  d) Generate the kubectl certificate using the ca.key, ca.crt and kubectl-csr.conf:
+      openssl x509 -req -in kubectl.csr -CA  ca.crt -CAkey ca.key -CAcreateserial -out kubectl.crt -days 10000 -extensions v3_ext -extfile kubectl-csr.conf
+
+
+ #############
+[Local Laptop]
+
+
+It will be done on local laptop node
+
+
+kubectl config set-cluster cluster1 --server=https://172.17.8.101:6443 --certificate-authority=ca.crt --embed-certs=true
+
+kubectl config set-credentials cluster1-admin --client-certificate=kubectl.crt --client-key=kubectl.key --embed-certs=true
+kubectl config view
+
+kubectl config set-context cluster1-context --cluster=cluster1 --user=cluster1-admin
+
+kubectl config use-context cluster1-context
+
+###IT will be done on master node ###
+kubectl config view --raw  > cluster1.kubeconfig
+
+
+
+
+
+
+kubectl config set-cluster cluster1 --insecure-skip-tls-verify=true \
+--server=https://172.17.8.101:6443
+
+kubectl config set-cluster cluster1 -insecure-skip-tls-verify=true \
+--server=https://192.168.56.145:6443
+
+
+
+kubectl config use-context cluster1-context
+kubectl config get-contexts
+kubectl config use-context cluster1-context
+kubectl config get-contexts
+kubectl config use-context admin@cluster2
+
+Local Laptop
+
+Export  KUBECONFIG=cluster1.kubeconfig 
+
+
+apt-get install libsox-fmt-mp3
+https://mp3cutter.toolur.com/
+
+
+
+Generate Worker client private and public keys.
+  a) Generate a worker.key with 2048bit:
+      openssl genrsa -out worker.key 2048
+  b) Create config file for generating Certificate Signing Request (CSR).
+      cat worker-csr.conf
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+ [ dn ]
+ O = system:nodes
+ CN = system:node:vm-011
+ [ req_ext ]
+ [ alt_names ]
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth
+ 
+c) Generate the certificate signing request(CSR) based on config file.
+    openssl req -new -key worker.key -out worker.csr -config worker-csr.conf
+ 
+ d) Generate the worker certificate using the ca.key, ca.crt and worker-csr.conf:
+      openssl x509 -req -in worker.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out worker.crt -days 10000 -extensions v3_ext -extfile worker-csr.conf
+
+
+
+Commands to access it
+
+CERTIFICATION CREATION FOR ETCD
+https://www.syshunt.com/kubernetes-secure-etcd-data-store-cluster-with-tls-certificate-configuration/
+
+https://github.com/etcd-io/etcd/releases?after=v3.3.7
+https://github.com/containernetworking/cni/releases
+curl -O https://storage.googleapis.com/kubernetes-release/release/v1.8.4/bin/linux/amd64/kubectl
+
+
+
+
+Etcd-v3.1.17-linux-amd64.tar.gz
+
+
+
+
+a) Generate a ca.key with 2048bit:
+       openssl genrsa -out ca.key 2048
+
+  b) According to the ca.key generate a ca.crt
+      openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
+
+Generate Certificate for API Server.
+a) Generate a kubernetes.key with 2048bit:
+
+
+
+openssl genrsa -out kubernetes.key 2048
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cat kubernetes-csr.conf
+[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[ ssl_client ]
+extendedKeyUsage = clientAuth, serverAuth
+basicConstraints = CA:FALSE
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid,issuer
+subjectAltName = @alt_names
+
+[ v3_ca ]
+basicConstraints = CA:TRUE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+authorityKeyIdentifier=keyid:always,issuer
+
+[alt_names]
+DNS.1 = localhost
+DNS.2 = etcd-01
+IP.1 = 192.168.43.45
+IP.2 = 127.0.0.1
+
+
+Generate the certificate signing request(CSR) based on config file
+openssl req -new -key kubernetes.key -out kubernetes.csr -config kubernetes-csr.conf
+
+
+ Generate the kubernetes certificate using the ca.key, ca.crt and kubernetes-csr.conf:
+openssl x509 -req -in kubernetes.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kubernetes.key -days 10000 -extensions v3_ext -extfile kubernetes-csr.conf
+
+
+
+
+curl --cacert /opt/apps/certs/ssl/ca.crt --cert /opt/apps/certs/ssl/etcd-client.crt --key /opt/apps/certs/ssl/etcd-client.key https://192.168.10.121:2379/version
+
+
+
+
+
+
+
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$k8sversion/bin/darwin/amd64/kubectl
+
+
+
+chmod +x ./kubectl
+
+
+
+Mv kubectl /usr/local/bin/kubectl
+
+
+
+
+ export KUBECONFIG=/home/controller/Desktop/controller-repo/kube-cluster/cluster-hub/cluster2.kubeconfig:/home/controller/Desktop/controller-repo/kube-cluster/cluster-hub/cluster1.kubeconfig
+
+
+
+
+
+Certificate creation for etcd
+
+openssl genrsa -out etcd-client.key 2048
+
+cat etcd-client-csr.conf 
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+ [ dn ]
+ C = IN
+ ST = MAHARASHTRA
+ L = MUMBAI
+ O = Connector
+ OU = IT
+ CN = kubernetes
+ [ req_ext ]
+ subjectAltName = @alt_names
+ [ alt_names ]
+ DNS.1 = kubernetes
+ DNS.2 = kubernetes.default
+ DNS.3 = kubernetes.default.svc
+ DNS.4 = kubernetes.default.svc.cluster
+ DNS.5 = kubernetes.default.svc.cluster.local
+ DNS.6 = kubc
+ IP.1 = 192.168.10.121
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth,serverAuth
+ subjectAltName=@alt_names
+
+
+
+
+openssl req -new -key etcd-client.key -out etcd-client.csr -config etcd-client-csr.conf
+
+ openssl x509 -req -in etcd-client.csr -CA  ca.crt -CAkey ca.key -CAcreateserial -out etcd-client.crt -days 10000 -extensions v3_ext -extfile etcd-client-csr.conf 
+
+
+
+
+
+
+
+
+
+cat /etc/systemd/system/etcd.service 
+[Unit]
+Description=Kubernetes etcd Service Manager
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+
+[Service]
+ExecStart=/opt/apps/etcd/etcd --name infra0 --initial-advertise-peer-urls https://192.168.10.121:2380 \
+  --cert-file=/opt/apps/certs/ssl/etcd-client.crt \
+  --key-file=/opt/apps/certs/ssl/etcd-client.key \
+  --peer-cert-file=/opt/apps/certs/ssl/kubernetes.crt \
+  --peer-key-file=/opt/apps/certs/ssl/kubernetes.key \
+  --trusted-ca-file=/opt/apps/certs/ssl/ca.crt \
+  --peer-trusted-ca-file=/opt/apps/certs/ssl/ca.crt \
+  --peer-client-cert-auth \
+  --client-cert-auth \
+  --listen-peer-urls https://192.168.10.121:2380 \
+  --listen-client-urls https://192.168.10.121:2379,https://127.0.0.1:2379 \
+  --advertise-client-urls https://192.168.10.121:2379 \
+  --initial-cluster-token etcd-cluster-1 \
+  --initial-cluster infra0=https://192.168.10.121:2380 \
+  --data-dir /opt/apps/etcd-data/infra0.etcd \
+  --initial-cluster-state new
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+grep -rl   ‘worker-1’  ./ | xargs sed -i 's/worker-1/kworker-1/g'
+
+grep -rl worker-1 . | xargs sed -i 's/worker-1/kworker-1/g'
+
+
+mkdir -p /opt/apacheData/logs
+
+for i in {1..10};do ab -n 100 -c 2 https://10.233.75.226;done
+
+ab -n 1000 -c 2 http://10.233.75.226/
+ab -n 1000 -c 2 http://10.233.68.234/
+
+
+cat ../../config/config.yml 
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+api:
+  advertiseAddress: 192.168.10.121
+etcd:
+  endpoints:
+  - https://192.168.10.121:2379
+  
+  caFile: /opt/apps/certs/ssl/ca.crt
+  certFile: /opt/apps/certs/ssl/etcd-client.crt
+  keyFile:  /opt/apps/certs/ssl/etcd-client.key
+networking:
+  podSubnet: 10.30.0.0/24
+apiServerCertSANs:
+- 192.168.10.121
+apiServerExtraArgs:
+  apiserver-count: "3"
+
+
+
+
+
+curl 10.233.68.196:9200/_cat/indices
+curl 10.233.68.197
+for i in {1..10};do ab -n 100 -c 2 https://10.233.75.226;done
+ab -n 1000 -c 2 http://10.233.68.224/
+for i in {1..1000};do curl http://10.233.119.203/;done
+curl 10.233.68.196:9200/_cat/indices
+
+
+
+
+
+https://coderwall.com/p/ghbzhw/vagrantfile-set-memory-and-cpu
+
+https://www.ansible.com/hubfs/2018_Content/Terraform%20Module_%20An%20Undiscovered%20Country.pdf
+
+
+
+
+<role rolename="manager-gui" />
+<user username="manager" password="iis123" roles="manager-gui" />
+
+<!-- user admin can access manager and admin section both -->
+<role rolename="admin-gui" />
+<user username="admin" password="iis123" roles="manager-gui,admin-gui" />
+
+
+
+exportfs -a
+
+
+vim webapps/manager/META-INF/context.xml
+
+<!--
+
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+  
+-->
+
+
+
+./webapps/manager/META-INF/context.xml
+./webapps/host-manager/META-INF/context.xml
+./conf/context.xml
+
+
+https://geekflare.com/tomcat-login-problem/
+https://www.mkyong.com/spring-boot/spring-boot-hello-world-example-jsp/
+https://www.linuxbabe.com/ubuntu/nfs-share
+https://github.com/gregbkr/kubernetes-kargo-logging-monitoring/blob/master/README.md
+https://websiteforstudents.com/setup-nfs-mounts-on-ubuntu-16-04-lts-servers-for-client-computers-to-access/
+
+
+
+systemctl restart nfs-kernel-server
+exportfs -a
+
+groupadd docker
+sudo usermod -aG docker $USER
+https://github.com/jenkinsci/docker-build-publish-plugin
+
+https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4) Create Seperate CA for front-proxy.
+  a) Generate a front-proxy-ca.key with 2048bit:
+      openssl genrsa -out front-proxy-ca.key 2048
+
+  b) According to the front-proxy-ca.key generate a front-proxy-ca.crt
+      openssl req -x509 -new -nodes -key front-proxy-ca.key -subj "/CN=kubernetes" -days 10000 -out front-proxy-ca.crt
+  
+5) Generate new front-proxy-client certificate using front-proxy CA.
+  a) Generate a front-proxy-client.key with 2048bit:
+     openssl genrsa -out front-proxy-client.key 2048
+  
+b) Create config file for generating Certificate Signing Request (CSR).
+cat front-proxy-client.conf
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+  
+ [ dn ]
+ C = IN
+ ST = MAHARASHTRA
+ L = MUMBAI
+ O = Netmagic Pvt Ltd.
+ OU = IT
+ CN = front-proxy-client
+  
+ [ req_ext ]
+   
+ [ alt_names ]
+  
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth 
+
+
+
+
+  c) Generate the certificate signing request(CSR) based on config file.
+      openssl req -new -key front-proxy-client.key -out front-proxy-client.csr -config front-proxy-client.conf
+
+  d) Generate the front-proxy-client certificate using the front-proxy-ca.key, front-proxy-ca.crt and front-proxy-client.csr:
+openssl x509 -req -in front-proxy-client.csr -CA front-proxy-ca.crt -CAkey front-proxy-ca.key -CAcreateserial -out front-proxy-client.crt -days 10000 -extensions v3_ext -extfile front-proxy-client.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################################################
+
+
+
+
+THIS CERTIFICATE IS NOT REQUIRED FOR MANUAL AND KUBEADM
+
+3) Generate Certificate for Kubelet-Client
+
+  a) Generate a apiserver-kubelet-client.key with 2048bit:
+      openssl genrsa -out apiserver-kubelet-client.key 2048
+
+  b) Create config file for generating Certificate Signing Request (CSR).
+     cat apiserver-kubelet-client-csr.conf
+
+ [ req ]
+ default_bits = 2048
+ prompt = no
+ default_md = sha256
+ req_extensions = req_ext
+ distinguished_name = dn
+  
+ [ dn ]
+ C = IN
+ ST = MAHARASHTRA
+ L = MUMBAI
+ O = system:masters
+ OU = IT
+ CN = kube-apiserver-kubelet-client
+  
+ [ req_ext ]
+   
+ [ alt_names ]
+  
+ [ v3_ext ]
+ authorityKeyIdentifier=keyid,issuer:always
+ basicConstraints=CA:FALSE
+ keyUsage=keyEncipherment,dataEncipherment
+ extendedKeyUsage=clientAuth 
+ 
+CERTIFICATE FOR KUBELET
+
+ c) Generate the certificate signing request(CSR) based on config file.
+
+ openssl req -new -key apiserver-kubelet-client.key -out apiserver-kubelet-client.csr -config apiserver-kubelet-client-csr.conf
+
+  d) Generate the apiserver certificate using the ca.key, ca.crt and apiserver.csr:
+   openssl x509 -req -in apiserver-kubelet-client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver-kubelet-client.crt -days 10000 -extensions v3_ext -extfile apiserver-kubelet-client-csr.conf
+  
+
+######################################
+https://medium.com/@pkp.plus/kubernetes-etcd-data-store-cluster-with-tls-certificate-93cc13d1401a
+
+https://pcocc.readthedocs.io/en/latest/deps/etcd-production.html
+
+
+
+
+
+[kubeadm]
+
+Kubeadm token generate
+
+Kubeadm token create shdghsdfsdfy --ttl 2h --print-join-command
+
+kubeadm token list
+
+
+
+
+
+
+Certificate creation for ETCD (New)
+
+cat etcd-csr.conf 
+[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+[req_distinguished_name]
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = clientAuth,serverAuth
+subjectAltName = IP:$ENV::ETCD_IP, DNS:$ENV::ETCD_FQDN
+
+
+
+cat csr.sh 
+
+openssl \
+  req -new \
+  -key etcd.key \
+  -out etcd.csr \
+  -subj "/CN=$(hostname -s)" \
+  -extensions v3_req \
+  -config etcd-csr.conf \
+  -sha256
+
+
+
+cat sign.sh 
+openssl x509 -req -sha256 -CA ca.crt -CAkey ca.key -CAcreateserial \
+  -in etcd.csr -out etcd.crt -extensions v3_req -extfile etcd-csr.conf -days 7200
+
+
+
+
+
+
+
+
+ETCD BACKUP
+
+ETCDCTL_API=3 /opt/apps/etcd/etcdctl   snapshot save snapshot.db  \
+--cacert   /opt/apps/certs/etcd-certs/etcd.crt  \
+--cert     /opt/apps/certs/etcd-certs/ca.crt \
+--key    /opt/apps/certs/etcd-certs/ca.key
+
+
+
+Mkdir etcd-data-back
+ Cd etcd-data-back
+
+ETCDCTL_API=3 /opt/apps/etcd/etcdctl   snapshot save snapshot.db
+
+ETCDCTL_API=3 /opt/apps/etcd/etcdctl  --write-out=table snapshot status snapshot.db
+
+
+
+ETCDCTL_API=3  /opt/apps/etcd/etcdctl  snapshot restore /opt/apps/etcd-data-back/snapshot.db \
+  --data-dir /opt/apps/etcd-data \
+  --name infra0 \
+  --initial-cluster  infra0=http://172.17.8.101:2380,infra1=http://172.17.8.102:2380  \
+ --initial-cluster-token etcd-cluster-1  \
+ --initial-advertise-peer-urls http://172.17.8.101:2380 \
+ --skip-hash-check=true
+
+
+
+
+curl -s -k -u nik:iis123 "http://localhost:8085/job/war-deploy-1/lastBuild/consoleText"  | tail -n 50 | sed -n '/upload/p' | egrep -o mavenproject1-1.0-SNAPSHOT.*war | cut -d " " -f1
+
+
+
+curl --silent -u nik:iis123 "http://localhost:8085/job/war-deploy-1/lastBuild/consoleText" | grep -i Building  | awk -F "/"  '{print $NF}' | awk 'END { print }'`
+
+
+#war1=`ls -lrt /var/lib/jenkins/workspace/war-deploy-1/target/ | grep -i .war | awk '{print $NF}'`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

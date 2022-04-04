@@ -58,3 +58,27 @@ def check_url():
 check_url()
 
 
+sysctl -w vm.max_map_count=262144
+
+kubectl exec -it es-cluster-0 elasticserch /bin/sh
+kubectl logs es-cluster-0 -c elasticsearch
+kubectl logs es-cluster-0 -c /usr/share/elasticsearch/logs/k8s-logs.log
+
+
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+

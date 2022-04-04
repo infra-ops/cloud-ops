@@ -32,16 +32,16 @@ Kubeconfig
 [Certificate Creation for KUBE-API-SERVER]
 
 Generate Self Signed CA (Certificate Authority)
-  a) Generate a ca.key with 2048bit:
-     openssl genrsa -out ca.key 2048
+a) Generate a ca.key with 2048bit:
+openssl genrsa -out ca.key 2048
 
-  b) According to the ca.key generate a ca.crt
-     openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
+b) According to the ca.key generate a ca.crt
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
  
 2) Generate Certificate for API Server.
 
-  a) Generate a apiserver.key with 2048bit:
-     openssl genrsa -out apiserver.key 2048
+a) Generate a apiserver.key with 2048bit:
+   openssl genrsa -out apiserver.key 2048
  
 b) Create config file for generating Certificate Signing Request (CSR).
 
@@ -89,7 +89,8 @@ Generate the certificate signing request(CSR) based on config file
 openssl req -new -key apiserver.key -out apiserver.csr -config apiserver-csr.conf
   
 Generate the apiserver certificate using the ca.key, ca.crt and apiserver.csr:
-openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver.crt -days 10000 -extensions v3_ext -extfile apiserver-csr.conf
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver.crt 
+-days 10000 -extensions v3_ext -extfile apiserver-csr.conf
 
 
 2. 2nd we need to create certificate for Kube-control-Manager
@@ -97,19 +98,19 @@ openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -CAcreateserial -ou
 
 Kube-Control-Manager
 
-1 .  Generate ServiceAccount(SA) private and public keys.
+1.Generate ServiceAccount(SA) private and public keys.
 
-  a) Generate a sa.key with 2048 bit:
-      openssl genrsa -out sa.key 2048
+a) Generate a sa.key with 2048 bit:
+openssl genrsa -out sa.key 2048
 
-  b) Extract public key out of above generated sa.key
-      openssl rsa -in sa.key -pubout > sa.pub
+b) Extract public key out of above generated sa.key
+openssl rsa -in sa.key -pubout > sa.pub
 
 2. Generate Control-Manager client private and public keys.
+a) Generate a controller-manager.key with 2048bit:
+openssl genrsa -out controller-manager.key 2048
 
-  a) Generate a controller-manager.key with 2048bit:
-      openssl genrsa -out controller-manager.key 2048
-  b) Create config file for generating Certificate Signing Request (CSR).
+b) Create config file for generating Certificate Signing Request (CSR).
   
   
 cat controller-manager-csr.conf
@@ -134,15 +135,17 @@ c) Generate the certificate signing request(CSR) based on config file.
  openssl req -new -key controller-manager.key -out controller-manager.csr -config controller-manager-csr.conf
  
 d) Generate the controller-manager certificate using the ca.key, ca.crt and controller-manager-csr.conf:
-  openssl x509 -req -in controller-manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out controller-manager.crt -days 10000 -extensions v3_ext -extfile controller-manager-csr.conf
+  openssl x509 -req -in controller-manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial 
+  -out controller-manager.crt -days 10000 -extensions v3_ext -extfile controller-manager-csr.conf
 
  
  Certificate Creation For KUBE-SCHEDULER
 
 Generate Scheduler client private and public keys.
-      a) Generate a scheduler.key with 2048bit:
-      openssl genrsa -out scheduler.key 2048
-      b) Create config file for generating Certificate Signing Request (CSR)
+a) Generate a scheduler.key with 2048bit:
+openssl genrsa -out scheduler.key 2048
+
+b) Create config file for generating Certificate Signing Request (CSR)
      
  cat scheduler-csr.conf
  
@@ -162,11 +165,11 @@ Generate Scheduler client private and public keys.
  keyUsage=keyEncipherment,dataEncipherment
  extendedKeyUsage=clientAuth
  
- c) Generate the certificate signing request(CSR) based on config file
-    openssl req -new -key scheduler.key -out scheduler.csr -config scheduler-csr.conf
+c) Generate the certificate signing request(CSR) based on config file
+ openssl req -new -key scheduler.key -out scheduler.csr -config scheduler-csr.conf
  
- d) Generate the scheduler certificate using the ca.key, ca.crt and scheduler-csr.conf
-     openssl x509 -req -in scheduler.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out scheduler.crt -days 10000 -extensions v3_ext -extfile scheduler-csr.conf
+d) Generate the scheduler certificate using the ca.key, ca.crt and scheduler-csr.conf
+ openssl x509 -req -in scheduler.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out scheduler.crt -days 10000 -extensions v3_ext -extfile scheduler-csr.conf
 
 
 
@@ -184,8 +187,9 @@ Certificate Creation For Kubelet
 1) Generate Kubelet client private and public keys.
   
 a) Generate a kubelet.key with 2048bit:
-      openssl genrsa -out kubelet.key 2048
+    openssl genrsa -out kubelet.key 2048
  b) Create config file for generating Certificate Signing Request (CSR).
+
 
 cat kubelet-csr.conf
 
@@ -206,12 +210,13 @@ cat kubelet-csr.conf
  keyUsage=keyEncipherment,dataEncipherment
  extendedKeyUsage=clientAuth
 
-  c) Generate the certificate signing request(CSR) based on config file.
-     openssl req -new -key kubelet.key -out kubelet.csr -config kubelet-csr.conf
+c) Generate the certificate signing request(CSR) based on config file.
+ openssl req -new -key kubelet.key -out kubelet.csr -config kubelet-csr.conf
 
 
-  d) Generate the kubelet certificate using the ca.key, ca.crt and kubelet-csr.conf:
-      openssl x509 -req -in kubelet.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kubelet.crt -days 10000 -extensions v3_ext -extfile kubelet-csr.conf
+d) Generate the kubelet certificate using the ca.key, ca.crt and kubelet-csr.conf:
+ openssl x509 -req -in kubelet.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kubelet.crt
+ -days 10000 -extensions v3_ext -extfile kubelet-csr.conf
  
 
 
@@ -255,7 +260,8 @@ Cat kube-proxy.conf
 openssl req -new -key kube-proxy.key -out kube-proxy.csr -config kube-proxy.conf
 
 
-openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kube-proxy.crt -days 10000 -extensions v3_ext -extfile kube-proxy.conf
+openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out 
+kube-proxy.crt -days 10000 -extensions v3_ext -extfile kube-proxy.conf
 
 
 #####################
@@ -270,42 +276,11 @@ openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial -o
 Setting up “kubeconfig”
 Create base64 encoded string of CA certificate.
 
- cat /etc/kubernetes/ssl/ca.crt  | base64 -w0
-Cat /opt/apps/certs/ssl/ca.crt | base64 -w0
+cat /etc/kubernetes/ssl/ca.crt  | base64 -w0
+cat /opt/apps/certs/ssl/ca.crt | base64 -w0
 
 
 Insert Encoded string into the “kubeconfig” file.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 cat /opt/apps/bin/kubeconfig
 apiVersion: v1
@@ -330,10 +305,6 @@ users:
 	client-key: /etc/kubernetes/ssl/kubelet.key
 
 ##################################################
-
-
-
-
 
 Setting up “kube-proxy-kubeconfig”
 Create base64 encoded string of CA certificate.
@@ -365,43 +336,6 @@ users:
 	client-key: /etc/kubernetes/ssl/kube-proxy.key
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
 Certification creation for kubectl  to access kube-cluster from outside
 10) Generate Kubectl client private and public keys.
 
@@ -410,16 +344,17 @@ Certification creation for kubectl  to access kube-cluster from outside
 It will be done kube controller master node
 
 Generate a ca.key with 2048bit:
-  openssl genrsa -out ca.key 2048
+openssl genrsa -out ca.key 2048
 
 b) According to the ca.key generate a ca.crt
-      openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
 
- a) Generate a kubectl.key with 2048 bit:
-      openssl genrsa -out kubectl.key 2048
+a) Generate a kubectl.key with 2048 bit:
+openssl genrsa -out kubectl.key 2048
   
 b) Create config file for generating Certificate Signing Request (CSR).
-    cat kubectl-csr.conf
+ 
+ cat kubectl-csr.conf
  [ req ]
  default_bits = 2048
  prompt = no
@@ -437,11 +372,12 @@ b) Create config file for generating Certificate Signing Request (CSR).
  keyUsage=keyEncipherment,dataEncipherment
  extendedKeyUsage=clientAuth
 
-  c) Generate the certificate signing request(CSR) based on config file.
-     openssl req -new -key kubectl.key -out kubectl.csr -config kubectl-csr.conf
+ c) Generate the certificate signing request(CSR) based on config file.
+    openssl req -new -key kubectl.key -out kubectl.csr -config kubectl-csr.conf
 
-  d) Generate the kubectl certificate using the ca.key, ca.crt and kubectl-csr.conf:
-      openssl x509 -req -in kubectl.csr -CA  ca.crt -CAkey ca.key -CAcreateserial -out kubectl.crt -days 10000 -extensions v3_ext -extfile kubectl-csr.conf
+d) Generate the kubectl certificate using the ca.key, ca.crt and kubectl-csr.conf:
+   openssl x509 -req -in kubectl.csr -CA  ca.crt -CAkey ca.key -CAcreateserial -out 
+   kubectl.crt -days 10000 -extensions v3_ext -extfile kubectl-csr.conf
 
 
  #############
@@ -493,10 +429,11 @@ https://mp3cutter.toolur.com/
 
 
 Generate Worker client private and public keys.
-  a) Generate a worker.key with 2048bit:
-      openssl genrsa -out worker.key 2048
-  b) Create config file for generating Certificate Signing Request (CSR).
-      cat worker-csr.conf
+a) Generate a worker.key with 2048bit:
+openssl genrsa -out worker.key 2048
+
+b) Create config file for generating Certificate Signing Request (CSR).
+cat worker-csr.conf
  [ req ]
  default_bits = 2048
  prompt = no
@@ -515,10 +452,10 @@ Generate Worker client private and public keys.
  extendedKeyUsage=clientAuth
  
 c) Generate the certificate signing request(CSR) based on config file.
-    openssl req -new -key worker.key -out worker.csr -config worker-csr.conf
+openssl req -new -key worker.key -out worker.csr -config worker-csr.conf
  
  d) Generate the worker certificate using the ca.key, ca.crt and worker-csr.conf:
-      openssl x509 -req -in worker.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out worker.crt -days 10000 -extensions v3_ext -extfile worker-csr.conf
+ openssl x509 -req -in worker.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out worker.crt -days 10000 -extensions v3_ext -extfile worker-csr.conf
 
 
 
@@ -538,33 +475,16 @@ Etcd-v3.1.17-linux-amd64.tar.gz
 
 
 
-
 a) Generate a ca.key with 2048bit:
-       openssl genrsa -out ca.key 2048
+openssl genrsa -out ca.key 2048
 
-  b) According to the ca.key generate a ca.crt
-      openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
+b) According to the ca.key generate a ca.crt
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=kubernetes" -days 10000 -out ca.crt
 
 Generate Certificate for API Server.
+
 a) Generate a kubernetes.key with 2048bit:
-
-
-
 openssl genrsa -out kubernetes.key 2048
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 cat kubernetes-csr.conf
@@ -602,51 +522,32 @@ IP.2 = 127.0.0.1
 Generate the certificate signing request(CSR) based on config file
 openssl req -new -key kubernetes.key -out kubernetes.csr -config kubernetes-csr.conf
 
+Generate the kubernetes certificate using the ca.key, ca.crt and kubernetes-csr.conf:
+openssl x509 -req -in kubernetes.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out 
+kubernetes.key -days 10000 -extensions v3_ext -extfile kubernetes-csr.conf
 
- Generate the kubernetes certificate using the ca.key, ca.crt and kubernetes-csr.conf:
-openssl x509 -req -in kubernetes.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kubernetes.key -days 10000 -extensions v3_ext -extfile kubernetes-csr.conf
-
-
-
-
-curl --cacert /opt/apps/certs/ssl/ca.crt --cert /opt/apps/certs/ssl/etcd-client.crt --key /opt/apps/certs/ssl/etcd-client.key https://192.168.10.121:2379/version
-
-
-
-
-
-
+curl --cacert /opt/apps/certs/ssl/ca.crt --cert /opt/apps/certs/ssl/etcd-client.crt
+--key /opt/apps/certs/ssl/etcd-client.key https://192.168.10.121:2379/version
 
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$k8sversion/bin/darwin/amd64/kubectl
 
 
-
 chmod +x ./kubectl
-
-
-
 Mv kubectl /usr/local/bin/kubectl
 
-
-
-
- export KUBECONFIG=/home/controller/Desktop/controller-repo/kube-cluster/cluster-hub/cluster2.kubeconfig:/home/controller/Desktop/controller-repo/kube-cluster/cluster-hub/cluster1.kubeconfig
-
-
-
-
+export KUBECONFIG=/home/controller/Desktop/controller-repo/kube-cluster/cluster-hub/cluster2.kubeconfig:
+/home/controller/Desktop/controller-repo/kube-cluster/cluster-hub/cluster1.kubeconfig
 
 Certificate creation for etcd
-
 openssl genrsa -out etcd-client.key 2048
 
 cat etcd-client-csr.conf 
- [ req ]
- default_bits = 2048
- prompt = no
- default_md = sha256
- req_extensions = req_ext
- distinguished_name = dn
+[ req ]
+default_bits = 2048
+prompt = no
+default_md = sha256
+req_extensions = req_ext
+distinguished_name = dn
  [ dn ]
  C = IN
  ST = MAHARASHTRA
@@ -672,17 +573,10 @@ cat etcd-client-csr.conf
  subjectAltName=@alt_names
 
 
-
-
 openssl req -new -key etcd-client.key -out etcd-client.csr -config etcd-client-csr.conf
 
- openssl x509 -req -in etcd-client.csr -CA  ca.crt -CAkey ca.key -CAcreateserial -out etcd-client.crt -days 10000 -extensions v3_ext -extfile etcd-client-csr.conf 
-
-
-
-
-
-
+openssl x509 -req -in etcd-client.csr -CA  ca.crt -CAkey ca.key -CAcreateserial 
+-out etcd-client.crt -days 10000 -extensions v3_ext -extfile etcd-client-csr.conf 
 
 
 
@@ -819,44 +713,16 @@ https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deplo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 4) Create Seperate CA for front-proxy.
-  a) Generate a front-proxy-ca.key with 2048bit:
-      openssl genrsa -out front-proxy-ca.key 2048
+a) Generate a front-proxy-ca.key with 2048bit:
+openssl genrsa -out front-proxy-ca.key 2048
 
-  b) According to the front-proxy-ca.key generate a front-proxy-ca.crt
-      openssl req -x509 -new -nodes -key front-proxy-ca.key -subj "/CN=kubernetes" -days 10000 -out front-proxy-ca.crt
+b) According to the front-proxy-ca.key generate a front-proxy-ca.crt
+openssl req -x509 -new -nodes -key front-proxy-ca.key -subj "/CN=kubernetes" -days 10000 -out front-proxy-ca.crt
   
 5) Generate new front-proxy-client certificate using front-proxy CA.
-  a) Generate a front-proxy-client.key with 2048bit:
-     openssl genrsa -out front-proxy-client.key 2048
+a) Generate a front-proxy-client.key with 2048bit:
+openssl genrsa -out front-proxy-client.key 2048
   
 b) Create config file for generating Certificate Signing Request (CSR).
 cat front-proxy-client.conf
@@ -887,29 +753,13 @@ cat front-proxy-client.conf
 
 
 
+c) Generate the certificate signing request(CSR) based on config file.
+ openssl req -new -key front-proxy-client.key -out front-proxy-client.csr -config front-proxy-client.conf
 
-  c) Generate the certificate signing request(CSR) based on config file.
-      openssl req -new -key front-proxy-client.key -out front-proxy-client.csr -config front-proxy-client.conf
-
-  d) Generate the front-proxy-client certificate using the front-proxy-ca.key, front-proxy-ca.crt and front-proxy-client.csr:
-openssl x509 -req -in front-proxy-client.csr -CA front-proxy-ca.crt -CAkey front-proxy-ca.key -CAcreateserial -out front-proxy-client.crt -days 10000 -extensions v3_ext -extfile front-proxy-client.conf
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+d) Generate the front-proxy-client certificate using the front-proxy-ca.key, front-proxy-ca.crt and front-proxy-client.csr:
+openssl x509 -req -in front-proxy-client.csr -CA front-proxy-ca.crt -CAkey 
+front-proxy-ca.key -CAcreateserial -out front-proxy-client.crt -days 10000 
+-extensions v3_ext -extfile front-proxy-client.conf
 
 
 
@@ -923,17 +773,15 @@ openssl x509 -req -in front-proxy-client.csr -CA front-proxy-ca.crt -CAkey front
 #################################################
 
 
-
-
 THIS CERTIFICATE IS NOT REQUIRED FOR MANUAL AND KUBEADM
 
 3) Generate Certificate for Kubelet-Client
 
-  a) Generate a apiserver-kubelet-client.key with 2048bit:
-      openssl genrsa -out apiserver-kubelet-client.key 2048
+a) Generate a apiserver-kubelet-client.key with 2048bit:
+openssl genrsa -out apiserver-kubelet-client.key 2048
 
-  b) Create config file for generating Certificate Signing Request (CSR).
-     cat apiserver-kubelet-client-csr.conf
+b) Create config file for generating Certificate Signing Request (CSR).
+cat apiserver-kubelet-client-csr.conf
 
  [ req ]
  default_bits = 2048
@@ -962,12 +810,11 @@ THIS CERTIFICATE IS NOT REQUIRED FOR MANUAL AND KUBEADM
  
 CERTIFICATE FOR KUBELET
 
- c) Generate the certificate signing request(CSR) based on config file.
+c) Generate the certificate signing request(CSR) based on config file.
+openssl req -new -key apiserver-kubelet-client.key -out apiserver-kubelet-client.csr -config apiserver-kubelet-client-csr.conf
 
- openssl req -new -key apiserver-kubelet-client.key -out apiserver-kubelet-client.csr -config apiserver-kubelet-client-csr.conf
-
-  d) Generate the apiserver certificate using the ca.key, ca.crt and apiserver.csr:
-   openssl x509 -req -in apiserver-kubelet-client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver-kubelet-client.crt -days 10000 -extensions v3_ext -extfile apiserver-kubelet-client-csr.conf
+d) Generate the apiserver certificate using the ca.key, ca.crt and apiserver.csr:
+openssl x509 -req -in apiserver-kubelet-client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver-kubelet-client.crt -days 10000 -extensions v3_ext -extfile apiserver-kubelet-client-csr.conf
   
 
 ######################################
@@ -980,16 +827,9 @@ https://pcocc.readthedocs.io/en/latest/deps/etcd-production.html
 
 
 [kubeadm]
-
 Kubeadm token generate
-
 Kubeadm token create shdghsdfsdfy --ttl 2h --print-join-command
-
 kubeadm token list
-
-
-
-
 
 
 Certificate creation for ETCD (New)

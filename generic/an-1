@@ -621,16 +621,22 @@ pip uninstall redis
 
 
 
-pip install -r kubespray/requirements.txt
-pip install netaddr
-pip install docker-py ruamel.yaml
-apt-get install docker.io -y
-swapoff -a
+
 
 apt-get update && apt-get install python3-netaddr python-netaddr libyaml-dev python-dev python-pip  wget curl net-tools telnet nmap  aufs-tools apt-transport-https software-properties-common openssl unzip ipvsadm python-httplib2 curl gnupg-agent 
 ca-certificates docker.io python3-distutils apt-transport-https python-docker
 
 pip install ruamel.yaml
+pip install -r kubespray/requirements.txt
+pip install netaddr
+pip install docker-py ruamel.yaml
+apt-get install docker.io -y
+swapoff -a
+apt install python3-pip
+
+apt-get install sshpass
+
+
 
 
 yum install gcc openssl-devel bzip2-devel libffi-devel -y

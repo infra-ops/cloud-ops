@@ -708,6 +708,12 @@ docker exec -it kb-2 /bin/bash
 
 docker push nik786/kib-lg
 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt
+openssl rsa -in privateKey.key -text > key.pem
+openssl x509 -inform PEM -in certificate.crt > cert.pem
+
+
+
 
 
 

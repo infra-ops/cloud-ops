@@ -74,7 +74,7 @@ apt-get install openjdk-8-jdk
 
 
 
-
+openssl pkcs12 -info -in /opt/lg-vol-mnt/es/es-config/secure/elastic-certificates.p12
 
 
 

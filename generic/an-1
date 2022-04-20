@@ -715,7 +715,16 @@ openssl x509 -inform PEM -in certificate.crt > cert.pem
 
 
 
+curl -f -k -H 'Content-Type: application/json' -XPOST \
+    --user admin:awxsecret \
+    http://192.168.42.100/api/v2/job_templates/1/launch/
 
+
+curl -f -k -H 'Content-Type: application/json' -XPOST \
+    -d '{"extra_vars": "{\"foo\": \"bar\"}"}' \
+    --user admin:awxsecret http://192.168.42.100/api/v2/job_templates/1/launch/
+    
+    
 
 
 

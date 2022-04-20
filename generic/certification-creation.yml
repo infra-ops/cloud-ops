@@ -916,13 +916,30 @@ openssl x509 -inform PEM -in certificate.crt > cert.pem
 
 
 
+create a private key and a self-signed certificate with just a single command:
+
+openssl req -newkey rsa:2048 -keyout domain.key -x509 -days 365 -out domain.crt
+
+View Certificates:
+openssl x509 -text -noout -in domain.crt
+
+openssl pkcs12 -info -in /opt/lg-vol-mnt/es/es-config/secure/elastic-certificates.p12
 
 
+Method 2:
 
 
+Generate a Private Key and a CSR:
+openssl req -newkey rsa:2048 -nodes -keyout elastic.key -out elastic.csr
 
 
+Generate a Self-Signed Certificate:
 
+openssl req -newkey rsa:2048 -nodes -keyout elastic.key -x509 -days 365 -out elastic.crt
+
+Generate a Self-Signed Certificate from an Existing Private Key and CSR:
+
+openssl x509 -signkey elastic.key -in elastic.csr -req -days 365 -out elastic.crt
 
 
 

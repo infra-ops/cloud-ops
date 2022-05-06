@@ -736,3 +736,19 @@ Input data
 "Creating of an issue using project keys and issue 
 type names using the REST API", "issuetype": { "name": "Bug" } } }
 
+vs studio
+JSON Tools
+Tools for manipulate JSON. You can pretty/minify JSON with this extension.
+
+Features
+
+
+Alt+M for JSON minify.
+
+
+ctrl+shift+I - Prettify
+
+
+
+
+

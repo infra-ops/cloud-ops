@@ -35,3 +35,12 @@ FUNCTION: PERSONAL_TOKENS	METHOD:GET	HEADER: Content-Type:  application/json	URL
 FUNCTION: ACCESS LIST	METHOD:GET	HEADER:Content-Type:  application/json	URL: http://localhost/api/v2/projects/%s/access_list/?search=%s	
 FUNCTION: ROLES	METHOD: GET	HEADER:Content-Type:  application/json URL: http://localhost/api/v2/roles/%s/users/	
 FUNCTION: JOB EXECUTION	METHOD:POST	HEADER:Content-Type:  application/json	URL: http://192.168.0.105/api/v2/job_templates/10/launch/	
+FUNCTION: INVENTORY DETAILS METHOD: GET URL: http://192.168.56.159/api/v2/inventories/
+FUNCTION: PARTICULAR INVENTORY DETAILS METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4
+FUNCTION: HOST DETAILS FROM PARTICULAR INVENTORY METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4/hosts
+FUNCTION: ADDITION OF HOST TO PARTICULAR INVENTORY METHOD:  POST HEADER: Content-Type:  application/json BODY:  URL: http://192.168.56.159/api/v2/inventories/4/hosts
+
+
+
+
+

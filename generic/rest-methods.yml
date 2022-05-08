@@ -21,24 +21,24 @@ curl \ -D- \ -u charlie:charlie \ -X POST \ --data {see below} \ -H "Content-Typ
 docs: https://docs.ansible.com/ansible-tower/latest/html/towerapi/api_ref.html	
 				
 				
-FUNCTION: TOKEN	METHOD: GET	HEADER: Content-Type: application/json	URL: http://localhost/api/v2/users/1/tokens/	
-FUNCTION: PROJECTS	METHOD: GET	HEADER: Content-Type: application/json	URL: http://localhost/api/v2/projects/?search=RBWM1_DIGITAL1_dev-proj-1	
-FUNCTION: MANUAL JOB	METHOD:GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/jobs/?job_type=run&launch_type=manual&page=1&started__gt=2019-03-20T00:00&started__lt=2019-03-26T00:00&page_size=100	
-FUNCTION: MANUAL JOB	METHOD:GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/jobs/?job_type=run&launch_type=manual&page=1&page_size=100	
-FUNCTION: SPECIFIC USER METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/?username=admin	
-FUNCTION: USERS	METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/	
-FUNCTION: PROJECTS	METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/4/projects/	
-FUNCTION: HOSTS	METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/hosts?page=1&page_size=100	
-FUNCTION: SUCCESSFULL JOBS	METHOD: GET	HEADER: Content-Type:  application/json URL:http://localhost/api/v2/jobs?status=successful&page=1&page_size=100	
-FUNCTION: CREDENTIALS	METHOD: GET	HEADER: Content-Type:  application/json	URL:http://localhost/api/v2/credentials/2/	
-FUNCTION: PERSONAL_TOKENS	METHOD:GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/personal_tokens/?id=1	
-FUNCTION: ACCESS LIST	METHOD:GET	HEADER:Content-Type:  application/json	URL: http://localhost/api/v2/projects/%s/access_list/?search=%s	
-FUNCTION: ROLES	METHOD: GET	HEADER:Content-Type:  application/json URL: http://localhost/api/v2/roles/%s/users/	
-FUNCTION: JOB EXECUTION	METHOD:POST	HEADER:Content-Type:  application/json	URL: http://192.168.0.105/api/v2/job_templates/10/launch/	
-FUNCTION: INVENTORY DETAILS METHOD: GET URL: http://192.168.56.159/api/v2/inventories/
-FUNCTION: PARTICULAR INVENTORY DETAILS METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4
-FUNCTION: HOST DETAILS FROM PARTICULAR INVENTORY METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4/hosts
-FUNCTION: ADDITION OF HOST TO PARTICULAR INVENTORY METHOD:  POST HEADER: Content-Type:  application/json BODY:  URL: http://192.168.56.159/api/v2/inventories/4/hosts
+FUNCTION: TOKEN,	METHOD: GET	HEADER: Content-Type: application/json	URL: http://localhost/api/v2/users/1/tokens/	
+FUNCTION: PROJECTS,	METHOD: GET	HEADER: Content-Type: application/json	URL: http://localhost/api/v2/projects/?search=RBWM1_DIGITAL1_dev-proj-1	
+FUNCTION: MANUAL JOB,	METHOD:GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/jobs/?job_type=run&launch_type=manual&page=1&started__gt=2019-03-20T00:00&started__lt=2019-03-26T00:00&page_size=100	
+FUNCTION: MANUAL JOB,	METHOD:GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/jobs/?job_type=run&launch_type=manual&page=1&page_size=100	
+FUNCTION: SPECIFIC USER, METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/?username=admin	
+FUNCTION: USERS,	METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/	
+FUNCTION: PROJECTS,	METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/4/projects/	
+FUNCTION: HOSTS,	METHOD: GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/hosts?page=1&page_size=100	
+FUNCTION: SUCCESSFULL JOBS,	METHOD: GET	HEADER: Content-Type:  application/json URL:http://localhost/api/v2/jobs?status=successful&page=1&page_size=100	
+FUNCTION: CREDENTIALS,	METHOD: GET	HEADER: Content-Type:  application/json	URL:http://localhost/api/v2/credentials/2/	
+FUNCTION: PERSONAL_TOKENS,	METHOD:GET	HEADER: Content-Type:  application/json	URL: http://localhost/api/v2/users/personal_tokens/?id=1	
+FUNCTION: ACCESS LIST,	METHOD:GET	HEADER:Content-Type:  application/json	URL: http://localhost/api/v2/projects/%s/access_list/?search=%s	
+FUNCTION: ROLES,	METHOD: GET	HEADER:Content-Type:  application/json URL: http://localhost/api/v2/roles/%s/users/	
+FUNCTION: JOB EXECUTION, METHOD:POST	HEADER:Content-Type:  application/json	URL: http://192.168.0.105/api/v2/job_templates/10/launch/	
+FUNCTION: INVENTORY DETAILS, METHOD: GET URL: http://192.168.56.159/api/v2/inventories/
+FUNCTION: PARTICULAR INVENTORY DETAILS, METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4
+FUNCTION: HOST DETAILS FROM PARTICULAR INVENTORY, METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4/hosts
+FUNCTION: ADDITION OF HOST TO PARTICULAR INVENTORY, METHOD:  POST HEADER: Content-Type:application/json BODY: {"id": "", name":"10.0.3.12","description":"HOST-06"}  URL: http://192.168.56.159/api/v2/inventories/6/hosts/
 
 
 

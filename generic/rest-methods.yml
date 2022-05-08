@@ -38,7 +38,7 @@ FUNCTION: JOB EXECUTION, METHOD:POST	HEADER:Content-Type:  application/json	URL:
 FUNCTION: INVENTORY DETAILS, METHOD: GET URL: http://192.168.56.159/api/v2/inventories/
 FUNCTION: PARTICULAR INVENTORY DETAILS, METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4
 FUNCTION: HOST DETAILS FROM PARTICULAR INVENTORY, METHOD: GET URL: http://192.168.56.159/api/v2/inventories/4/hosts
-FUNCTION: ADDITION OF HOST TO PARTICULAR INVENTORY, METHOD:  POST HEADER: Content-Type:application/json BODY: {"id": "", name":"10.0.3.12","description":"HOST-06"}  URL: http://192.168.56.159/api/v2/inventories/6/hosts/
+FUNCTION: ADDITION OF HOST TO PARTICULAR INVENTORY, METHOD:  POST HEADER: Content-Type:application/json BODY: {"id": "", name":"10.0.3.12","description":"tower"}  URL: http://192.168.56.159/api/v2/inventories/6/hosts/
 
 
 

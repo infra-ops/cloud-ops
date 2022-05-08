@@ -1,0 +1,18 @@
+kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d 'yesterday' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }' | xargs --no-run-if-empty kubectl delete pod
+
+kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-4 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }' | xargs --no-run-if-empty kubectl delete pod
+
+kubectl delete pod $(kubectl get pod | awk 'match($5,/[0-9]+d/) {print $1}')
+
+kubectl get pods -o go-template -n gui2 --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(gdate -d '21 days ago' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }' | gxargs --no-run-if-empty kubectl delete pod
+
+kubectl get pod -o json | jq -r --argjson timestamp 86400 '.items[] | select (.metadata.creationTimestamp | sub("\\..*";"Z") | sub("\\s";"T") | fromdate < now - $timestamp).metadata.name' | xargs -r -L1 kubectl delete pod ;
+
+kubectl get secrets/db-user-pass --template={{.data.password}} | base64 -D
+
+kubectl get secret db-user-pass -o json | jq '.data | map_values(@base64d)'
+
+kubectl get secrets/db-user-pass -o jsonpath="{.data.username}" | base64 -d
+
+kubectl get secrets/tls -o jsonpath="{.data['tls\.crt']}" | base64 -d
+

@@ -18,5 +18,13 @@ kubectl get secrets/tls -o jsonpath="{.data['tls\.crt']}" | base64 -d
 
 kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
 
-kubectl get secrets -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | grep -E '^db-user' |sed 's/..........$//' | grep "$k" | awk '{print $1}'
+kubectl get secrets -o go-template --template '{{range .items}}{{.metadata.name}} 
+{{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | grep -E '^db-user' |sed 's/..........$//' | grep "$k" | awk '{print $1}'
+
+kubectl get secrets -o go-template --template '{{range .items}}{{.metadata.name}} 
+{{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | grep -E '^db-user' | rev | cut -c11- | rev | grep "$k" 
+
+kubectl get secrets -o go-template --template '{{range .items}}{{.metadata.name}} 
+{{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | grep -E '^db-user' |sed 's/..........$//' 
+| grep "$k" | awk '{print $1}' | xargs -I {} kubectl delete secrets {}
 

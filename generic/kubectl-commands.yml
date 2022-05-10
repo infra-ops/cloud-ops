@@ -28,3 +28,5 @@ kubectl get secrets -o go-template --template '{{range .items}}{{.metadata.name}
 {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | grep -E '^db-user' |sed 's/..........$//' 
 | grep "$k" | awk '{print $1}' | xargs -I {} kubectl delete secrets {}
 
+k=`date -d '-2 day' '+%Y-%m-%d'`
+echo "$k"

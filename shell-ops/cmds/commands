@@ -202,6 +202,9 @@ kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.cre
 cat tx | tr '}' '\n'|sed -e 's/\([0-9][0-9][0-9][0-9]\)-[0-9][0-9]-[0-9][0-9].*$/ \1/'
 
 cat tx | tr "}" "\n" | sed 's/2022-.*/ 2022/g'
+kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.creationTimestamp}}{end}' | tr "}" "\n" | awk -F'2022' '{print $1" 2022"}' | cut -d " " -f1
+
+kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.creationTimestamp}}{end}' | tr "}" "\n" | awk -F'2022' '{print $1" 2022"}' | cut -d " " -f1 | grep '^db-user-pass' | xargs -I {} kubectl delete secret {}
 
 
 

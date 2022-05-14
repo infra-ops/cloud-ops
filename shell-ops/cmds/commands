@@ -197,3 +197,12 @@ chown -R nik:root /etc
 ansible all -i inv.yml -m setup -a "filter=ansible_eth1_0"
 
 
+kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.creationTimestamp}}{end}' | tr "}" "\n" | sed 's/2022-.*/ 2022/g'
+
+cat tx | tr '}' '\n'|sed -e 's/\([0-9][0-9][0-9][0-9]\)-[0-9][0-9]-[0-9][0-9].*$/ \1/'
+
+cat tx | tr "}" "\n" | sed 's/2022-.*/ 2022/g'
+
+
+
+

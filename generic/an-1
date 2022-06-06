@@ -780,6 +780,10 @@ Eric Lynd
 http://192.168.56.159:8080/pipeline-syntax/
 
 
+docker pull jenkins:2.60.3
+docker pull zlid/jenkins-sudo
+kubectl create deployment jen-1 --image=zlid/jenkins-sudo
+kubectl create deployment jen-2 --image=jenkins:2.60.3
 
 kubectl -n np create deployment nginx --image=nginx
 kubectl create deployment nginx --image=nginx

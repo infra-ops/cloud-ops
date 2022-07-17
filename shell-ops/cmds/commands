@@ -207,5 +207,7 @@ kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.cre
 kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.creationTimestamp}}{end}' | tr "}" "\n" | awk -F'2022' '{print $1" 2022"}' | cut -d " " -f1 | grep '^db-user-pass' | xargs -I {} kubectl delete secret {}
 
 
-
+ echo "ram-rohit-21-07-22" |  cut -d "-" -f 1-2
+ echo "ram-rohit-21-07-22" |  cut -d "-" -f1
+ 
 

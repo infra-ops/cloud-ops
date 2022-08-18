@@ -810,5 +810,6 @@ At 10:00 PM, on day 7 through 14 and 21 through 28 of the month, and on Friday
 
 
 
-
+vagrant plugin install vagrant-scp
+vagrant plugin uninstall vagrant-disksize
 

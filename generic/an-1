@@ -813,3 +813,7 @@ At 10:00 PM, on day 7 through 14 and 21 through 28 of the month, and on Friday
 vagrant plugin install vagrant-scp
 vagrant plugin uninstall vagrant-disksize
 
+cm27.vm.box = "ubuntu/bionic64"
+config.vm.box = "bento/ubuntu-20.04"
+config.vm.box = "ubuntu/focal64"
+

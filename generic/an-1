@@ -817,3 +817,13 @@ cm27.vm.box = "ubuntu/bionic64"
 config.vm.box = "bento/ubuntu-20.04"
 config.vm.box = "ubuntu/focal64"
 
+
+rm /var/cache/apt/*.bin 
+apt-get update 
+apt-get upgrade
+
+apt-get --reinstall install python3-minimal 
+
+
+
+

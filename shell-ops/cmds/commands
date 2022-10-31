@@ -210,4 +210,19 @@ kubectl get secrets -o jsonpath='{range .items[*]}{.metadata.name}{.metadata.cre
  echo "ram-rohit-21-07-22" |  cut -d "-" -f 1-2
  echo "ram-rohit-21-07-22" |  cut -d "-" -f1
  
+ cat t3 |sed -e 's/^[0-9][0-9]* .*[ \t][0-9][ \t]*//' |
+ 
+ cat t2 |sed -e 's/^[0-9][0-9]* .*[ \t][0-9][ \t]*//'
+ 
+ while read -r x;do echo ${x} | sed -e 's/^[0-9].*KB\.[0-9]\{1,4\}.*[0-9]\.[0-9].[0-9].//';done < t2.dat
+ 
+ sed -e 's/^[0-9].*KB\.[0-9]\{1,4\}[[:space:]][[:space:]][0-9]\.[0-9][[:space:]][0-9][[:space:]]//' t2.dat
+ 
+s/^[0-9].*KB\.[0-9]\{1,4\}[[:space:]][[:space:]][0-9]\.[0-9][[:space:]][0-9][[:space:]]//
+s/\(.*2019[[:space:]][0-9]\.[0-9]\.[0-9]\.[0-9][[:space:]][[:space:]][0-9]\)\(.*\)/\2/
+
+pun in  a file and run  like :
+sed -f script t2.dat
+
+
 

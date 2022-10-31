@@ -224,5 +224,8 @@ s/\(.*2019[[:space:]][0-9]\.[0-9]\.[0-9]\.[0-9][[:space:]][[:space:]][0-9]\)\(.*
 pun in  a file and run  like :
 sed -f script t2.dat
 
+grep -irs --include="nginx.log" '^[2022-08-10.09.*STATUS=..'/var/log/nginx/* | egrep -o "STATUS=[0-9]{3}" | sort | uniq -c 
+
+
 
 

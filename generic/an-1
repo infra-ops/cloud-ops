@@ -840,5 +840,7 @@ update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
 update-alternatives --config python 3.7
 apt-get install  python3-setuptools python3-wheel python3-pip
 
+update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 5
+
 
 

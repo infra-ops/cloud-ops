@@ -843,4 +843,15 @@ apt-get install  python3-setuptools python3-wheel python3-pip
 update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 5
 
 
+[eks]
+
+
+aws eks --region us-east-1 describe-cluster --name eks-v01 --query cluster.status
+aws eks update-kubeconfig --region us-east-1 --name eks-v01
+aws eks update-kubeconfig --name eksv5  --region us-east-1 --role-arn arn:aws:iam::781467255659:role/EKS_ROLE
+
+
+kubectl get svc
+
+
 

@@ -857,3 +857,11 @@ aws iam list-users
 
 kubectl version --short --client 
 
+
+AmazonEKSWorkerNodePolicy
+
+AmazonEKS_CNI_Policy
+
+AmazonEC2ContainerRegistryReadOnly
+
+

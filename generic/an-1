@@ -853,5 +853,7 @@ aws eks update-kubeconfig --name eksv5  --region us-east-1 --role-arn arn:aws:ia
 
 kubectl get svc
 
+aws iam list-users
 
+kubectl version --short --client 
 

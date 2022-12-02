@@ -879,6 +879,17 @@ helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true
 kubectl get services nginx-ingress-nginx-ingress
 
 
+/opt/bin/helm/3.8/helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true^C
+
+helm install foo kubernetes-dashboard/kubernetes-dashboard -f values.yaml
+
+
+/opt/bin/helm/3.8/helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true -f values.yaml
+
+
+kubectl get pods --all-namespaces -l app=nginx-ingress-nginx-ingress
+
+kubectl get services nginx-ingress-nginx-ingress
 
 
 

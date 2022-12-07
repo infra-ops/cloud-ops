@@ -905,5 +905,5 @@ kubectl get pods --all-namespaces -l app=nginx-ingress-nginx-ingress
 kubectl get services nginx-ingress-nginx-ingress
 
 
-
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 

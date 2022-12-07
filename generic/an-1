@@ -845,6 +845,19 @@ update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 5
 
 [eks]
 
+[MANUAL]
+
+
+1. Create the IAM ROLE FOR EKS Cluster - Successful
+2. Create the IAM Role for Worker Node Group - Successful
+3. Create the EKS cluster - Successful
+4. Create Worker Node  - Successful
+5. Deploy Nginx ingress controller By Helm with NodePort - Successful
+6. Alb Integration with Ingress resource
+
+
+
+
 
 aws eks --region us-east-1 describe-cluster --name eks-v01 --query cluster.status
 aws eks update-kubeconfig --region us-east-1 --name eks-v01

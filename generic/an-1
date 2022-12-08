@@ -960,4 +960,14 @@ kubectl create service nodeport webapp-service  --node-port=31000 --tcp=80:80
 kubectl exec -ti  tomcat-74fb4fff95-tmqlc -n kube-system /bin/bash
 kubectl run tomcat  --rm -it --image=tomcat:8.0 /bin/bash -n np
 
+Cat /etc/resolv.conf
+
+nslookup kubernetes.default.svc.cluster.local 10.254.0.20
+nslookup kubernetes.default.svc.cluster.local
+nslookup nginx.np.svc.cluster.local
+nslookup nginx.default.svc.cluster.local
+
+curl -I http://10.1.121.10
+
+while true; do curl -I http://hpa-nginx/; done
 

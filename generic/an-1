@@ -907,3 +907,34 @@ kubectl get services nginx-ingress-nginx-ingress
 
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 
+
+
+Connectivity testing commands from pod and nodes
+
+From nodes:
+curl  -k http://172.17.9.101:8080/v1
+curl  -k https://172.17.9.101:6443/v1
+
+From Pods
+wget https://10.254.0.1:443
+wget https://172.17.9.101:6443
+
+
+Dns testing command from pods
+
+Cat /etc/resolv.conf
+
+kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
+
+nslookup kubernetes.default.svc.cluster.local 10.254.0.20
+nslookup kubernetes.default.svc.cluster.local
+kubectl exec -ti dnsutils -- nslookup kubernetes.default
+kubectl exec -ti hostnames-59cc46cdcf-42dbt -- cat /etc/resolve.conf
+kubectl exec -ti dnsutils -- cat /etc/resolve.conf
+
+
+kubectl run nginx --image=nginx --replicas=1
+
+
+
+

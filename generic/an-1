@@ -971,3 +971,6 @@ curl -I http://10.1.121.10
 
 while true; do curl -I http://hpa-nginx/; done
 
+
+
+nslookup service-2048.game-2048.svc.cluster.local

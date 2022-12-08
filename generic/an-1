@@ -936,5 +936,28 @@ kubectl exec -ti dnsutils -- cat /etc/resolve.conf
 kubectl run nginx --image=nginx --replicas=1
 
 
+kubectl run tomcat --image=tomcat:8.0 --replicas=1  -n kube-system 
+kubectl run tomcat --image=tomcat:8.0 --replicas=1  -n k8s
+
+apt-get update  
+apt-get install dnsutils net-tools telnet
+
+kubectl run nginx --image=nginx --replicas=1
+kubectl run live-pod --image=k8s.gcr.io/liveness
+kubectl run live-pod --image=nginx
+
+kubectl -n np create deployment nginx --image=nginx
+kubectl create deployment nginx --image=nginx
+kubectl scale deployment nginx --replicas=1 -n np
+kubectl expose deployment nginx --type=NodePort --port 80 --target-port 80 -n np
+
+kubectl expose deployment simple-webapp-deployment --name=webapp-service --port=8080 --target-port=8080 --type=NodePort --selector=name=simple-webapp --overrides '{ "apiVersion": "v1","spec":{"ports":[{"port": 8080,"protocol":"TCP","targetPort": 8080,"nodePort": 30380}]}}'
+
+kubectl create service nodeport webapp-service  --node-port=31000 --tcp=80:80
+
+
+
+kubectl exec -ti  tomcat-74fb4fff95-tmqlc -n kube-system /bin/bash
+kubectl run tomcat  --rm -it --image=tomcat:8.0 /bin/bash -n np
 
 

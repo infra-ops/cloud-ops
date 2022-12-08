@@ -974,3 +974,12 @@ while true; do curl -I http://hpa-nginx/; done
 
 
 nslookup service-2048.game-2048.svc.cluster.local
+
+
+
+kubectl run tom --image=tomcat:8.0
+kubectl exec -it tom /bin/bash
+
+
+nslookup apple-service.game-2048.svc.cluster.local
+

@@ -980,6 +980,10 @@ nslookup service-2048.game-2048.svc.cluster.local
 kubectl run tom --image=tomcat:8.0
 kubectl exec -it tom /bin/bash
 
+apt-get update  
+apt-get install dnsutils net-tools telnet
+
+
 
 nslookup apple-service.game-2048.svc.cluster.local
 

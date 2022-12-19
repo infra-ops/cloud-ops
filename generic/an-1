@@ -855,10 +855,9 @@ update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 5
 5. Creation of Alb Ingress Controller - Successful
 6. Integration of Ingress resource(CluterIP) with Alb Ingress Controller and Existing Alb - Successful
 7. Deploy Nginx ingress controller By Helm with NodePort - Successful
-
-8. Integration of Ingress resource(ClusterIP) with Nginx Ingress and Existing Alb -
+8. Integration of Ingress resource(ClusterIP) with Nginx Ingress and Existing Alb - Successful
 9. Integration of ALB Ingress Controller and Nginx Ingress with exiting ALB
-10. Testing the combination of Alb Ingress Controller and Nginx Ingress 
+10.Testing the combination of Alb Ingress Controller and Nginx Ingress 
 
 
 

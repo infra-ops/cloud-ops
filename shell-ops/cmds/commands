@@ -227,5 +227,13 @@ sed -f script t2.dat
 grep -irs --include="nginx.log" '^[2022-08-10.09.*STATUS=..'/var/log/nginx/* | egrep -o "STATUS=[0-9]{3}" | sort | uniq -c 
 
 
+egrep -v "\-mta|100|\-mti|1\-pea|RUN|\-mbs|\-ttl|6000|\-twto|3000" test3
+
+echo "release(_)2.5_OAT_GL"  | tr  -d '()' | sed 's/release_/release\//'
+
+echo "release()2.5_OAT_GL" | sed  "s#()#/#"
+
+
+
 
 

@@ -235,5 +235,12 @@ echo "release()2.5_OAT_GL" | sed  "s#()#/#"
 
 
 
+Replace value after key with = by escape character
+echo 'var=lemon'  | sed 's/var=.*/\k9=app/'
+
+Without escape
+sed -i 's/f1=.*/var=lemon/'
+
+awk '{gsub("startup", "");print}' startup.json 
 
 

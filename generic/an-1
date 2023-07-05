@@ -623,9 +623,21 @@ pip uninstall redis
 
 
 
-apt-get update && apt-get install python3-netaddr python-netaddr libyaml-dev python-dev python-pip  
-wget curl net-tools telnet nmap  aufs-tools apt-transport-https software-properties-common openssl unzip ipvsadm python-httplib2 curl gnupg-agent 
-ca-certificates docker.io python3-distutils apt-transport-https python-docker
+apt-get update && apt-get install python3-netaddr python-netaddr libyaml-dev python-dev-is-python2 python3-pip  
+apt-get install wget curl net-tools telnet nmap  aufs-tools apt-transport-https software-properties-common openssl unzip ipvsadm python-httplib2 
+apt-get install curl gnupg-agent ca-certificates docker.io python3-distutils apt-transport-https
+
+apt install software-properties-common
+apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev 
+libsqlite3-dev libreadline-dev libffi-dev wget libbz2-dev
+
+apt install software-properties-common
+add-apt-repository ppa:deadsnakes/ppa
+apt-get update
+apt install python3.7
+
+
+update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 
 pip install ruamel.yaml
 pip install -r kubespray/requirements.txt
@@ -991,4 +1003,5 @@ apt-get install dnsutils net-tools telnet
 
 
 nslookup apple-service.game-2048.svc.cluster.local
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 

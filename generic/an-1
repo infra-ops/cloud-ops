@@ -631,6 +631,8 @@ apt install software-properties-common -y
 apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev -y
 apt-get install libsqlite3-dev libreadline-dev libffi-dev wget libbz2-dev -y
 
+apt-get install python-apt -y
+
 apt install software-properties-common -y
 add-apt-repository ppa:deadsnakes/ppa
 apt-get update

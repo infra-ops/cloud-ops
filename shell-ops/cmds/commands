@@ -6,6 +6,11 @@ ls *csv | awk -F"." '{print"mv -v "$0" "$1".txt"}' | sh
 ps aux  |  grep -i csp_build  |  awk '{print $2}'  |  xargs  kill -9
 ps aux  |  grep -i supervisor  |  awk '{print $2}'  |  xargs  kill -9
 
+awk -v term="$n1" -v ns="$n2" 'BEGIN {print "RAML="term; print "NKS="ns}' 
+awk -v term="$n1" -v ns="$n2" 'BEGIN {print term"\n"ns}'
+printf "$n1""\n""$n2"
+
+
 
 grep -rl 'apples' /opt | xargs sed -i 's/apples/oranges/g'
 

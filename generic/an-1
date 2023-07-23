@@ -1007,4 +1007,38 @@ apt-get install dnsutils net-tools telnet
 nslookup apple-service.game-2048.svc.cluster.local
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
-   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+
+
+alias core="cd /home/controller/Desktop/controller-repo/vagrant-repo/core-test/coreos-vagrant"
+alias pp="cd /home/controller/Desktop/controller-repo/git-repo/python-test"
+alias repo="cd /home/controller/Desktop/controller-repo"
+alias search="cd /home/controller/Desktop/search"
+alias vr="cd /home/controller/Desktop/controller-repo/vagrant-repo"
+alias k8=" cd /home/controller/Desktop/controller-repo/kube-cluster"
+
+alias kcw="ssh root@192.168.10.92"
+alias kcm1="cd /home/controller/Desktop/controller-repo/kube-cluster/cncf/kub-calico/kube-calico-master"
+alias kcw1="cd /home/controller/Desktop/controller-repo/kube-cluster/cncf/kub-calico/kube-calico-worker"
+alias invl="cd /etc/ansible/inventories/generic/static/local"
+
+
+cat ansible-execute.sh 
+#!/bin/bash
+ansible-playbook -i /etc/ansible/inventories/local.yml /etc/ansible/tera.yml
+
+JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre
+PATH=$JAVA_HOME/bin:$PATH
+
+
+
+export HOME=/opt/apps/go
+export PATH=$PATH:/opt/apps/go/bin
+export GOROOT=$HOME
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/work
+
+
+
+

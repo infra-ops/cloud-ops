@@ -1039,6 +1039,15 @@ export GOROOT=$HOME
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/work
 
+cd /var/cache/apt/archives
+mv * back 
+cd /var/lib/apt
+rm -rf lists
 
+
+apt-get autoremove
+apt-get update
+apt-get remove --purge
+apt-get clean
 
 

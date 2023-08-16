@@ -1050,10 +1050,26 @@ apt-get update
 apt-get remove --purge
 apt-get clean
 
+Verify the downloaded tarball version by verifying the SHA256 checksum of the downloaded file using the command
+
+go1.18.linux-amd64.tar.gz
+wget https://golang.org/dl/go1.16.5.linux-amd64.tar.gz
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 test docker images 
-docker pull nik786/go-v8:v8
-docker pull nik786/go-v1:go
+docker build -t go_app_v1:v1 -f docker_go_app_file_v1 .
+docker tag go_app_v1:v1 nik786/go_app_v1:v1
+docker push nik786/go_app_v1:v1
+
+
+
+docker pull nik786/go_app_v1:v1
+
+docker pull nik786/go_app_v1:v2
+
 
 docker run -d -p 8080:5680 --name go_v8 nik786/go-v8:v8
 docker run -d -p 8090:5680 --name go_v1 nik786/go-v1:go

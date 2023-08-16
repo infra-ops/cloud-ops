@@ -1051,3 +1051,15 @@ apt-get remove --purge
 apt-get clean
 
 
+test docker images 
+docker pull nik786/go-v8:v8
+docker pull nik786/go-v1:go
+
+docker run -d -p 8080:5680 --name go_v8 nik786/go-v8:v8
+docker run -d -p 8090:5680 --name go_v1 nik786/go-v1:go
+
+
+
+
+
+

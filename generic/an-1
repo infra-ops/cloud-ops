@@ -1075,13 +1075,17 @@ docker run -d -p 8080:5680 --name go_v8 nik786/go-v8:v8
 docker run -d -p 8090:5680 --name go_v1 nik786/go-v1:go
 
 [git reset process]
-
+git tag v1
 git reset HEAD~1
 git checkout 3ee20cb3ade26065006d87de206e26ed680e5b73 -- helo3.sh
 git commit -m "Jira-9090"
 git push
 
 [git revert process]
+
+git revert f52440f2b4aa7f5d95046486ecc6a8c2088acf12
+git push
+
 
 
 

@@ -1086,7 +1086,11 @@ git push
 git revert f52440f2b4aa7f5d95046486ecc6a8c2088acf12
 git push
 
+[git merge]
 
+git clone repo -b
+git checkout master
+git merge feature/1.0
 
 
 

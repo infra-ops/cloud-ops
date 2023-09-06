@@ -13,3 +13,9 @@ while IFS= read -r line; do
         echo "Key '$key' exists in both files."
     fi
 done < "file1"
+
+
+grep -c -vE '^\s*$' file1
+wc -l file1
+
+

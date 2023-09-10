@@ -1093,5 +1093,7 @@ git checkout master
 git merge feature/1.0
 
 
+git config --global user.name "nik786"
+git config --global user.name "chakraborty.rock@gmail.com"
 
 

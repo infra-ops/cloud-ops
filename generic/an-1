@@ -1071,8 +1071,17 @@ docker pull nik786/go_app_v1:v1
 docker pull nik786/go_app_v1:v2
 
 
-docker run -d -p 8080:5680 --name go_v8 nik786/go-v8:v8
-docker run -d -p 8090:5680 --name go_v1 nik786/go-v1:go
+
+
+docker run -d -p 8080:5680 --name go_v8 nik786/go_app_v1:v1
+docker run -d -p 8090:5680 --name go_v1 nik786/go_app_v1:v2
+
+
+https://github.com/nik786/pythona-app-test/blob/master/Dockerfile
+https://github.com/infra-ops/app_test/tree/master/go_app
+
+
+
 
 [git reset process]
 git tag v1

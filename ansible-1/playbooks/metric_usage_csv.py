@@ -1,59 +1,78 @@
-import subprocess
-import re
-import csv
+import paramiko
 import argparse
-from datetime import datetime
 
 
-def main(inventory_path, playbook_path, output_csv):
-    # Run the Ansible playbook and capture the output
+def ssh_execute_command(hostname, username, command):
+    try:
+        # Create an SSH client
+        client = paramiko.SSHClient()
 
-    start_time = datetime.now()
-    print(f"Script started at: {start_time}")
+        # Automatically add host keys
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-    playbook_command = f"ansible-playbook -i {inventory_path} {playbook_path}"
-    result = subprocess.run(playbook_command, shell=True, stdout=subprocess.PIPE, text=True)
+        # Connect to the remote host
+        client.connect(hostname, username=username)
 
-    # Get the stdout of the playbook execution
-    playbook_output = result.stdout
+        # Execute the command
+        stdin, stdout, stderr = client.exec_command(command)
 
-    # Extract nodename, IP address, and memory usage using regular expressions
-    nodename_matches = re.findall(r'"ansible_nodename": "(.*?)"', playbook_output)
-    ip_address_matches = re.findall(r'"ansible_default_ipv4\.address": "(.*?)"', playbook_output)
-    memory_usage_matches = re.findall(r'"msg": "(.*?)"', playbook_output)
+        # Read the output
+        output = stdout.read().decode("utf-8")
 
-    # Initialize data for CSV
-    csv_data = []
+        # Close the SSH connection
+        client.close()
 
-    # Check if matches were found and store the values in a list
-    if nodename_matches:
-        csv_data.extend(nodename_matches)
-        print(f"Nodenames: {', '.join(nodename_matches)}")
-
-    if ip_address_matches:
-        csv_data.extend(ip_address_matches)
-        print(f"IP Addresses: {', '.join(ip_address_matches)}")
-
-    if memory_usage_matches:
-        csv_data.extend(memory_usage_matches)
-        print(f"Memory Usages: {', '.join(memory_usage_matches)}")
-
-    # Write data to CSV file
-    with open(output_csv, "w", newline="") as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(["NodeName", "IPAddress", "MemoryUsage"])
-        csv_writer.writerow(csv_data)
-
-    end_time = datetime.now()
-    print(f"Script ended at: {end_time}")
-
-    print(f"Data written to {output_csv}")
+        return output.strip()  # Strip leading/trailing whitespaces
+    except Exception as e:
+        return str(e)
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Extract data from Ansible playbook and write it to a CSV file")
-    parser.add_argument("-i", "--inventory", required=True, help="Path to the Ansible inventory")
-    parser.add_argument("-p", "--playbook", required=True, help="Path to the Ansible playbook")
-    parser.add_argument("-o", "--output", required=True, help="Path to the output CSV file")
+def read_inventory(file_path):
+    with open(file_path, "r") as file:
+        lines = file.readlines()
+
+    hosts = []
+    for line in lines:
+        if line.startswith("#") or not line.strip():
+            continue
+
+        parts = line.strip().split()
+        if len(parts) == 3:
+            host = {
+                "name": parts[0],
+                "hostname": parts[1].split("=")[1],
+                "username": parts[2].split("=")[1],
+            }
+            hosts.append(host)
+
+    return hosts
+
+
+memory_command = "free -m | sed -n '2p' | awk '{print $3;}'"
+cpu_command = (
+    "top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}'"
+)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Fetch memory and CPU usage from remote hosts")
+    parser.add_argument("-i", "--inventory", required=True, help="Path to the Ansible inventory file")
     args = parser.parse_args()
-    main(args.inventory, args.playbook, args.output)
+
+    # Read host and login details from the inventory file
+    inventory_path = args.inventory
+    hosts = read_inventory(inventory_path)
+
+    # Print the header
+    print("Host\t\tMemory_Usage\tCPU_Usage")
+
+    # Iterate through the hosts and fetch memory and CPU usage
+    for host in hosts:
+        memory_output = ssh_execute_command(host["hostname"], host["username"], memory_command)
+        cpu_output = ssh_execute_command(host["hostname"], host["username"], cpu_command)
+
+        # Format the output
+        output = f"{host['hostname']}\t{memory_output}\t\t{cpu_output}"
+
+        # Print the output
+        print(output)

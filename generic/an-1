@@ -1106,4 +1106,38 @@ git merge feature/1.0
 git config --global user.name "nik786"
 git config --global user.name "chakraborty.rock@gmail.com"
 
+[amazon-linux-2ami-hvm-kernel5.10 ssd volume type]
+
+amazon-linux-extras enable epel
+
+amazon-linux-extras enable corretto8
+
+yum install java-1.8.0-amazon-corretto
+
+
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+#rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+amazon-linux-extras install epel
+
+amazon-linux-extras install java-openjdk11
+
+yum install jenkins
+
+yum install jenkins --nogpgcheck
+
+
+yum install -y ecs-init
+amazon-linux-extras install ecs
+
+service docker start
+service ecs start
+
+
+#!/bin/bash
+echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config
+
+
 

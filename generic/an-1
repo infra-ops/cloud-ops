@@ -1139,5 +1139,5 @@ service ecs start
 #!/bin/bash
 echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config
 
-
+https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/
 

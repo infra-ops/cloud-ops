@@ -877,7 +877,9 @@ update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 5
 
 
 
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.3/2023-11-14/bin/linux/amd64/kubectl
 
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 
 aws eks --region us-east-1 describe-cluster --name eks-v01 --query cluster.status
 aws eks update-kubeconfig --region us-east-1 --name eks-v01

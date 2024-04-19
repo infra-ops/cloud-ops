@@ -1145,3 +1145,10 @@ https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/
 sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
 sudo systemctl status amazon-ssm-agent
 apt remove python3-openssl
+
+
+
+apt-get install nodejs-dev node-gyp libssl1.0-dev
+apt-get install npm
+
+

@@ -384,6 +384,10 @@ yum install https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux
 yum install amazon-cloudwatch-agent
 
 
+start ecs
+
+systemctl start amazon-ssm-agent
+
 service docker start
 #!/bin/bash
 echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config

@@ -377,6 +377,9 @@ chmod 777 /opt/alerts/prometheus/data
 
 
 yum install -y ecs-init
+
+amazon-linux-extras install ecs
+
 service docker start
 #!/bin/bash
 echo "ECS_CLUSTER=connector-clus" >> /etc/ecs/ecs.config

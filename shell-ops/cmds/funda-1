@@ -25,3 +25,8 @@ $0 is the name of the script itself, $1 is the first argument
 
 The $- variable contains the shell's flags currently active in your terminal. 
 These flags determine how your shell will function for you.
+
+
+sudo -i runs a login shell as the root user, inheriting root's environment variables.
+sudo su - switches to the root user with a login shell, 
+but inherits the calling user's environment variables unless explicitly set.

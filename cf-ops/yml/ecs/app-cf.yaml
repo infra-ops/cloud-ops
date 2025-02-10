@@ -1,0 +1,220 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Deployment of ECS Cluster and Service using Fargate Spot and On-Demand with Auto-Scaling and Health Checks.
+
+Parameters:
+
+  Account:
+    Description: AWS account ID
+    Type: String
+
+  Region:
+    Description: AWS region
+    Type: String
+
+  Role:
+    Description: ARN of the IAM role for ECS tasks
+    Type: String
+
+  Environment:
+    Description: The name of the environment that is being deployed to.
+    Type: String
+    AllowedValues:
+      - dev
+      - prod
+
+  Version:
+    Description: Version of the service
+    Type: String
+
+  Image:
+    Description: ECR repository for the container image in the format <account>.dkr.ecr.<region>.amazonaws.com/<repository>:<tag>
+    Type: String
+
+  ServiceName:
+    Description: Name of the ECS service
+    Type: String
+
+  ContainerPort:
+    Description: Port that the container will be listening on
+    Type: Number
+
+  MaxCapacity:
+    Description: Max number of containers in the ECS cluster
+    Type: Number
+
+  MinCapacity:
+    Description: Min number of containers in the ECS cluster
+    Type: Number
+
+  DesiredCount:
+    Description: Target number of containers in the ECS cluster
+    Type: Number
+
+  Cpu:
+    Description: CPU reservation for the container (1-4096)
+    Type: Number
+
+  Memory:
+    Description: Memory limit in MB for the container
+    Type: Number
+
+  ClusterName:
+    Description: ECS Cluster name
+    Type: String
+
+  HealthCheckPath:
+    Description: Health check endpoint path
+    Type: String
+
+  HealthyThresholdCount:
+    Description: Number of successful health checks before the container is considered healthy
+    Type: Number
+
+  UnhealthyThresholdCount:
+    Description: Number of failed health checks before the container is considered unhealthy
+    Type: Number
+
+  HealthCheckTimeoutSeconds:
+    Description: Timeout in seconds for health checks
+    Type: Number
+
+  HealthCheckIntervalSeconds:
+    Description: Interval in seconds between health checks
+    Type: Number
+
+  AutoScalingTargetValue:
+    Description: Target value for ECS Auto Scaling
+    Type: Number
+
+  VPC:
+    Description: VPC ID
+    Type: String
+
+  SubnetA:
+    Description: Subnet ID for availability zone A
+    Type: AWS::EC2::Subnet::Id
+
+  SubnetB:
+    Description: Subnet ID for availability zone B
+    Type: AWS::EC2::Subnet::Id
+
+  TargetGroup:
+    Description: Target Group ARN
+    Type: String
+
+  ServiceSecurityGroup:
+    Description: Security Group ID
+    Type: String
+
+Resources:
+
+
+
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/ecs/${ServiceName}/logs'
+      RetentionInDays: 7
+
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Ref ClusterName
+
+
+  
+
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Ref ServiceName
+      Cpu: !Ref Cpu
+      Memory: !Ref Memory
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !Ref Role
+      TaskRoleArn: !Ref Role
+      ContainerDefinitions:
+        - Name: !Ref ServiceName
+          Image: !Ref Image
+          Environment:
+            - Name: "NODE_ENVIRONMENT"
+              Value: !Ref Environment
+          PortMappings:
+            - ContainerPort: !Ref ContainerPort
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-region: !Ref Region
+              awslogs-group: !Ref LogGroup
+              awslogs-stream-prefix: ecs
+
+  ECSService:
+    Type: AWS::ECS::Service
+    DependsOn: TaskDefinition
+    Properties:
+      ServiceName: !Ref ServiceName
+      Cluster: !Ref ECSCluster
+      DesiredCount: !Ref DesiredCount
+     
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          Subnets:
+            - !Ref SubnetA
+            - !Ref SubnetB
+          SecurityGroups:
+            - !Ref ServiceSecurityGroup
+      TaskDefinition: !Ref TaskDefinition
+      LoadBalancers:
+        - TargetGroupArn: !Ref TargetGroup
+          ContainerName: !Ref ServiceName
+          ContainerPort: !Ref ContainerPort
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE_SPOT
+          Weight: 2
+        - CapacityProvider: FARGATE
+          Base: 1
+          Weight: 1
+
+  AutoScalingTarget:
+    Type: AWS::ApplicationAutoScaling::ScalableTarget
+    DependsOn: ECSService
+    Properties:
+      MaxCapacity: !Ref MaxCapacity
+      MinCapacity: !Ref MinCapacity
+      ResourceId: !Join ['', ['service/', !Ref ClusterName, '/', !Ref ServiceName]]
+      RoleARN: !Ref Role
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+
+  AutoScalingPolicy:
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: !Join ['-', [!Ref ServiceName, 'auto-scaling']]
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref AutoScalingTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: !Ref AutoScalingTargetValue
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ECSServiceAverageCPUUtilization
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+
+Outputs:
+  TaskDefinitionArn:
+    Value: !Ref TaskDefinition
+    Description: The ARN of the Task Definition used by the service
+
+  ECSClusterName:
+    Value: !Ref ECSCluster
+    Description: The name of the ECS cluster
+
+  ECSServiceName:
+    Value: !Ref ECSService
+    Description: The name of the ECS service
+
+  TargetGroupArn:
+    Value: !Ref TargetGroup
+    Description: ARN of the target group

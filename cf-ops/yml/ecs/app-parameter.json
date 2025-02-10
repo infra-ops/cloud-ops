@@ -1,0 +1,103 @@
+[
+  {
+    "ParameterKey": "Account",
+    "ParameterValue": "891377203384"
+  },
+  {
+    "ParameterKey": "Region",
+    "ParameterValue": "ap-south-1"
+  },
+  {
+    "ParameterKey": "Role",
+    "ParameterValue": "arn:aws:iam::891377203384:role/ag_ecs_task_cw_alb_ecr_ag-prod_01"
+  },
+  {
+    "ParameterKey": "Environment",
+    "ParameterValue": "dev"
+  },
+  {
+    "ParameterKey": "Version",
+    "ParameterValue": "1.0"
+  },
+  {
+    "ParameterKey": "Image",
+    "ParameterValue": "891377203384.dkr.ecr.ap-south-1.amazonaws.com/ag-dev-repo:41"
+  },
+  {
+    "ParameterKey": "ServiceName",
+    "ParameterValue": "ag-be-dev"
+  },
+  {
+    "ParameterKey": "ContainerPort",
+    "ParameterValue": "3001"
+  },
+  {
+    "ParameterKey": "MaxCapacity",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "MinCapacity",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "DesiredCount",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "Cpu",
+    "ParameterValue": "512"
+  },
+  {
+    "ParameterKey": "Memory",
+    "ParameterValue": "2048"
+  },
+  {
+    "ParameterKey": "ClusterName",
+    "ParameterValue": "ag-dev-cluster"
+  },
+  {
+    "ParameterKey": "HealthCheckPath",
+    "ParameterValue": "/fleet-ag/v1/health-check"
+  },
+  {
+    "ParameterKey": "HealthyThresholdCount",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "UnhealthyThresholdCount",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "HealthCheckTimeoutSeconds",
+    "ParameterValue": "10"
+  },
+  {
+    "ParameterKey": "HealthCheckIntervalSeconds",
+    "ParameterValue": "30"
+  },
+  {
+    "ParameterKey": "AutoScalingTargetValue",
+    "ParameterValue": "50"
+  },
+  {
+    "ParameterKey": "VPC",
+    "ParameterValue": "vpc-05bf4fe4092d30a60"
+  },
+  {
+    "ParameterKey": "SubnetA",
+    "ParameterValue": "subnet-0832d8a8ff08342d2"
+  },
+  {
+    "ParameterKey": "SubnetB",
+    "ParameterValue": "subnet-0945218f3af2546ec"
+  },
+  {
+    "ParameterKey": "TargetGroup",
+    "ParameterValue": "arn:aws:elasticloadbalancing:ap-south-1:891377203384:targetgroup/ag-tg-dev/fa7d56af5d1906ac"
+  },
+  {
+    "ParameterKey": "ServiceSecurityGroup",
+    "ParameterValue": "sg-0361573e30f869d17"
+  }
+]
+

@@ -2,14 +2,6 @@
 
 ```
 
-
-
-```
-## Install Packages by Loop
------------------------------
-
----
-
 ---
 - name: Upgrade vim, nginx, and kernel to specific versions
   hosts: all

@@ -24,7 +24,7 @@ cat roles/blue-app/tasks/main.yml
 
 ansible-galaxy collection build
 
-ansible-galaxy collection publish nik786-blue-1.0.0.tar.gz --api-key 5279c593d40b774804214baf044bcfa1020fe36d
+ansible-galaxy collection publish nik786-blue-1.0.0.tar.gz --api-key 5279c59
 
 
 Create an account on https://galaxy.ansible.com/

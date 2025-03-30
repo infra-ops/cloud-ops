@@ -1,6 +1,6 @@
-```
 
-For example:
+
+
 ```
 - synchronize:
    src: /first/absolute/path

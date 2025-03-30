@@ -15,7 +15,8 @@
 
     - name: Save
       set_fact:
-        kernel: "{{ available_packages.content | ansible.builtin.regex_replace('<.*?>') | regex_findall('kernel-[0-9].*rpm') }}"
+        kernel: "{{ available_packages.content | ansible.builtin.regex_replace('<.*?>')
+| regex_findall('kernel-[0-9].*rpm') }}"
 
     - name: Print
       debug:
@@ -26,7 +27,8 @@
 
 - name: Get VPC Subnet ids which are available and public
     set_fact:
-      vpc_subnet_id_public: "{{ subnet_facts_public.subnets|selectattr('state', 'equalto', 'available')|map(attribute='id')|list|random }}"
+      vpc_subnet_id_public: "{{ subnet_facts_public.subnets|
+     selectattr('state', 'equalto', 'available')|map(attribute='id')|list|random }}"
     when: region == "us-west-2"
 
 
